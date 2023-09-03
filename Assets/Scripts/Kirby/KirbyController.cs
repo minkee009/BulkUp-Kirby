@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum KirbyAbility
@@ -18,7 +19,8 @@ public class KirbyController : MonoBehaviour
     //공용 상태
     public bool isGrounded;
     public bool isDash;
-    public bool isHitSomethig;
+    public bool isWallHit;
+    public bool isCellingHit;
     public bool isRightDir;
 
     public int hitNormal = 0; // 0 : 오른쪽, 1 : 왼쪽, 2 : 천장
@@ -100,10 +102,18 @@ public class KirbyController : MonoBehaviour
         _fsm.Current.OnPrePhysCheck();
 
         //벽/천장 확인
-        var wasHitSomethig = isHitSomethig;
-        if (!wasHitSomethig && isHitSomethig)
+        var wasWallHit = isWallHit;
+        WallCheck();
+        if (!wasWallHit && isWallHit)
         {
-            _fsm.Current.OnHit();
+            _fsm.Current.OnWallHit();
+        }
+
+        var wasCellingHit = isCellingHit;
+        CellingCheck();
+        if (!wasCellingHit && isCellingHit)
+        {
+            _fsm.Current.OnCellingHit();
         }
 
         //땅 확인
@@ -130,6 +140,16 @@ public class KirbyController : MonoBehaviour
 
         jumpInput = false;
         actInput = false;
+    }
+
+    private void CellingCheck()
+    {
+
+    }
+
+    private void WallCheck()
+    {
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

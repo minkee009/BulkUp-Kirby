@@ -15,9 +15,9 @@ public class KirbySliding : KirbyState
         kc.rb.velocity = slideSpeed * (kc.isRightDir ? 1f : -1f) * Vector2.right;
     }
 
-    public override void OnHit()
+    public override void OnWallHit()
     {
-        base.OnHit();
+        base.OnWallHit();
     }
 
     public override void OnPostPhysCheck()

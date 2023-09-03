@@ -38,7 +38,12 @@ public abstract class KirbyState : MonoBehaviour, KirbyFSM<string, KirbyState>.I
 
     }
 
-    public virtual void OnHit()
+    public virtual void OnWallHit()
+    {
+
+    }
+
+    public virtual void OnCellingHit()
     {
 
     }
