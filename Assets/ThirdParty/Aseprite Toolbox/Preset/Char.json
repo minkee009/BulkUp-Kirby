@@ -32,7 +32,7 @@
         },
         {
             "Key": "A2U.NamingStrategy_Texture",
-            "Value": "{Ase}_{Frame}",
+            "Value": "{Ase}",
             "Type": 2
         },
         {
@@ -101,5 +101,5 @@
             "Type": 3
         }
     ],
-    "m_Code": "0\n0\n0\n0\n0\n0.500\n0.000\n32\nTrue\nTrue\nFalse\nFalse\nFalse\nTrue\nTrue\nTrue\nTrue\n{Ase}_{Frame}\n{Tag}_{Count}\n{Ase}_{Tag}\n{Ase}\n"
+    "m_Code": "0\n0\n0\n0\n0\n0.500\n0.000\n32\nTrue\nTrue\nFalse\nFalse\nFalse\nTrue\nTrue\nTrue\nTrue\n{Ase}\n{Tag}_{Count}\n{Ase}_{Tag}\n{Ase}\n"
 }
