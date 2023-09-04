@@ -15,11 +15,14 @@ public class KirbyController : MonoBehaviour
     public BoxCollider2D box;
     public Rigidbody2D rb;
     public LayerMask groundMask;
+    public Animator kirbyAnimator;
+    public SpriteRenderer kirbySprite;
 
     //공용 상태
     public bool isGrounded;
     public bool isDash;
     public bool isRightDir;
+    
     //public bool isWallHit;
     //public bool isCellingHit;
 
