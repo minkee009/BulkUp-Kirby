@@ -14,6 +14,7 @@ public class KirbyIdle : KirbyState
     public float dashSpeed = 6.0f;
 
     public bool isTurning = false;
+    public float enterHoverCounter = 0f;
 
     public override void Enter()
     {
@@ -39,6 +40,19 @@ public class KirbyIdle : KirbyState
         }
 
         //부풀기 트랜지션
+        if (kc.vInput > 0f)
+        {
+            enterHoverCounter += Time.deltaTime;
+        }
+        else
+        {
+            enterHoverCounter = 0f;
+        }
+
+        if(enterHoverCounter > 0.2f)
+        {
+            kc.GetFSM.SwitchState("Hover");
+        }
     }
 
     public override void Excute()
@@ -62,7 +76,7 @@ public class KirbyIdle : KirbyState
         kc.rb.velocity += (kc.isDash ? 1.2f : 1f) * acceleration * Time.deltaTime * new Vector2(h, 0f);
 
         //마찰
-        kc.rb.velocity = kc.rb.velocity.normalized * (Mathf.Max(kc.rb.velocity.magnitude - setFriction * Time.deltaTime, 0f));
+        kc.rb.velocity = kc.rb.velocity.normalized * Mathf.Max(kc.rb.velocity.magnitude - setFriction * Time.deltaTime, 0f);
         var maxSpeed = kc.isDash ? dashSpeed : moveSpeed;
         kc.rb.velocity = Vector2.ClampMagnitude(kc.rb.velocity, maxSpeed);
 
@@ -91,5 +105,6 @@ public class KirbyIdle : KirbyState
     public override void Exit()
     {
         isTurning = false;
+        enterHoverCounter = 0f;
     }
 }

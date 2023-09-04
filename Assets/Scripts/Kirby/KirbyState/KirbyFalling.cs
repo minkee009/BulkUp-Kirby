@@ -41,6 +41,10 @@ public class KirbyFalling : KirbyState
         }
 
         //부풀기 트랜지션
+        if (kc.jumpInput || kc.vInput > 0)
+        {
+            kc.GetFSM.SwitchState("Hover");
+        }
     }
 
     public override void Excute()
@@ -54,7 +58,10 @@ public class KirbyFalling : KirbyState
         kc.rb.velocity += new Vector2(h, 0f) * airAcceleration * Time.deltaTime;
 
         //감속
-        kc.rb.velocity += -kc.rb.velocity.normalized * airDecceleration * Time.deltaTime;
+        var minus = kc.rb.velocity.x > 0 ? 1 : -1;
+
+        kc.rb.velocity = new Vector2(minus * Mathf.Max(0f,Mathf.Abs(kc.rb.velocity.x) - airDecceleration * Time.deltaTime)
+            ,kc.rb.velocity.y);
 
         //최수종
         kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -airMoveSpeed, airMoveSpeed), currentYvel);

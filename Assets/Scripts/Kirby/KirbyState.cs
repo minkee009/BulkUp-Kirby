@@ -7,7 +7,7 @@ public abstract class KirbyState : MonoBehaviour, KirbyFSM<string, KirbyState>.I
     protected KirbyController kc;
 
     public string GetKey => _key;
-    public bool interactCollisionSprite = false;
+    public bool interactDamageEffect = false;
     public bool interactActionInput = false;
 
     public void Initialize(KirbyController con)

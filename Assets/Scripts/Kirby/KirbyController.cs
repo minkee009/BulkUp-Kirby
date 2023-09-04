@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public enum KirbyAbility
+public enum SpecialAbility
 {
-    None = 0
+    None = 0,
 }
 
 public class KirbyController : MonoBehaviour
@@ -19,13 +19,11 @@ public class KirbyController : MonoBehaviour
     //공용 상태
     public bool isGrounded;
     public bool isDash;
-    public bool isWallHit;
-    public bool isCellingHit;
     public bool isRightDir;
+    //public bool isWallHit;
+    //public bool isCellingHit;
 
-    public int hitNormal = 0; // 0 : 오른쪽, 1 : 왼쪽, 2 : 천장
-
-    public KirbyAbility ability = KirbyAbility.None;
+    public SpecialAbility ability = SpecialAbility.None;
 
     //체킹용 변수
     public float lastTimeJumped;
@@ -98,23 +96,23 @@ public class KirbyController : MonoBehaviour
             isRightDir = false;
         }
 
-        //전이 확인 (물리체크 전)
+        //전이 실행 (물리체크 전)
         _fsm.Current.OnPrePhysCheck();
 
         //벽/천장 확인
-        var wasWallHit = isWallHit;
-        WallCheck();
-        if (!wasWallHit && isWallHit)
-        {
-            _fsm.Current.OnWallHit();
-        }
+        //var wasWallHit = isWallHit;
+        //WallCheck();
+        //if (!wasWallHit && isWallHit)
+        //{
+        //    _fsm.Current.OnWallHit();
+        //}
 
-        var wasCellingHit = isCellingHit;
-        CellingCheck();
-        if (!wasCellingHit && isCellingHit)
-        {
-            _fsm.Current.OnCellingHit();
-        }
+        //var wasCellingHit = isCellingHit;
+        //CellingCheck();
+        //if (!wasCellingHit && isCellingHit)
+        //{
+        //    _fsm.Current.OnCellingHit();
+        //}
 
         //땅 확인
         var wasGrounded = isGrounded;
@@ -133,6 +131,8 @@ public class KirbyController : MonoBehaviour
             }
         }
         #endregion
+
+        //전이 실행 (물리체크 후)
         _fsm.Current.OnPostPhysCheck();
 
         //움직임 처리
@@ -142,19 +142,9 @@ public class KirbyController : MonoBehaviour
         actInput = false;
     }
 
-    private void CellingCheck()
-    {
-
-    }
-
-    private void WallCheck()
-    {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == groundMask && _fsm.Current.interactCollisionSprite)
+        if (collision.gameObject.layer == groundMask && _fsm.Current.interactDamageEffect)
         {
             //콜리전에 따라 꽝 스프라이트 켜고, 현재 스프라이트 끄기
             //코루틴으로 2~3프레임만 그리기
@@ -174,6 +164,16 @@ public class KirbyController : MonoBehaviour
             lastTimeJumped = 0f;
         }
     }
+
+    //private void CellingCheck()
+    //{
+
+    //}
+
+    //private void WallCheck()
+    //{
+
+    //}
 
     public void DashCheck()
     {

@@ -1248,6 +1248,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4470553698743183331, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
+      propertyPath: interactDamageEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752230777670337721, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
+      propertyPath: interactDamageEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738591346881274710, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
+      propertyPath: interactDamageEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199072405077142437, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
+      propertyPath: interactDamageEffect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
