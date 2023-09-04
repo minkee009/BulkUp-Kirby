@@ -13,31 +13,27 @@ public class KirbyHovering : KirbyState
     public float hoverGravity = 4f;
     WaitForSeconds jumpInputWaitTime = new WaitForSeconds(0.3f);
 
+    public bool playAnimation = false;
     public float currentYVel = 0f; 
     public bool goingJump = false;
 
     public override void Enter()
     {
-        //kc.rb.velocity = new Vector2(kc.rb.velocity.x, 0f);
+        StartCoroutine(WaitForAnimation());
+        StartCoroutine(HoverJump());
     }
 
     public override void OnPostPhysCheck()
     {
-        if (!goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
+        if (!playAnimation && !goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
         {
             StartCoroutine(HoverJump());
         }
 
-        if (kc.actInput)
+        if (!playAnimation && kc.actInput)
         {
-            if (kc.isGrounded)
-            {
-                kc.GetFSM.SwitchState("Idle");
-            }
-            else
-            {
-                kc.GetFSM.SwitchState("Fall");
-            }
+            kc.rb.velocity = new Vector2(kc.rb.velocity.x, 0f);
+            StartCoroutine(WaitForExit());
         }
 
         if (kc.isGrounded)
@@ -73,9 +69,10 @@ public class KirbyHovering : KirbyState
 
     public override void Exit()
     {
-        StopCoroutine(HoverJump());
+        StopAllCoroutines();
         currentYVel = 0f;
         goingJump = false;
+        playAnimation = false;
     }
 
     IEnumerator HoverJump()
@@ -83,5 +80,27 @@ public class KirbyHovering : KirbyState
         goingJump = true;
         yield return jumpInputWaitTime;
         goingJump = false;
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        playAnimation = true;
+        yield return jumpInputWaitTime;
+        playAnimation = false;
+    }
+
+    IEnumerator WaitForExit()
+    {
+        playAnimation = true;
+        yield return jumpInputWaitTime;
+        if (kc.isGrounded)
+        {
+            kc.GetFSM.SwitchState("Idle");
+        }
+        else
+        {
+            kc.GetFSM.SwitchState("Fall");
+        }
+        playAnimation = false;
     }
 }
