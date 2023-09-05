@@ -18,7 +18,12 @@ public class KirbyIdle : KirbyState
 
     public override void Enter()
     {
-        
+
+    }
+
+    public override void OnWallHit()
+    {
+        kc.PlayCollisionAnimation(2);
     }
 
     public override void OnPostPhysCheck()
@@ -37,6 +42,12 @@ public class KirbyIdle : KirbyState
             {
                 kc.GetFSM.SwitchState("Crouch");
             }
+        }
+
+        if (!isTurning && kc.jumpInput)
+        {
+            //점프 트랜지션
+            kc.GetFSM.SwitchState("Jump");
         }
 
         //부풀기 트랜지션
@@ -59,46 +70,36 @@ public class KirbyIdle : KirbyState
     {
         var h = kc.hInput;
 
-        var nonYvel = new Vector2(kc.rb.velocity.x, 0f);
-
         //관성 정지
-        if (nonYvel.magnitude > 1 && Vector2.Dot(nonYvel.normalized, new Vector2(h, 0)) < 0f)
+        if (Mathf.Abs(kc.currentXVel) > 1 && Vector2.Dot(new Vector2(kc.currentXVel,0f).normalized, new Vector2(h, 0)) < 0f)
         {
             isTurning = true;
             kc.validDashInputTimer = 0f;
         }
 
-        h = isTurning ? 0f : h;
+        if (isTurning)
+        {
+            h = 0f;
+        }
 
         var setFriction = isTurning ? forceStopFriction : groundFriction;
-
-        //가속
-        kc.rb.velocity += (kc.isDash ? 1.2f : 1f) * acceleration * Time.deltaTime * new Vector2(h, 0f);
-
-        //마찰
-        kc.rb.velocity = kc.rb.velocity.normalized * Mathf.Max(kc.rb.velocity.magnitude - setFriction * Time.deltaTime, 0f);
         var maxSpeed = kc.isDash ? dashSpeed : moveSpeed;
-        kc.rb.velocity = Vector2.ClampMagnitude(kc.rb.velocity, maxSpeed);
+
+        kc.CalculateXVelocity(h, maxSpeed,acceleration, setFriction);
 
         //대쉬 조절
-        if (isTurning && kc.rb.velocity.magnitude < 0.2f)
+        if (isTurning && Mathf.Abs(kc.currentXVel) < 0.2f)
         {
-            kc.rb.velocity = Vector2.zero;
+            kc.currentXVel = 0f;
             isTurning = false;
             if (kc.hInput == 0)
             {
                 kc.isDash = false;
             }
         }
-        else if (kc.rb.velocity.magnitude < 2f && kc.hInput == 0)
+        else if (Mathf.Abs(kc.currentXVel) < 2f && kc.hInput == 0)
         {
             kc.isDash = false;
-        }
-
-        if (!isTurning && kc.jumpInput)
-        {
-            //점프 트랜지션
-            kc.GetFSM.SwitchState("Jump");
         }
     }
 

@@ -14,11 +14,11 @@ public class KirbyHovering : KirbyState
     WaitForSeconds jumpInputWaitTime = new WaitForSeconds(0.3f);
 
     public bool playAnimation = false;
-    public float currentYVel = 0f; 
     public bool goingJump = false;
 
     public override void Enter()
     {
+        kc.ForceStopCollisionAnimation();
         StartCoroutine(WaitForAnimation());
         StartCoroutine(HoverJump());
     }
@@ -32,14 +32,13 @@ public class KirbyHovering : KirbyState
 
         if (!playAnimation && kc.actInput)
         {
-            kc.rb.velocity = new Vector2(kc.rb.velocity.x, 0f);
+            kc.currentYVel = 0f;
             StartCoroutine(WaitForExit());
         }
 
         if (kc.isGrounded)
         {
-            currentYVel = 0f;
-            kc.rb.velocity = new Vector2(kc.rb.velocity.x, currentYVel);
+            kc.currentYVel = 0f;
         }
     }
 
@@ -49,28 +48,20 @@ public class KirbyHovering : KirbyState
 
         if(goingJump)
         {
-            currentYVel = hoverJumpSpeed;
+            kc.currentYVel = hoverJumpSpeed;
         }
         else
         {
-            currentYVel = Mathf.Lerp(currentYVel,-hoverGravity,4f * Time.deltaTime);
+            kc.CalculateYVelocity(hoverGravity, 4f);
         }
-        //가속
-        kc.rb.velocity += new Vector2(h, 0f) * hoverAcceleration * Time.deltaTime;
 
-        //감속
-        var minus = kc.rb.velocity.x > 0 ? 1 : -1;
-        kc.rb.velocity = new Vector2(minus * Mathf.Max(0f, Mathf.Abs(kc.rb.velocity.x) - hoverDecceleration * Time.deltaTime)
-            , kc.rb.velocity.y);
-
-        //최수종
-        kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -hoverMoveSpeed, hoverMoveSpeed), currentYVel);
+        kc.CalculateXVelocity(h, hoverMoveSpeed, hoverAcceleration, hoverDecceleration);
     }
 
     public override void Exit()
     {
         StopAllCoroutines();
-        currentYVel = 0f;
+        kc.currentYVel = 0f;
         goingJump = false;
         playAnimation = false;
     }

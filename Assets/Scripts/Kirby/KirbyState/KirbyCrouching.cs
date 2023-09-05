@@ -34,13 +34,14 @@ public class KirbyCrouching : KirbyState
     public override void Excute()
     {
         //¸¶Âû
-        kc.rb.velocity = kc.rb.velocity.normalized * (Mathf.Max(kc.rb.velocity.magnitude - friction * Time.deltaTime, 0f));
+        var minus = kc.currentXVel > 0 ? 1 : -1;
+        kc.currentXVel = minus * Mathf.Max(0f, Mathf.Abs(kc.currentXVel) - friction * Time.deltaTime);
     }
 
     public override void Exit()
     {
         transform.position += Vector3.up * transform.localScale.y * 0.5f;
         kc.rb.position = new Vector2(transform.position.x, transform.position.y);
-        transform.localScale = new Vector3(1, 1f, 1);
+        transform.localScale = new Vector3(1, 1, 1);
     }
 }

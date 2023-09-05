@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class KirbyJumping : KirbyState
 {
@@ -20,6 +21,19 @@ public class KirbyJumping : KirbyState
         kc.lastTimeJumped = Time.time;
     }
 
+
+    public override void OnWallHit()
+    {
+        kc.PlayCollisionAnimation(2);
+    }
+
+    public override void OnCellingHit()
+    {
+        kc.currentYVel = 0f;
+        kc.PlayCollisionAnimation(1);
+        kc.GetFSM.SwitchState("Fall");
+    }
+
     public override void OnPostPhysCheck()
     {
         if (kc.isGrounded)
@@ -35,16 +49,10 @@ public class KirbyJumping : KirbyState
     public override void Excute()
     {
         var h = kc.hInput;
+
         jumpTimer += Time.deltaTime;
-
-        //가속
-        kc.rb.velocity += new Vector2(h, 0f) * airAcceleration * Time.deltaTime;
-
-        //감속
-        kc.rb.velocity += -kc.rb.velocity.normalized * airDecceleration * Time.deltaTime;
-
-        //최수종
-        kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -airMoveSpeed, airMoveSpeed), jumpSpeed);
+        kc.currentYVel = jumpSpeed;
+        kc.CalculateXVelocity(h,airMoveSpeed, airAcceleration, airDecceleration);
     }
 
     public override void Exit()

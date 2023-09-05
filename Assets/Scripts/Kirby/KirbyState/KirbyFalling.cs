@@ -12,28 +12,50 @@ public class KirbyFalling : KirbyState
     public float airMoveSpeed = 6f;
     public float gravityForce = 12f;
 
-    public float currentYvel = 0f;
+    public bool isWallhit = false;
     public float inAirTime = 0f;
 
     public override void Enter()
     {
-        currentYvel = kc.rb.velocity.y;
+        isWallhit = kc.CheckWallhit(kc.isRightDir);
     }
 
     public override void OnLand()
     {
         //약한 점프, 스프라이트 애니메이션 재생
-        if (currentYvel < -10.8f && inAirTime > 0.7f)
+        if (kc.currentYVel < -10.8f && inAirTime > 0.7f)
         {
             kc.isGrounded = false;
-            currentYvel = 15f;
+            kc.currentYVel = 15f;
             kc.isDash = false;
             kc.lastTimeJumped = Time.time;
         }
+        else
+        {
+            kc.PlayCollisionAnimation(0);
+        }
+    }
+
+    public override void OnWallHit()
+    {
+        kc.PlayCollisionAnimation(2);
+    }
+
+    public override void OnCellingHit()
+    {
+        kc.currentYVel = 0f;
+        kc.PlayCollisionAnimation(1);
     }
 
     public override void OnPostPhysCheck()
     {
+        var wasWallhit = isWallhit;
+        isWallhit = kc.CheckWallhit(kc.isRightDir);
+        if (!wasWallhit && isWallhit)
+        {
+            kc.PlayCollisionAnimation(2);
+        }
+
         //지상 트랜지션
         if (kc.isGrounded)
         {
@@ -52,24 +74,14 @@ public class KirbyFalling : KirbyState
         var h = kc.hInput;
         inAirTime += Time.deltaTime;
 
-        currentYvel = Mathf.Lerp(currentYvel, -gravityForce, Time.deltaTime * 4f);
-
-        //가속
-        kc.rb.velocity += new Vector2(h, 0f) * airAcceleration * Time.deltaTime;
-
-        //감속
-        var minus = kc.rb.velocity.x > 0 ? 1 : -1;
-
-        kc.rb.velocity = new Vector2(minus * Mathf.Max(0f,Mathf.Abs(kc.rb.velocity.x) - airDecceleration * Time.deltaTime)
-            ,kc.rb.velocity.y);
-
-        //최수종
-        kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -airMoveSpeed, airMoveSpeed), currentYvel);
+        kc.CalculateXVelocity(h,airMoveSpeed, airAcceleration, airDecceleration);
+        kc.CalculateYVelocity(gravityForce, 4);
     }
 
     public override void Exit()
     {
-        currentYvel = 0f;
+        kc.currentYVel = 0f;
         inAirTime = 0f;
+        isWallhit = false;
     }
 }
