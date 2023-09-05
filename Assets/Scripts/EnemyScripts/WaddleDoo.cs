@@ -13,7 +13,7 @@ public class WaddleDoo : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
 
-    private int randomNum;
+    private int randomNumber;
 
     private float currentTime;
     private enum State
@@ -36,7 +36,7 @@ public class WaddleDoo : MonoBehaviour
     {
         currentTime += Time.deltaTime;
         
-        if (randomNum == 4)
+        if (randomNumber == 4)
         {
             _state = State.Charge;
         }
@@ -63,7 +63,7 @@ public class WaddleDoo : MonoBehaviour
         Vector2 movement = new Vector2(moveSpeed, _rigidbody2D.velocity.y);
         _rigidbody2D.velocity = movement;
         
-        if (randomNum == 1)
+        if (randomNumber == 1)
         {
             if (!isJumping)
             {
@@ -80,7 +80,7 @@ public class WaddleDoo : MonoBehaviour
 
     private void Charge()
     {
-        if (currentTime > 2)
+        if (currentTime > 1.5)
         {
             _state = State.Move;
             
@@ -102,7 +102,7 @@ public class WaddleDoo : MonoBehaviour
 
     private void RandomNumber()
     {
-        randomNum = Random.Range(0, 5);
+        randomNumber = Random.Range(0, 5);
         
         Debug.Log("RandomNumber");
     }

@@ -10,11 +10,11 @@ public class WaddleDee : MonoBehaviour
     
     private enum State
     {
-        Walk,
+        Move,
         Dead
     }
 
-    private State _state = State.Walk;
+    private State _state = State.Move;
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
@@ -24,7 +24,7 @@ public class WaddleDee : MonoBehaviour
     {
         switch (_state)
         {
-            case State.Walk:
+            case State.Move:
                 Move();
                 break;
             case State.Dead:

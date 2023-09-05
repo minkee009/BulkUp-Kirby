@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEditor.Experimental.GraphView;
 
-public class BrontoBurt : MonoBehaviour
+public class ParabolaFly : MonoBehaviour
 {
     float dist = 8f;
     float speed = 2.5f;
@@ -15,7 +15,7 @@ public class BrontoBurt : MonoBehaviour
     private Vector3 localScale;
     private Vector3 direction;
     
-    private Transform target;
+    private Transform kirbyTransform;
 
     private enum State
     {
@@ -31,9 +31,9 @@ public class BrontoBurt : MonoBehaviour
         position = transform.position;
         localScale = transform.localScale;
 
-        target = GameObject.Find("Kirby").transform;
+        kirbyTransform = GameObject.Find("Kirby").transform;
         
-        direction = target.position - transform.position;
+        direction = kirbyTransform.position - transform.position;
         direction.Normalize();
 
         if (direction.x < 0)

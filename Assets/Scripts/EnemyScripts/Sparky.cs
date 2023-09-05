@@ -12,12 +12,12 @@ public class Sparky : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     enum State
     {
-        Jump,
+        Move,
         Attack,
         Dead
     }
 
-    private State _state = State.Jump;
+    private State _state = State.Move;
     
     // Start is called before the first frame update
     void Start()
