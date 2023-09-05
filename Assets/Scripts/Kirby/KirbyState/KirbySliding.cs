@@ -23,6 +23,7 @@ public class KirbySliding : KirbyState
         if (kc.CheckWallhit(currentDirIsRight))
         {
             kc.PlayCollisionAnimation(2);
+            kc.currentXVel = 0f;
             kc.GetFSM.SwitchState("Idle");
         }
         if (!kc.isGrounded)
