@@ -11,6 +11,7 @@ public class KirbyJumping : KirbyState
     public float airDecceleration = 8f;
     public float airMoveSpeed = 6f;
     public float airJumpTime = 0.2f;
+    public float airSlowDownSpeed = 15f;
 
     public bool slowDownJump = false;
     public float jumpTimer = 0;
@@ -41,7 +42,7 @@ public class KirbyJumping : KirbyState
 
     public override void OnPostPhysCheck()
     {
-        if (kc.jumpInput || kc.vInput > 0f)
+        if (slowDownJump && (kc.jumpInput || kc.vInput > 0f))
         {
             kc.GetFSM.SwitchState("Hover");
         }
@@ -68,7 +69,7 @@ public class KirbyJumping : KirbyState
 
         if (slowDownJump)
         {
-            kc.CalculateYVelocity(0f, 15f);
+            kc.CalculateYVelocity(0f, airSlowDownSpeed);
         }
         else
         {

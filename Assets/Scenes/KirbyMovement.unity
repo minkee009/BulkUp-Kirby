@@ -620,16 +620,6 @@ MonoBehaviour:
   CameraChaseSpeed: 4
   MapY: 2
   MapX: 6
---- !u!95 &522816937 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5701332737296449009, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-  m_PrefabInstance: {fileID: 6378793261806612655}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &522816938 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 4900733216025713057, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-  m_PrefabInstance: {fileID: 6378793261806612655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &692326925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,49 +1461,9 @@ PrefabInstance:
       propertyPath: stateMSG
       value: 
       objectReference: {fileID: 1068646066}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: kirbySprite
-      value: 
-      objectReference: {fileID: 522816938}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: colhitSprite
-      value: 
-      objectReference: {fileID: 6378793261806612656}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: kirbyAnimator
-      value: 
-      objectReference: {fileID: 522816937}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: colhitDirSprite.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: colhitDirSprite.Array.data[0]
-      value: 
-      objectReference: {fileID: -3444060371671205496, guid: 41360bdf1e1f1445b9d781e918cf16c9, type: 3}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: colhitDirSprite.Array.data[1]
-      value: 
-      objectReference: {fileID: -3444060371671205496, guid: 41360bdf1e1f1445b9d781e918cf16c9, type: 3}
-    - target: {fileID: 1241233052704880438, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: colhitDirSprite.Array.data[2]
-      value: 
-      objectReference: {fileID: 4174143901940742237, guid: 41360bdf1e1f1445b9d781e918cf16c9, type: 3}
     - target: {fileID: 2284451691878725388, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
       propertyPath: m_Name
       value: Kirby
-      objectReference: {fileID: 0}
-    - target: {fileID: 2284451691878725388, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2551963635092806069, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: hoverMoveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3483197672497314510, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_Name
-      value: MainSprite
       objectReference: {fileID: 0}
     - target: {fileID: 4081238563994161514, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1555,80 +1505,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4470553698743183331, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: interactDamageEffect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752230777670337721, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: interactDamageEffect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.border.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5431921832128080935, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6738591346881274710, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: interactDamageEffect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987898614220795415, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8199072405077142437, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: interactDamageEffect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9039094130304927821, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
---- !u!212 &6378793261806612656 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6987898614220795415, guid: c6f9cf9d28179164ba441c05e41debe4, type: 3}
-  m_PrefabInstance: {fileID: 6378793261806612655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class KirbyFalling : KirbyState
     public float airDecceleration = 8f;
     public float airMoveSpeed = 6f;
     public float gravityForce = 12f;
+    public float fallAttackSpeed = 10.8f;
+    public float landJumpForce = 15f;
 
     public float inAirTime = 0f;
 
@@ -30,11 +32,11 @@ public class KirbyFalling : KirbyState
     public override void OnLand()
     {
         //약한 점프, 스프라이트 애니메이션 재생
-        if (kc.currentYVel < -10.8f && inAirTime > 0.4f)
+        if (kc.currentYVel < -fallAttackSpeed && inAirTime > 0.4f)
         {
             kc.kirbyAnimator.Play("Char_Kirby_Falling",-1,0f);
             kc.isGrounded = false;
-            kc.currentYVel = 15f;
+            kc.currentYVel = landJumpForce;
             kc.isDash = false;
             kc.lastTimeJumped = Time.time;
         }
@@ -46,7 +48,7 @@ public class KirbyFalling : KirbyState
 
     public override void OnPrePhysCheck()
     {
-        if(inAirTime > 0.5f && kc.currentYVel < -10.8f)
+        if(inAirTime > 0.5f && kc.currentYVel < -fallAttackSpeed)
         {
             kc.kirbyAnimator.Play("Char_Kirby_Falling_End");
         }
@@ -92,6 +94,7 @@ public class KirbyFalling : KirbyState
 
     public override void Exit()
     {
+        kc.playJumpTurn = false;
         kc.currentYVel = 0f;
         inAirTime = 0f;
     }

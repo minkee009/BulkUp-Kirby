@@ -24,11 +24,12 @@ public class KirbyIdle : KirbyState
     public override void OnPrePhysCheck()
     {
         //관성 정지
-        if (Mathf.Abs(kc.currentXVel) > 1 && Vector2.Dot(new Vector2(kc.currentXVel, 0f).normalized, new Vector2(kc.hInput, 0)) < 0f)
+        if (!isTurning && Mathf.Abs(kc.currentXVel) > 1 && Vector2.Dot(new Vector2(kc.currentXVel, 0f).normalized, new Vector2(kc.hInput, 0)) < 0f)
         {
             isTurning = true;
             kc.validDashInputTimer = 0f;
             kc.isRightDir = !kc.isRightDir;
+            kc.lockDir = true;
         }
 
         //대쉬 조절
@@ -36,6 +37,7 @@ public class KirbyIdle : KirbyState
         {
             kc.currentXVel = 0f;
             isTurning = false;
+            kc.lockDir = false;
             if (kc.hInput == 0)
             {
                 kc.isDash = false;
@@ -134,6 +136,7 @@ public class KirbyIdle : KirbyState
 
     public override void Exit()
     {
+        kc.lockDir = false;
         isTurning = false;
         enterHoverCounter = 0f;
     }
