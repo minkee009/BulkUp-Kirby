@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
 
     public Vector3 CameraPos;
     public float CameraChaseSpeed = 2f;
+    public Transform Center;
 
     public float MapY;
     public float MapX;
@@ -25,8 +26,8 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate()
     {
         targetPos = PlayerTransform.position + CameraPos;
-        targetPos.x = Mathf.Clamp(targetPos.x, -MapX, MapX);
-        targetPos.y = Mathf.Clamp(targetPos.y, -MapY, MapY);
+        targetPos.x = Mathf.Clamp(targetPos.x, -MapX + Center.position.x, MapX + Center.position.x);
+        targetPos.y = Mathf.Clamp(targetPos.y, -MapY + Center.position.y, MapY + Center.position.y);
         currentPos = Vector3.Lerp(currentPos, targetPos, CameraChaseSpeed * Time.deltaTime);
         transform.position = currentPos;
     }
@@ -38,12 +39,21 @@ public class CameraMovement : MonoBehaviour
         var p3 = Vector3.up * MapY;
         var p4 = Vector3.up * -MapY;
 
+        Vector3[] points = { p2 + p3, p1 + p3, p1 + p4, p2 + p4 };
+
+        if (Center != null)
+        {
+            for (int i = 0; i < points.Length; i++)
+            {
+                points[i] += Center.position;
+            }
+        }
+
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(p1 + p3, p2 + p3);
-        Gizmos.DrawLine(p1 + p4, p2 + p4);
-        Gizmos.DrawLine(p3 + p1, p4 + p1);
-        Gizmos.DrawLine(p3 + p2, p4 + p2);
-
+        for (int i = 0; i < points.Length; i++)
+        {
+            Gizmos.DrawLine(points[i], points[(i + 1) % points.Length]);
+        }
     }
 }
