@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using UnityEditor.Timeline;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public enum SpecialAbility
@@ -19,9 +19,16 @@ public class KirbyController : MonoBehaviour
     public LayerMask groundMask;
     public Animator kirbyAnimator;
     public SpriteRenderer kirbySprite;
-
     public SpriteRenderer colhitSprite;
     public Sprite[] colhitDirSprite; //[0] : 바닥, [1] : 천장, [2] : 오른쪽,왼쪽
+
+    //입력
+    public float hInput;
+    public float vInput;
+    public bool jumpInput;
+    public bool jumpHoldInput;
+    public bool actInput;
+    public bool actHoldInput;
 
     //공용 상태
     public bool isGrounded;
@@ -35,19 +42,14 @@ public class KirbyController : MonoBehaviour
 
     //체킹용 변수
     public float lastTimeJumped;
+    public bool playJumpTurn;
+    public bool lockDir;
 
     public float currentXVel;
     public float currentYVel;
 
-    //입력
-    public float hInput;
-    public float vInput;
-    public bool jumpInput;
-    public bool jumpHoldInput;
-    public bool actInput;
-    public bool actHoldInput;
-
     //대쉬 입력 보조변수
+    public bool dontUseDashInput;
     public bool checkDashInput;
     public int dashInput;
     public float validDashInputTimer;
@@ -79,7 +81,7 @@ public class KirbyController : MonoBehaviour
         {
             jumpInput = true;
         }
-
+        
         jumpHoldInput = Input.GetKey(KeyCode.Z);
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -90,6 +92,7 @@ public class KirbyController : MonoBehaviour
         actHoldInput = Input.GetKey(KeyCode.X);
 
         DashCheck();
+        isDash = dontUseDashInput ? false : isDash;
         #endregion
 
         stateMSG.text = _fsm.Current.GetKey;
@@ -98,19 +101,27 @@ public class KirbyController : MonoBehaviour
     private void FixedUpdate()
     {
         //커비 방향체크
-        if (hInput > 0)
+        if (!lockDir)
         {
-            isRightDir = true;
+            if (hInput > 0)
+            {
+                isRightDir = true;
+            }
+            if (hInput < 0)
+            {
+                isRightDir = false;
+            }
         }
-        if (hInput < 0)
-        {
-            isRightDir = false;
-        }
+
+        //액션 키 실행
+
 
         //전이 실행 (물리체크 전)
         _fsm.Current.OnPrePhysCheck();
 
-        //벽/천장확인
+        #region 물리체크
+
+        //벽 확인
         var wasWallHit = isWallHit;
         isWallHit = CheckWallhit(isRightDir);
         if (isWallHit)
@@ -119,11 +130,12 @@ public class KirbyController : MonoBehaviour
             isDash = false;
             if (!wasWallHit)
             {
-                currentXVel = 0f;
                 _fsm.Current.OnWallHit();
+                currentXVel = 0f;
             }
         }
 
+        //천장 확인
         var wasCellingHit = isCellingHit;
         isCellingHit = CheckCellingHit();
         if (isCellingHit)
@@ -137,8 +149,6 @@ public class KirbyController : MonoBehaviour
         //땅 확인
         var wasGrounded = isGrounded;
         GroundCheck();
-
-        #region 착지
         if (!wasGrounded && isGrounded)
         {
             //착지 이벤트
@@ -150,6 +160,7 @@ public class KirbyController : MonoBehaviour
                 isDash = false;
             }
         }
+
         #endregion
 
         //전이 실행 (물리체크 후)
@@ -158,6 +169,9 @@ public class KirbyController : MonoBehaviour
         //움직임 처리
         _fsm.Current.Excute();
         rb.velocity = new Vector2(currentXVel,currentYVel);
+
+        //애니메이션 처리
+        kirbySprite.flipX = !isRightDir;
 
         jumpInput = false;
         actInput = false;
@@ -191,10 +205,12 @@ public class KirbyController : MonoBehaviour
 
     public bool CheckWallhit(bool rightDir)
     {
+        var realVector = rightDir ? Vector2.right : Vector2.left;
+
         //히트함수 수정
         RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(box.size.x * transform.lossyScale.x * 0.5f, box.size.y * (transform.lossyScale.y)),
-            0f, rightDir ? Vector2.right : Vector2.left, transform.lossyScale.x * 0.25f + 0.02f, groundMask);
-        if (raycastHit.collider != null)
+            0f, realVector, transform.lossyScale.x * 0.25f + 0.02f, groundMask);
+        if (raycastHit.collider != null && Vector2.Dot(-realVector,raycastHit.normal) > 0.7f)
         {
             return true;
         }
@@ -203,7 +219,7 @@ public class KirbyController : MonoBehaviour
 
     public void DashCheck()
     {
-        if (isDash)
+        if (isDash && dontUseDashInput)
         {
             return;
         }
@@ -315,14 +331,17 @@ public class KirbyController : MonoBehaviour
                 break;
             case 1:
                 colhitSprite.sprite = colhitDirSprite[1];
+                colhitSprite.transform.localPosition = Vector3.zero;
                 break;
             case 2:
                 colhitSprite.sprite = colhitDirSprite[2];
+                colhitSprite.transform.localPosition = new Vector3(isRightDir ? 0.5f : -0.5f, -0.5f, 0f);
                 break;
         }
         colhitSprite.flipX = !isRightDir;
 
         yield return new WaitForSeconds(0.1f);
+        colhitSprite.transform.localPosition = new Vector3(0,-0.5f,0);
 
         isPlayingColHItAnim = false;
         colhitSprite.enabled = false;

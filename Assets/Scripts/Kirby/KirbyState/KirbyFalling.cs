@@ -12,19 +12,27 @@ public class KirbyFalling : KirbyState
     public float airMoveSpeed = 6f;
     public float gravityForce = 12f;
 
-    public bool isWallhit = false;
     public float inAirTime = 0f;
 
     public override void Enter()
     {
-        isWallhit = kc.CheckWallhit(kc.isRightDir);
+        if(kc.playJumpTurn)
+        {
+            kc.playJumpTurn = false;
+            kc.kirbyAnimator.Play("Char_Kirby_Falling");
+        }
+        else
+        {
+            kc.kirbyAnimator.Play("Char_Kirby_Falling_Middle");
+        }
     }
 
     public override void OnLand()
     {
         //약한 점프, 스프라이트 애니메이션 재생
-        if (kc.currentYVel < -10.8f && inAirTime > 0.7f)
+        if (kc.currentYVel < -10.8f && inAirTime > 0.4f)
         {
+            kc.kirbyAnimator.Play("Char_Kirby_Falling",-1,0f);
             kc.isGrounded = false;
             kc.currentYVel = 15f;
             kc.isDash = false;
@@ -36,9 +44,20 @@ public class KirbyFalling : KirbyState
         }
     }
 
+    public override void OnPrePhysCheck()
+    {
+        if(inAirTime > 0.5f && kc.currentYVel < -10.8f)
+        {
+            kc.kirbyAnimator.Play("Char_Kirby_Falling_End");
+        }
+    }
+
     public override void OnWallHit()
     {
-        kc.PlayCollisionAnimation(2);
+        if (Mathf.Abs(kc.currentXVel) > 0.05f)
+        {
+            kc.PlayCollisionAnimation(2);
+        }  
     }
 
     public override void OnCellingHit()
@@ -49,13 +68,6 @@ public class KirbyFalling : KirbyState
 
     public override void OnPostPhysCheck()
     {
-        var wasWallhit = isWallhit;
-        isWallhit = kc.CheckWallhit(kc.isRightDir);
-        if (!wasWallhit && isWallhit)
-        {
-            kc.PlayCollisionAnimation(2);
-        }
-
         //지상 트랜지션
         if (kc.isGrounded)
         {
@@ -82,6 +94,5 @@ public class KirbyFalling : KirbyState
     {
         kc.currentYVel = 0f;
         inAirTime = 0f;
-        isWallhit = false;
     }
 }

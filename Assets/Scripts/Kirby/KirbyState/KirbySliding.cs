@@ -14,6 +14,8 @@ public class KirbySliding : KirbyState
 
     public override void Enter()
     {
+        kc.lockDir = true;
+        kc.kirbyAnimator.Play("Char_Kirby_Sliding");
         kc.currentXVel = slideSpeed * (kc.isRightDir ? 1f : -1f);
         currentDirIsRight = kc.isRightDir;
     }
@@ -53,6 +55,7 @@ public class KirbySliding : KirbyState
 
     public override void Exit()
     {
+        kc.lockDir = false;
         slideTimer = 0f;
         currentDirIsRight = false;
     }

@@ -137,10 +137,14 @@ MonoBehaviour:
   colhitDirSprite: []
   isGrounded: 0
   isDash: 0
-  isRightDir: 0
+  isRightDir: 1
   isPlayingColHItAnim: 0
+  isWallHit: 0
+  isCellingHit: 0
   ability: 0
   lastTimeJumped: 0
+  currentXVel: 0
+  currentYVel: 0
   hInput: 0
   vInput: 0
   jumpInput: 0
@@ -192,7 +196,7 @@ MonoBehaviour:
   airDecceleration: 8
   airMoveSpeed: 6
   gravityForce: 12
-  currentYvel: 0
+  isWallhit: 0
   inAirTime: 0
 --- !u!114 &4470553698743183331
 MonoBehaviour:
@@ -250,6 +254,7 @@ MonoBehaviour:
   slideSpeed: 12
   friction: 20
   slideTimer: 0
+  currentDirIsRight: 0
 --- !u!114 &2551963635092806069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +276,6 @@ MonoBehaviour:
   hoverJumpSpeed: 3
   hoverGravity: 4
   playAnimation: 0
-  currentYVel: 0
   goingJump: 0
 --- !u!1 &3483197672497314510
 GameObject:

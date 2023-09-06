@@ -18,18 +18,69 @@ public class KirbyIdle : KirbyState
 
     public override void Enter()
     {
+        kc.kirbyAnimator.Play("Char_Kirby_Idle");
+    }
 
+    public override void OnPrePhysCheck()
+    {
+        //관성 정지
+        if (Mathf.Abs(kc.currentXVel) > 1 && Vector2.Dot(new Vector2(kc.currentXVel, 0f).normalized, new Vector2(kc.hInput, 0)) < 0f)
+        {
+            isTurning = true;
+            kc.validDashInputTimer = 0f;
+            kc.isRightDir = !kc.isRightDir;
+        }
+
+        //대쉬 조절
+        if (isTurning && Mathf.Abs(kc.currentXVel) < 0.2f)
+        {
+            kc.currentXVel = 0f;
+            isTurning = false;
+            if (kc.hInput == 0)
+            {
+                kc.isDash = false;
+            }
+        }
+        else if (Mathf.Abs(kc.currentXVel) < 2f && kc.hInput == 0)
+        {
+            kc.isDash = false;
+        }
     }
 
     public override void OnWallHit()
     {
-        kc.PlayCollisionAnimation(2);
+        if(Mathf.Abs(kc.currentXVel) > 0.05f)
+        {
+            kc.PlayCollisionAnimation(2);
+        }
     }
 
     public override void OnPostPhysCheck()
     {
+
         //관성 정지 스프라이트 체인지
-        //대쉬 스프라이트 체인지
+        if (isTurning)
+        {
+            kc.kirbyAnimator.Play("Char_Kirby_Turning");
+        }
+        else
+        {
+            if(Mathf.Abs(kc.currentXVel) > 0.05f)
+            {
+                kc.kirbyAnimator.Play("Char_Kirby_Walking");
+                kc.kirbyAnimator.SetFloat("WalkSpeed", Mathf.Abs(kc.currentXVel) / moveSpeed);
+            }
+            else
+            {
+                kc.kirbyAnimator.Play("Char_Kirby_Idle");
+            }
+            
+        }
+
+        if (kc.isDash)
+        {
+            //대쉬 이펙트 재생
+        }
 
         if (!kc.isGrounded)
         {
@@ -70,13 +121,6 @@ public class KirbyIdle : KirbyState
     {
         var h = kc.hInput;
 
-        //관성 정지
-        if (Mathf.Abs(kc.currentXVel) > 1 && Vector2.Dot(new Vector2(kc.currentXVel,0f).normalized, new Vector2(h, 0)) < 0f)
-        {
-            isTurning = true;
-            kc.validDashInputTimer = 0f;
-        }
-
         if (isTurning)
         {
             h = 0f;
@@ -86,21 +130,6 @@ public class KirbyIdle : KirbyState
         var maxSpeed = kc.isDash ? dashSpeed : moveSpeed;
 
         kc.CalculateXVelocity(h, maxSpeed,acceleration, setFriction);
-
-        //대쉬 조절
-        if (isTurning && Mathf.Abs(kc.currentXVel) < 0.2f)
-        {
-            kc.currentXVel = 0f;
-            isTurning = false;
-            if (kc.hInput == 0)
-            {
-                kc.isDash = false;
-            }
-        }
-        else if (Mathf.Abs(kc.currentXVel) < 2f && kc.hInput == 0)
-        {
-            kc.isDash = false;
-        }
     }
 
     public override void Exit()

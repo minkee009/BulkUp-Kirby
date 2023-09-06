@@ -38,12 +38,19 @@ public class CameraMovement : MonoBehaviour
         var p3 = Vector3.up * MapY;
         var p4 = Vector3.up * -MapY;
 
+        Vector3[] points = { p2 + p3, p1 + p3, p1 + p4, p2 + p4 };
+
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(p1 + p3, p2 + p3);
-        Gizmos.DrawLine(p1 + p4, p2 + p4);
-        Gizmos.DrawLine(p3 + p1, p4 + p1);
-        Gizmos.DrawLine(p3 + p2, p4 + p2);
+        for(int i = 0;i<points.Length; i++)
+        {
+            Gizmos.DrawLine(points[i], points[(i + 1) % points.Length]);
+        }
+
+        //Gizmos.DrawLine(p1 + p3, p2 + p3);
+        //Gizmos.DrawLine(p1 + p4, p2 + p4);
+        //Gizmos.DrawLine(p3 + p1, p4 + p1);
+        //Gizmos.DrawLine(p3 + p2, p4 + p2);
 
     }
 }

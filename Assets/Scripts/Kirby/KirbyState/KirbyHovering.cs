@@ -18,22 +18,25 @@ public class KirbyHovering : KirbyState
 
     public override void Enter()
     {
+        kc.isDash = false;
+        kc.dontUseDashInput = true;
         kc.ForceStopCollisionAnimation();
         StartCoroutine(WaitForAnimation());
-        StartCoroutine(HoverJump());
     }
 
     public override void OnPostPhysCheck()
     {
-        if (!playAnimation && !goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
-        {
-            StartCoroutine(HoverJump());
-        }
 
         if (!playAnimation && kc.actInput)
         {
+            kc.StopAllCoroutines();
             kc.currentYVel = 0f;
             StartCoroutine(WaitForExit());
+        }
+
+        if (!playAnimation && !goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
+        {
+            StartCoroutine(HoverJump());
         }
 
         if (kc.isGrounded)
@@ -60,6 +63,7 @@ public class KirbyHovering : KirbyState
 
     public override void Exit()
     {
+        kc.dontUseDashInput = false;
         StopAllCoroutines();
         kc.currentYVel = 0f;
         goingJump = false;
@@ -68,20 +72,27 @@ public class KirbyHovering : KirbyState
 
     IEnumerator HoverJump()
     {
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Flying");
         goingJump = true;
         yield return jumpInputWaitTime;
         goingJump = false;
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Hovering");
     }
 
     IEnumerator WaitForAnimation()
     {
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaling_OnSky");
         playAnimation = true;
+        goingJump = true;
         yield return jumpInputWaitTime;
         playAnimation = false;
+        goingJump = false;
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Hovering");
     }
 
     IEnumerator WaitForExit()
     {
+        kc.kirbyAnimator.Play("Char_Kirby_exhaling_OnSky");
         playAnimation = true;
         yield return jumpInputWaitTime;
         if (kc.isGrounded)

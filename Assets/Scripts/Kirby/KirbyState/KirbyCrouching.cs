@@ -9,8 +9,7 @@ public class KirbyCrouching : KirbyState
 
     public override void Enter()
     {
-        transform.localScale = new Vector3(1, 0.5f, 1);
-        kc.rb.position += Vector2.down * transform.localScale.y * 0.5f;
+        kc.kirbyAnimator.Play("Char_Kirby_Crouching");
     }
 
     public override void OnPostPhysCheck()
@@ -40,8 +39,6 @@ public class KirbyCrouching : KirbyState
 
     public override void Exit()
     {
-        transform.position += Vector3.up * transform.localScale.y * 0.5f;
-        kc.rb.position = new Vector2(transform.position.x, transform.position.y);
-        transform.localScale = new Vector3(1, 1, 1);
+
     }
 }
