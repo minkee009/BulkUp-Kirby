@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6205822645970349478, guid: d9e51deab389a4f11adf15949aa8d6b6, type: 3}
       propertyPath: beamTime
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
