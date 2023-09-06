@@ -88,12 +88,14 @@ public class KirbyIdle : KirbyState
         {
             //Falling 트랜지션
             kc.GetFSM.SwitchState("Fall");
+            return;
         }
         else
         {
             if(kc.vInput < 0f && !isTurning)
             {
                 kc.GetFSM.SwitchState("Crouch");
+                return;
             }
         }
 
@@ -101,6 +103,7 @@ public class KirbyIdle : KirbyState
         {
             //점프 트랜지션
             kc.GetFSM.SwitchState("Jump");
+            return;
         }
 
         //부풀기 트랜지션
@@ -116,6 +119,7 @@ public class KirbyIdle : KirbyState
         if(enterHoverCounter > 0.2f)
         {
             kc.GetFSM.SwitchState("Hover");
+            return;
         }
     }
 

@@ -42,7 +42,6 @@ public class KirbyController : MonoBehaviour
 
     //체킹용 변수
     public float lastTimeJumped;
-    public bool playJumpTurn;
     public bool lockDir;
 
     public float currentXVel;
@@ -54,6 +53,7 @@ public class KirbyController : MonoBehaviour
     public int dashInput;
     public float validDashInputTimer;
 
+    Coroutine collisionAnimCoroutine;
 
     //debug
     public TMPro.TMP_Text stateMSG;
@@ -94,7 +94,6 @@ public class KirbyController : MonoBehaviour
         DashCheck();
         isDash = dontUseDashInput ? false : isDash;
         #endregion
-
         stateMSG.text = _fsm.Current.GetKey;
     }
 
@@ -306,13 +305,16 @@ public class KirbyController : MonoBehaviour
 
     public void PlayCollisionAnimation(int dirNum)
     {
-        if(!isPlayingColHItAnim)
-            StartCoroutine(PlayColAnim(dirNum));
+        if (!isPlayingColHItAnim)
+        {
+            collisionAnimCoroutine = StartCoroutine(PlayColAnim(dirNum));
+        }
     }
 
     public void ForceStopCollisionAnimation()
     {
-        StopCoroutine(PlayColAnim(0));
+        if(collisionAnimCoroutine != null)
+            StopCoroutine(collisionAnimCoroutine);
         isPlayingColHItAnim = false;
         colhitSprite.enabled = false;
         kirbySprite.enabled = true;
@@ -328,6 +330,7 @@ public class KirbyController : MonoBehaviour
         {
             case 0:
                 colhitSprite.sprite = colhitDirSprite[0];
+                colhitSprite.transform.localPosition = new Vector3(0, -0.5f, 0);
                 break;
             case 1:
                 colhitSprite.sprite = colhitDirSprite[1];

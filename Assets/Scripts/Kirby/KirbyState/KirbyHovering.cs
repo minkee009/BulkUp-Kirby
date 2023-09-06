@@ -21,7 +21,7 @@ public class KirbyHovering : KirbyState
         kc.isDash = false;
         kc.dontUseDashInput = true;
         kc.ForceStopCollisionAnimation();
-        StartCoroutine(WaitForAnimation());
+        StartCoroutine("WaitForAnimation");
     }
 
     public override void OnPostPhysCheck()
@@ -29,14 +29,15 @@ public class KirbyHovering : KirbyState
 
         if (!playAnimation && kc.actInput)
         {
-            kc.StopAllCoroutines();
+            StopAllCoroutines();
             kc.currentYVel = 0f;
-            StartCoroutine(WaitForExit());
+            StartCoroutine("WaitForExit");
+            return;
         }
 
         if (!playAnimation && !goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
         {
-            StartCoroutine(HoverJump());
+            StartCoroutine("HoverJump");
         }
 
         if (kc.isGrounded)

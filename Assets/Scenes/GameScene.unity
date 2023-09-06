@@ -24631,6 +24631,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 146539604752091535, guid: 8cf13d1a8f8e91b4e86c17b7d5e71659, type: 3}
+      propertyPath: fallAttackSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7540628809314787159, guid: 8cf13d1a8f8e91b4e86c17b7d5e71659, type: 3}
       propertyPath: stateMSG
       value: 

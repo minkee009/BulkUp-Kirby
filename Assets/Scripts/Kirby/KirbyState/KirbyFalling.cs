@@ -18,12 +18,7 @@ public class KirbyFalling : KirbyState
 
     public override void Enter()
     {
-        if(kc.playJumpTurn)
-        {
-            kc.playJumpTurn = false;
-            kc.kirbyAnimator.Play("Char_Kirby_Falling");
-        }
-        else
+        if(!kc.kirbyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Char_Kirby_Falling"))
         {
             kc.kirbyAnimator.Play("Char_Kirby_Falling_Middle");
         }
@@ -40,7 +35,7 @@ public class KirbyFalling : KirbyState
             kc.isDash = false;
             kc.lastTimeJumped = Time.time;
         }
-        else
+        else if(kc.currentYVel < 0.05f)
         {
             kc.PlayCollisionAnimation(0);
         }
@@ -74,12 +69,14 @@ public class KirbyFalling : KirbyState
         if (kc.isGrounded)
         {
             kc.GetFSM.SwitchState("Idle");
+            return;
         }
 
         //부풀기 트랜지션
         if (kc.jumpInput || kc.vInput > 0)
         {
             kc.GetFSM.SwitchState("Hover");
+            return;
         }
     }
 
@@ -94,7 +91,6 @@ public class KirbyFalling : KirbyState
 
     public override void Exit()
     {
-        kc.playJumpTurn = false;
         kc.currentYVel = 0f;
         inAirTime = 0f;
     }

@@ -10,27 +10,27 @@ public class KirbySliding : KirbyState
     public float friction = 20f;
 
     public float slideTimer = 0f;
-    public bool currentDirIsRight = false;
 
     public override void Enter()
     {
         kc.lockDir = true;
         kc.kirbyAnimator.Play("Char_Kirby_Sliding");
         kc.currentXVel = slideSpeed * (kc.isRightDir ? 1f : -1f);
-        currentDirIsRight = kc.isRightDir;
     }
 
     public override void OnPostPhysCheck()
     {
-        if (kc.CheckWallhit(currentDirIsRight))
+        if (kc.CheckWallhit(kc.isRightDir))
         {
             kc.PlayCollisionAnimation(2);
             kc.currentXVel = 0f;
             kc.GetFSM.SwitchState("Idle");
+            return;
         }
         if (!kc.isGrounded)
         {
             kc.GetFSM.SwitchState("Fall");
+            return;
         }
         if (slideTimer > slideTime)
         {
@@ -57,6 +57,5 @@ public class KirbySliding : KirbyState
     {
         kc.lockDir = false;
         slideTimer = 0f;
-        currentDirIsRight = false;
     }
 }

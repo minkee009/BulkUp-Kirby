@@ -27,6 +27,7 @@ public class KirbyCrouching : KirbyState
         if(kc.actInput || kc.jumpInput)
         {
             kc.GetFSM.SwitchState("Slide");
+            return;
         }
     }
 

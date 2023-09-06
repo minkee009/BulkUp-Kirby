@@ -45,10 +45,12 @@ public class KirbyJumping : KirbyState
         if (slowDownJump && (kc.jumpInput || kc.vInput > 0f))
         {
             kc.GetFSM.SwitchState("Hover");
+            return;
         }
-        if (kc.isGrounded)
+        if (jumpTimer > 0.02f && kc.isGrounded)
         {
             kc.GetFSM.SwitchState("Idle");
+            return;
         }
         if (!kc.jumpHoldInput || jumpTimer > airJumpTime)
         {
@@ -56,8 +58,10 @@ public class KirbyJumping : KirbyState
         }
         if (kc.currentYVel < 0.2f)
         {
-            kc.playJumpTurn = true;
+            kc.kirbyAnimator.Play("Char_Kirby_Falling");
+            kc.kirbyAnimator.Update(0f);
             kc.GetFSM.SwitchState("Fall");
+            return;
         }
     }
 
