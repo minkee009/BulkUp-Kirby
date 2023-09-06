@@ -20,13 +20,15 @@ public class WaddleDoo : MonoBehaviour
 
     private Vector2 movement;
 
-    private int[] randomNumber;
+    private int randomNumber;
 
     private float currentTime;
 
-    private bool isAttacking;
+    private bool isAttack;
+    private bool isCharge;
+    private bool isJump;
 
-    private enum State
+    public enum State
     {
         Move,
         Jump,
@@ -35,44 +37,47 @@ public class WaddleDoo : MonoBehaviour
         Dead
     }
 
-    private State _state = State.Move;
+    public State _state = State.Move;
 
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
 
-        if (_state == State.Move)
-        {
-            InvokeRepeating("RandomNumber", 0f, 1f);
-        }
+        InvokeRepeating("RandomNumber", 1f, 1f);
+        
     }
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
-
-        if (randomNumber[0] == 0)
-        {
-            _state = State.Jump;
-        }
-        else if (randomNumber[1] == 1)
+        // currentTime += Time.deltaTime;
+        //
+        if (randomNumber == 1 && _state == State.Move)
         {
             _state = State.Charge;
         }
+        else if (randomNumber == 2 && _state == State.Move)
+        {
+            _state = State.Jump;
+        }
 
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     _state = State.Charge;
+        // }
+        
         switch (_state)
         {
             case State.Move:
                 Move();
                 break;
             case State.Jump:
-                Jump();
+                StartCoroutine(Jump());
                 break;
             case State.Charge:
-                Charge();
+                StartCoroutine(Charge());
                 break;
             case State.Attack:
-                Attack();
+                StartCoroutine(Attack());
                 break;
             case State.Dead:
                 Dead();
@@ -84,10 +89,15 @@ public class WaddleDoo : MonoBehaviour
     {
         movement = new Vector2(moveSpeed, _rigidbody2D.velocity.y);
         _rigidbody2D.velocity = movement;
+
+        isAttack = false;
+        isCharge = false;
+        isJump = false;
     }
 
-    private void Jump()
+    IEnumerator Jump()
     {
+        isJump = true;
         if (!isJumping)
         {
             isJumping = true;
@@ -96,45 +106,48 @@ public class WaddleDoo : MonoBehaviour
         }
         else
         {
-            return;
+            yield return null;
         }
-
+        yield return new WaitForSeconds(2f);
+        
         _state = State.Move;
     }
 
-    private void Charge()
+    IEnumerator Charge()
     {
-        if (currentTime > 1.5)
+        yield return new WaitForSeconds(1f);
+        
+        if (!isCharge)
         {
-            Debug.Log("Charge");
-
+            isCharge = true;
             _state = State.Attack;
-
-            currentTime = 0;
         }
     }
 
-    private void Attack()
+    IEnumerator Attack()
     {
-        if (!isAttacking && movement.x < 0)
+        if (!isAttack && movement.x < 0)
         {
             StartCoroutine(LeftBeam());
         }
-        else if (!isAttacking && movement.x > 0)
+        else if (!isAttack && movement.x > 0)
         {
             StartCoroutine(RightBeam());
         }
-
+        
+        yield return new WaitForSeconds(1f);
+        
         _state = State.Move;
+        
     }
 
     IEnumerator LeftBeam()
     {
-        isAttacking = true;
-
+        isAttack = true;
+        
         float angle = 0;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             GameObject beamAttack = Instantiate(beam);
             beamAttack.transform.position = transform.position;
@@ -144,19 +157,15 @@ public class WaddleDoo : MonoBehaviour
             angle += 23.5f;
             yield return new WaitForSeconds(beamTime);
         }
-
-        isAttacking = false;
-
-        _state = State.Move;
     }
 
     IEnumerator RightBeam()
     {
-        isAttacking = true;
-
+        isAttack = true;
+        
         float angle = 360;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             GameObject beamAttack = Instantiate(beam);
             beamAttack.transform.position = transform.position;
@@ -166,27 +175,16 @@ public class WaddleDoo : MonoBehaviour
             angle -= 23.5f;
             yield return new WaitForSeconds(beamTime);
         }
-
-        isAttacking = false;
-
-        _state = State.Move;
     }
 
     private void Dead()
     {
-        this.gameObject.SetActive(false);
+        Destroy(gameObject, 2f);
     }
 
     private void RandomNumber()
     {
-        List<string> GachaList = new List<string>() { "치킨", "탕수육", "햄버거", "피자", "라면" };
-
-        for (int i = 0; i < 3; i++)
-        {
-            int rand = Random.Range(0, GachaList.Count);
-            print(GachaList[rand]);
-            GachaList.RemoveAt(rand);
-        }
+        randomNumber = Random.Range(0, 3);
     }
     
 
@@ -194,17 +192,17 @@ public class WaddleDoo : MonoBehaviour
 
 private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Kirby")
+        if (other.gameObject.CompareTag("Kirby"))
         {
             _state = State.Dead;
         }
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.CompareTag("Wall"))
         {
             moveSpeed = moveSpeed * -1.0f; // 방향 전환을 위한 식
             Debug.Log("웨이들 두의 벽 충돌로 인한 방향 전환");
         }
 
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
         }
