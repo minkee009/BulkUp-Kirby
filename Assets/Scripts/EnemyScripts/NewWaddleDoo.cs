@@ -2,13 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class WaddleDoo : MonoBehaviour
+public class NewWaddleDoo : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private float jumpPower = 8.0f;
-    private int randomNumber;
 
     private Vector2 movement;
     
@@ -27,8 +25,6 @@ public class WaddleDoo : MonoBehaviour
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        
-        InvokeRepeating("RandomNumber", 1f, 1f);
     }
 
     // Update is called once per frame
@@ -39,17 +35,13 @@ public class WaddleDoo : MonoBehaviour
             StartCoroutine(Move());
         }
         
-        if (randomNumber == 1)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             isMove = true;
             
             StopCoroutine(Move());
             
             StartCoroutine(Charge());
-        }
-        else if (randomNumber == 2)
-        {
-            Jump();
         }
     }
 
@@ -140,10 +132,6 @@ public class WaddleDoo : MonoBehaviour
         isMove = false;
     }
 
-    void RandomNumber()
-    {
-        randomNumber = Random.Range(0, 4);
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {

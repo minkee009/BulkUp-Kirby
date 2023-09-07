@@ -19,6 +19,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyScripts/BeamAttack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyScripts/NewWaddleDoo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../kirby-clone/Assets/Scripts/Character/HotHead.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -104,6 +105,8 @@
       <workItem from="1693984400016" duration="5518000" />
       <workItem from="1693990103684" duration="642000" />
       <workItem from="1693990961241" duration="24000" />
+      <workItem from="1694002706552" duration="677000" />
+      <workItem from="1694079392918" duration="4671000" />
     </task>
     <servers />
   </component>

@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &183990773
+--- !u!1001 &68062070
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -174,14 +174,6 @@ PrefabInstance:
     - target: {fileID: 3036067449642100533, guid: d9e51deab389a4f11adf15949aa8d6b6, type: 3}
       propertyPath: m_Name
       value: WaddleDoo
-      objectReference: {fileID: 0}
-    - target: {fileID: 6205822645970349478, guid: d9e51deab389a4f11adf15949aa8d6b6, type: 3}
-      propertyPath: beamTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6205822645970349478, guid: d9e51deab389a4f11adf15949aa8d6b6, type: 3}
-      propertyPath: jumpPower
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -678,4 +670,4 @@ SceneRoots:
   - {fileID: 1297468789}
   - {fileID: 1921413182}
   - {fileID: 271877790}
-  - {fileID: 183990773}
+  - {fileID: 68062070}
