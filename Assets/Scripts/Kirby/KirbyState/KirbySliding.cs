@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class KirbySliding : KirbyState
 {
@@ -12,19 +13,24 @@ public class KirbySliding : KirbyState
 
     public override void Enter()
     {
-        kc.rb.velocity = slideSpeed * (kc.isRightDir ? 1f : -1f) * Vector2.right;
-    }
-
-    public override void OnWallHit()
-    {
-        base.OnWallHit();
+        kc.lockDir = true;
+        kc.kirbyAnimator.Play("Char_Kirby_Sliding");
+        kc.currentXVel = slideSpeed * (kc.isRightDir ? 1f : -1f);
     }
 
     public override void OnPostPhysCheck()
     {
+        if (kc.CheckWallhit(kc.isRightDir))
+        {
+            kc.PlayCollisionAnimation(2);
+            kc.currentXVel = 0f;
+            kc.GetFSM.SwitchState("Idle");
+            return;
+        }
         if (!kc.isGrounded)
         {
             kc.GetFSM.SwitchState("Fall");
+            return;
         }
         if (slideTimer > slideTime)
         {
@@ -42,12 +48,14 @@ public class KirbySliding : KirbyState
 
     public override void Excute()
     {
-        slideTimer += Time.deltaTime;
-        kc.rb.velocity = kc.rb.velocity.normalized * (Mathf.Max(kc.rb.velocity.magnitude - friction * Time.deltaTime, 0f));
+        slideTimer += Time.deltaTime; 
+        var minus = kc.currentXVel > 0 ? 1 : -1;
+        kc.currentXVel = minus * Mathf.Max(0f, Mathf.Abs(kc.currentXVel) - friction * Time.deltaTime);
     }
 
     public override void Exit()
     {
+        kc.lockDir = false;
         slideTimer = 0f;
     }
 }

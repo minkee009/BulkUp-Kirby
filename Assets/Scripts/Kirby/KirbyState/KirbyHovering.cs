@@ -13,37 +13,36 @@ public class KirbyHovering : KirbyState
     public float hoverGravity = 4f;
     WaitForSeconds jumpInputWaitTime = new WaitForSeconds(0.3f);
 
-    public float currentYVel = 0f; 
+    public bool playAnimation = false;
     public bool goingJump = false;
 
     public override void Enter()
     {
-        //kc.rb.velocity = new Vector2(kc.rb.velocity.x, 0f);
+        kc.isDash = false;
+        kc.dontUseDashInput = true;
+        kc.ForceStopCollisionAnimation();
+        StartCoroutine("WaitForAnimation");
     }
 
     public override void OnPostPhysCheck()
     {
-        if (!goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
+
+        if (!playAnimation && kc.actInput)
         {
-            StartCoroutine(HoverJump());
+            StopAllCoroutines();
+            kc.currentYVel = 0f;
+            StartCoroutine("WaitForExit");
+            return;
         }
 
-        if (kc.actInput)
+        if (!playAnimation && !goingJump && (kc.vInput > 0 || kc.jumpHoldInput))
         {
-            if (kc.isGrounded)
-            {
-                kc.GetFSM.SwitchState("Idle");
-            }
-            else
-            {
-                kc.GetFSM.SwitchState("Fall");
-            }
+            StartCoroutine("HoverJump");
         }
 
         if (kc.isGrounded)
         {
-            currentYVel = 0f;
-            kc.rb.velocity = new Vector2(kc.rb.velocity.x, currentYVel);
+            kc.currentYVel = 0f;
         }
     }
 
@@ -53,35 +52,58 @@ public class KirbyHovering : KirbyState
 
         if(goingJump)
         {
-            currentYVel = hoverJumpSpeed;
+            kc.currentYVel = hoverJumpSpeed;
         }
         else
         {
-            currentYVel = Mathf.Lerp(currentYVel,-hoverGravity,4f * Time.deltaTime);
+            kc.CalculateYVelocity(hoverGravity, 4f);
         }
-        //가속
-        kc.rb.velocity += new Vector2(h, 0f) * hoverAcceleration * Time.deltaTime;
 
-        //감속
-        var minus = kc.rb.velocity.x > 0 ? 1 : -1;
-        kc.rb.velocity = new Vector2(minus * Mathf.Max(0f, Mathf.Abs(kc.rb.velocity.x) - hoverDecceleration * Time.deltaTime)
-            , kc.rb.velocity.y);
-
-        //최수종
-        kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -hoverMoveSpeed, hoverMoveSpeed), currentYVel);
+        kc.CalculateXVelocity(h, hoverMoveSpeed, hoverAcceleration, hoverDecceleration);
     }
 
     public override void Exit()
     {
-        StopCoroutine(HoverJump());
-        currentYVel = 0f;
+        kc.dontUseDashInput = false;
+        StopAllCoroutines();
+        kc.currentYVel = 0f;
         goingJump = false;
+        playAnimation = false;
     }
 
     IEnumerator HoverJump()
     {
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Flying");
         goingJump = true;
         yield return jumpInputWaitTime;
         goingJump = false;
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Hovering");
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaling_OnSky");
+        playAnimation = true;
+        goingJump = true;
+        yield return jumpInputWaitTime;
+        playAnimation = false;
+        goingJump = false;
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Hovering");
+    }
+
+    IEnumerator WaitForExit()
+    {
+        kc.kirbyAnimator.Play("Char_Kirby_exhaling_OnSky");
+        playAnimation = true;
+        yield return jumpInputWaitTime;
+        if (kc.isGrounded)
+        {
+            kc.GetFSM.SwitchState("Idle");
+        }
+        else
+        {
+            kc.GetFSM.SwitchState("Fall");
+        }
+        playAnimation = false;
     }
 }
