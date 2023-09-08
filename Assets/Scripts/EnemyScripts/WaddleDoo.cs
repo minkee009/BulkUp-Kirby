@@ -28,7 +28,7 @@ public class WaddleDoo : MonoBehaviour
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         
-        InvokeRepeating("RandomNumber", 1f, 1f);
+        InvokeRepeating("RandomNumber", 1f, 3f);
     }
 
     // Update is called once per frame
@@ -39,16 +39,20 @@ public class WaddleDoo : MonoBehaviour
             StartCoroutine(Move());
         }
         
-        if (randomNumber == 1)
+        if (!isCharge && randomNumber == 1)
         {
             isMove = true;
+            isCharge = true;
+            randomNumber = 0;
             
             StopCoroutine(Move());
             
             StartCoroutine(Charge());
         }
-        else if (randomNumber == 2)
+        if (!isJumping && randomNumber == 2)
         {
+            randomNumber = 0;
+            
             Jump();
         }
     }
@@ -59,16 +63,16 @@ public class WaddleDoo : MonoBehaviour
         _rigidbody2D.velocity = movement;
 
         yield return null;
-
     }
 
-    void Jump()
+    private void Jump()
     {
         if (!isJumping)
         {
-            isJumping = true;
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpPower);
             Debug.Log("점프");
+
+            isJumping = true;
         }
         else
         {
@@ -78,20 +82,15 @@ public class WaddleDoo : MonoBehaviour
 
     IEnumerator Charge()
     {
-        if (!isCharge)
+        yield return new WaitForSeconds(1f);
+
+        if (movement.x < 0)
         {
-            isCharge = true;
-
-            yield return new WaitForSeconds(2f);
-
-            if (movement.x < 0)
-            {
-                StartCoroutine(LeftAttack());
-            }
-            else if (movement.x > 0)
-            {
-                StartCoroutine(RightAttack());
-            }
+            StartCoroutine(LeftAttack());
+        }
+        else if (movement.x > 0)
+        {
+            StartCoroutine(RightAttack());
         }
     }
 
@@ -112,7 +111,7 @@ public class WaddleDoo : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         isCharge = false;
         isMove = false;
@@ -134,7 +133,7 @@ public class WaddleDoo : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         
         isCharge = false;
         isMove = false;
@@ -142,7 +141,7 @@ public class WaddleDoo : MonoBehaviour
 
     void RandomNumber()
     {
-        randomNumber = Random.Range(0, 4);
+        randomNumber = Random.Range(0, 3);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

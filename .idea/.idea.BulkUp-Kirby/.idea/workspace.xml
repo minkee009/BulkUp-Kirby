@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b4721b25-c89c-4bd7-91ff-5ccf90b857fc" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDoo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDoo.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +105,9 @@
       <workItem from="1693990103684" duration="642000" />
       <workItem from="1693990961241" duration="24000" />
       <workItem from="1694002706552" duration="677000" />
-      <workItem from="1694079392918" duration="4671000" />
+      <workItem from="1694079392918" duration="6925000" />
+      <workItem from="1694136092963" duration="488000" />
+      <workItem from="1694177415704" duration="1483000" />
     </task>
     <servers />
   </component>
