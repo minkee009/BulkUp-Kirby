@@ -46,15 +46,6 @@ public class KirbyFSM<T1,T2> where T2 : KirbyFSM<T1, T2>.IFSMState
         next.Enter();
         _current = next;
     }
-
-    public void SwitchStateAndExcute(T1 nextKey)
-    {
-        T2 next = stateList[nextKey];
-        _current.Exit();
-        next.Enter();
-        _current = next;
-        _current.Excute();
-    }
 }
 
 

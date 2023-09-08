@@ -18,25 +18,92 @@ public class KirbyIdle : KirbyState
 
     public override void Enter()
     {
-        
+        kc.kirbyAnimator.Play("Char_Kirby_Idle");
+    }
+
+    public override void OnPrePhysCheck()
+    {
+        //관성 정지
+        if (!isTurning && Mathf.Abs(kc.currentXVel) > 1 && Vector2.Dot(new Vector2(kc.currentXVel, 0f).normalized, new Vector2(kc.hInput, 0)) < 0f)
+        {
+            isTurning = true;
+            kc.validDashInputTimer = 0f;
+            kc.isRightDir = !kc.isRightDir;
+            kc.lockDir = true;
+        }
+
+        //대쉬 조절
+        if (isTurning && Mathf.Abs(kc.currentXVel) < 0.2f)
+        {
+            kc.currentXVel = 0f;
+            isTurning = false;
+            kc.lockDir = false;
+            if (kc.hInput == 0)
+            {
+                kc.isDash = false;
+            }
+        }
+        else if (Mathf.Abs(kc.currentXVel) < 2f && kc.hInput == 0)
+        {
+            kc.isDash = false;
+        }
+    }
+
+    public override void OnWallHit()
+    {
+        if(Mathf.Abs(kc.currentXVel) > 0.05f)
+        {
+            kc.PlayCollisionAnimation(2);
+        }
     }
 
     public override void OnPostPhysCheck()
     {
+
         //관성 정지 스프라이트 체인지
-        //대쉬 스프라이트 체인지
+        if (isTurning)
+        {
+            kc.kirbyAnimator.Play("Char_Kirby_Turning");
+        }
+        else
+        {
+            if(Mathf.Abs(kc.currentXVel) > 0.05f)
+            {
+                kc.kirbyAnimator.Play("Char_Kirby_Walking");
+                kc.kirbyAnimator.SetFloat("WalkSpeed", Mathf.Abs(kc.currentXVel) / moveSpeed);
+            }
+            else
+            {
+                kc.kirbyAnimator.Play("Char_Kirby_Idle");
+            }
+            
+        }
+
+        if (kc.isDash)
+        {
+            //대쉬 이펙트 재생
+        }
 
         if (!kc.isGrounded)
         {
             //Falling 트랜지션
             kc.GetFSM.SwitchState("Fall");
+            return;
         }
         else
         {
             if(kc.vInput < 0f && !isTurning)
             {
                 kc.GetFSM.SwitchState("Crouch");
+                return;
             }
+        }
+
+        if (!isTurning && kc.jumpInput)
+        {
+            //점프 트랜지션
+            kc.GetFSM.SwitchState("Jump");
+            return;
         }
 
         //부풀기 트랜지션
@@ -52,6 +119,7 @@ public class KirbyIdle : KirbyState
         if(enterHoverCounter > 0.2f)
         {
             kc.GetFSM.SwitchState("Hover");
+            return;
         }
     }
 
@@ -59,51 +127,20 @@ public class KirbyIdle : KirbyState
     {
         var h = kc.hInput;
 
-        var nonYvel = new Vector2(kc.rb.velocity.x, 0f);
-
-        //관성 정지
-        if (nonYvel.magnitude > 1 && Vector2.Dot(nonYvel.normalized, new Vector2(h, 0)) < 0f)
+        if (isTurning)
         {
-            isTurning = true;
-            kc.validDashInputTimer = 0f;
+            h = 0f;
         }
-
-        h = isTurning ? 0f : h;
 
         var setFriction = isTurning ? forceStopFriction : groundFriction;
-
-        //가속
-        kc.rb.velocity += (kc.isDash ? 1.2f : 1f) * acceleration * Time.deltaTime * new Vector2(h, 0f);
-
-        //마찰
-        kc.rb.velocity = kc.rb.velocity.normalized * Mathf.Max(kc.rb.velocity.magnitude - setFriction * Time.deltaTime, 0f);
         var maxSpeed = kc.isDash ? dashSpeed : moveSpeed;
-        kc.rb.velocity = Vector2.ClampMagnitude(kc.rb.velocity, maxSpeed);
 
-        //대쉬 조절
-        if (isTurning && kc.rb.velocity.magnitude < 0.2f)
-        {
-            kc.rb.velocity = Vector2.zero;
-            isTurning = false;
-            if (kc.hInput == 0)
-            {
-                kc.isDash = false;
-            }
-        }
-        else if (kc.rb.velocity.magnitude < 2f && kc.hInput == 0)
-        {
-            kc.isDash = false;
-        }
-
-        if (!isTurning && kc.jumpInput)
-        {
-            //점프 트랜지션
-            kc.GetFSM.SwitchState("Jump");
-        }
+        kc.CalculateXVelocity(h, maxSpeed,acceleration, setFriction);
     }
 
     public override void Exit()
     {
+        kc.lockDir = false;
         isTurning = false;
         enterHoverCounter = 0f;
     }
