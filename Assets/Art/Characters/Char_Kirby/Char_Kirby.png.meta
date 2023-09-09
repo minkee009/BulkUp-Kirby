@@ -126,8 +126,8 @@ TextureImporter:
       name: Idle_0
       rect:
         serializedVersion: 2
-        x: 361
-        y: 99
+        x: 404
+        y: 96
         width: 29
         height: 33
       alignment: 9
@@ -147,8 +147,8 @@ TextureImporter:
       name: Idle_1
       rect:
         serializedVersion: 2
-        x: 392
-        y: 99
+        x: 313
+        y: 96
         width: 29
         height: 33
       alignment: 9
@@ -168,10 +168,10 @@ TextureImporter:
       name: Walking_0
       rect:
         serializedVersion: 2
-        x: 208
-        y: 55
+        x: 393
+        y: 1
         width: 37
-        height: 39
+        height: 40
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,10 +189,10 @@ TextureImporter:
       name: Walking_1
       rect:
         serializedVersion: 2
-        x: 201
-        y: 99
+        x: 366
+        y: 55
         width: 24
-        height: 34
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,8 +210,8 @@ TextureImporter:
       name: Walking_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 99
+        x: 154
+        y: 55
         width: 40
         height: 36
       alignment: 9
@@ -223,27 +223,6 @@ TextureImporter:
       bones: []
       spriteID: b864add3908e383f0800000000000000
       internalID: -899620374153902453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walking_3
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 99
-        width: 24
-        height: 34
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f436219126354aae0800000000000000
-      internalID: -1539013491861331121
       vertices: []
       indices: 
       edges: []
@@ -273,9 +252,9 @@ TextureImporter:
       name: Crouching_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 137
-        width: 39
+        x: 56
+        y: 132
+        width: 38
         height: 21
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -294,10 +273,10 @@ TextureImporter:
       name: Jumping_0
       rect:
         serializedVersion: 2
-        x: 232
+        x: 344
         y: 1
-        width: 49
-        height: 45
+        width: 47
+        height: 41
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,10 +294,10 @@ TextureImporter:
       name: Falling_0
       rect:
         serializedVersion: 2
-        x: 133
+        x: 81
         y: 1
-        width: 27
-        height: 48
+        width: 28
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -336,10 +315,10 @@ TextureImporter:
       name: Falling_1
       rect:
         serializedVersion: 2
-        x: 191
+        x: 190
         y: 1
-        width: 39
-        height: 46
+        width: 38
+        height: 45
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -357,10 +336,10 @@ TextureImporter:
       name: Falling_2
       rect:
         serializedVersion: 2
-        x: 81
+        x: 111
         y: 1
-        width: 50
-        height: 49
+        width: 47
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -399,10 +378,10 @@ TextureImporter:
       name: Falling_4
       rect:
         serializedVersion: 2
-        x: 162
+        x: 160
         y: 1
-        width: 27
-        height: 48
+        width: 28
+        height: 47
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -421,9 +400,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 137
-        width: 52
-        height: 30
+        y: 132
+        width: 53
+        height: 31
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -441,10 +420,10 @@ TextureImporter:
       name: JJiBoo_0
       rect:
         serializedVersion: 2
-        x: 247
+        x: 220
         y: 55
         width: 25
-        height: 37
+        height: 36
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,10 +441,10 @@ TextureImporter:
       name: Inhaling_OnSky_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 99
-        width: 60
-        height: 36
+        x: 253
+        y: 96
+        width: 58
+        height: 33
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -483,10 +462,10 @@ TextureImporter:
       name: Inhaling_OnSky_1
       rect:
         serializedVersion: 2
-        x: 441
-        y: 55
-        width: 60
-        height: 36
+        x: 1
+        y: 96
+        width: 58
+        height: 34
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -504,10 +483,10 @@ TextureImporter:
       name: Inhaling_OnSky_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 274
         y: 55
-        width: 60
-        height: 39
+        width: 63
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,10 +504,10 @@ TextureImporter:
       name: Inhaling_OnSky_3
       rect:
         serializedVersion: 2
-        x: 409
-        y: 1
-        width: 59
-        height: 42
+        x: 121
+        y: 96
+        width: 64
+        height: 33
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -546,10 +525,10 @@ TextureImporter:
       name: Inhaled_Flying_0
       rect:
         serializedVersion: 2
-        x: 344
+        x: 279
         y: 1
         width: 63
-        height: 42
+        height: 41
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -567,9 +546,9 @@ TextureImporter:
       name: Inhaled_Flying_1
       rect:
         serializedVersion: 2
-        x: 423
-        y: 99
-        width: 63
+        x: 435
+        y: 96
+        width: 62
         height: 32
       alignment: 9
       pivot: {x: 0.5, y: 0}
@@ -588,10 +567,10 @@ TextureImporter:
       name: exhaling_OnSky_0
       rect:
         serializedVersion: 2
-        x: 283
-        y: 1
-        width: 59
-        height: 42
+        x: 187
+        y: 96
+        width: 64
+        height: 33
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -609,10 +588,10 @@ TextureImporter:
       name: exhaling_OnSky_1
       rect:
         serializedVersion: 2
-        x: 50
+        x: 392
         y: 55
-        width: 60
-        height: 39
+        width: 63
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -630,10 +609,10 @@ TextureImporter:
       name: exhaling_OnSky_2
       rect:
         serializedVersion: 2
-        x: 336
-        y: 55
-        width: 60
-        height: 36
+        x: 61
+        y: 96
+        width: 58
+        height: 34
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -651,10 +630,10 @@ TextureImporter:
       name: exhaling_OnSky_3
       rect:
         serializedVersion: 2
-        x: 274
-        y: 55
-        width: 60
-        height: 36
+        x: 344
+        y: 96
+        width: 58
+        height: 33
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -672,10 +651,10 @@ TextureImporter:
       name: Inhaling_OnGround_0
       rect:
         serializedVersion: 2
-        x: 280
-        y: 99
+        x: 457
+        y: 55
         width: 25
-        height: 34
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -693,10 +672,10 @@ TextureImporter:
       name: Inhaling_OnGround_1
       rect:
         serializedVersion: 2
-        x: 307
-        y: 99
+        x: 247
+        y: 55
         width: 25
-        height: 34
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -714,10 +693,10 @@ TextureImporter:
       name: Inhaling_OnGround_2
       rect:
         serializedVersion: 2
-        x: 153
-        y: 99
-        width: 21
-        height: 35
+        x: 87
+        y: 55
+        width: 22
+        height: 36
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -735,10 +714,10 @@ TextureImporter:
       name: Inhaling_OnGround_3
       rect:
         serializedVersion: 2
-        x: 176
-        y: 99
-        width: 23
-        height: 35
+        x: 35
+        y: 55
+        width: 24
+        height: 37
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -756,7 +735,7 @@ TextureImporter:
       name: Inhaled_Idle_0
       rect:
         serializedVersion: 2
-        x: 470
+        x: 432
         y: 1
         width: 38
         height: 40
@@ -774,13 +753,34 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: Inhaled_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1
+        width: 38
+        height: 40
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a28063013642f1670800000000000000
+      internalID: 8511561828645865514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: Inhaled_Walking_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 55
+        x: 230
+        y: 1
         width: 47
-        height: 42
+        height: 43
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -798,7 +798,7 @@ TextureImporter:
       name: Inhaled_Walking_1
       rect:
         serializedVersion: 2
-        x: 174
+        x: 1
         y: 55
         width: 32
         height: 39
@@ -819,7 +819,7 @@ TextureImporter:
       name: Inhaled_Walking_2
       rect:
         serializedVersion: 2
-        x: 398
+        x: 111
         y: 55
         width: 41
         height: 36
@@ -840,10 +840,10 @@ TextureImporter:
       name: Exhaling_OnGround_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 99
-        width: 23
-        height: 35
+        x: 61
+        y: 55
+        width: 24
+        height: 37
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -861,10 +861,10 @@ TextureImporter:
       name: Exhaling_OnGround_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 99
-        width: 21
-        height: 35
+        x: 196
+        y: 55
+        width: 22
+        height: 36
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -882,10 +882,10 @@ TextureImporter:
       name: Exhaling_OnGround_2
       rect:
         serializedVersion: 2
-        x: 253
-        y: 99
+        x: 339
+        y: 55
         width: 25
-        height: 34
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -903,10 +903,10 @@ TextureImporter:
       name: Exhaling_OnGround_3
       rect:
         serializedVersion: 2
-        x: 334
-        y: 99
+        x: 484
+        y: 55
         width: 25
-        height: 34
+        height: 35
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -946,6 +946,7 @@ TextureImporter:
       Inhaled_Flying_0: 3395325517228651436
       Inhaled_Flying_1: 1258575010244701113
       Inhaled_Idle_0: -6057419495546610942
+      Inhaled_Idle_1: 8511561828645865514
       Inhaled_Walking_0: 5351223931744587854
       Inhaled_Walking_1: 4114849541109272162
       Inhaled_Walking_2: 5302276179261560630
@@ -964,7 +965,6 @@ TextureImporter:
       Walking_0: 3577252072171977909
       Walking_1: -8287159642771018103
       Walking_2: -899620374153902453
-      Walking_3: -1539013491861331121
       exhaling_OnSky_0: -7178349031930647998
       exhaling_OnSky_1: -1524567718477920660
       exhaling_OnSky_2: -153413346547291992
