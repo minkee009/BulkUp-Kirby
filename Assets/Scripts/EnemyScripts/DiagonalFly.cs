@@ -5,89 +5,51 @@ using UnityEngine;
 
 public class DiagonalFly : MonoBehaviour
 {
-    public float speed = 0.1f;
-    public float attackRange = 20f;
-    private float DistanceToTarget;
+    [SerializeField] private float speed = 0.1f;
+    [SerializeField] private bool isFly = false;
     
     private Transform kirbyTransform;
 
-    private Vector3 direction;
-
-    private enum State
-    {
-        Idle,
-        LeftFly,
-        RightFly,
-        Dead
-    }
-
-    private State _state = State.Idle;
+    private Vector2 direction;
     
     // Start is called before the first frame update
     void Start()
     {
-        kirbyTransform = GameObject.Find("Kirby").transform;
+        kirbyTransform = GameObject.FindWithTag("Kirby").transform;
         
+        direction = kirbyTransform.position - transform.position;
         direction.Normalize();
     }
 
     // Update is called once per frame
     void Update()
     {
-        direction = kirbyTransform.position - transform.position;
-
-        DistanceToTarget = (kirbyTransform.position - transform.position).sqrMagnitude;
-        
-        if (direction.x < 0 && attackRange > DistanceToTarget)
+        if (direction.x < 0 && !isFly)
         {
-            _state = State.LeftFly;
+            LeftFly();
         }
-        else if(direction.x > 0 && attackRange > DistanceToTarget)
+        else if(direction.x > 0 && !isFly)
         {
-            _state = State.RightFly;
+            RightFly();
         }
-        
-        switch (_state)
-        {
-            case State.Idle:
-                Idle();
-                break;
-            case State.LeftFly:
-                LeftFly();
-                break;
-            case State.RightFly:
-                RightFly();
-                break;
-            case State.Dead:
-                Dead();
-                break;
-        }
-    }
-
-    private void Idle()
-    {
     }
 
     private void LeftFly()
     {
-        this.transform.Translate(new Vector2(-0.05f, 0.05f) * speed);
+            this.transform.Translate(new Vector2(-0.05f, 0.05f) * speed);
     }
 
     private void RightFly()
-    {      
-        this.transform.Translate(new Vector2(0.05f, 0.05f) * speed);
-    }
-
-    private void Dead()
     {
-        Destroy(gameObject);
+            this.transform.Translate(new Vector2(0.05f, 0.05f) * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
-            _state = State.Dead;
+            isFly = true;
+            Destroy(this.gameObject, 0.5f);
         }
     }
 }

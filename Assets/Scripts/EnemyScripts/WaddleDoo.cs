@@ -8,20 +8,19 @@ public class WaddleDoo : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private float jumpPower = 8.0f;
+    
+    [SerializeField] private bool isMove = false;
+    [SerializeField] private bool isJumping = false;
+    [SerializeField] private bool isCharge = false;
+    [SerializeField] private bool isAttack = false;
+    
+    [SerializeField] private GameObject beam;
+
     private int randomNumber;
 
     private Vector2 movement;
     
-    private bool isJumping = false;
-    private bool isCharge = false;
-    private bool isAttack = false;
-    private bool isMove = false;
-    
-
     private Rigidbody2D _rigidbody2D;
-
-    public GameObject beam;
-
 
     // Start is called before the first frame update
     void Start()
@@ -84,11 +83,11 @@ public class WaddleDoo : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        if (movement.x < 0)
+        if (movement.x < 0 && !isAttack)
         {
             StartCoroutine(LeftAttack());
         }
-        else if (movement.x > 0)
+        else if (movement.x > 0 && !isAttack)
         {
             StartCoroutine(RightAttack());
         }
@@ -115,6 +114,7 @@ public class WaddleDoo : MonoBehaviour
 
         isCharge = false;
         isMove = false;
+        isAttack = false;
     }
     IEnumerator RightAttack()
     {
@@ -137,8 +137,9 @@ public class WaddleDoo : MonoBehaviour
         
         isCharge = false;
         isMove = false;
+        isAttack = false;
     }
-
+    
     void RandomNumber()
     {
         randomNumber = Random.Range(0, 3);
@@ -146,10 +147,18 @@ public class WaddleDoo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Kirby"))
+        {
+            isMove = true;
+            isJumping = true;
+            isCharge = true;
+            isAttack = true;
+            Destroy(this.gameObject, 0.5f);
+        }
         if (other.gameObject.CompareTag("Wall"))
         {
             moveSpeed *= -1.0f;
-            Debug.Log("방향 전환");
+            Debug.Log("웨이들 두 방향 전환");
         }
 
         if (other.gameObject.CompareTag("Ground"))

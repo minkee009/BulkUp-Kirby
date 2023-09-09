@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class WaddleDee : MonoBehaviour
 {
-    public float moveSpeed = 2f; // 이동 속도
+    [SerializeField] private float moveSpeed = 2f; // 이동 속도
+
+    private bool isMove = false;
     
     private Rigidbody2D _rigidbody2D;
     
-    private enum State
-    {
-        Move,
-        Dead
-    }
-
-    private State _state = State.Move;
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
@@ -22,14 +17,9 @@ public class WaddleDee : MonoBehaviour
 
     private void Update()
     {
-        switch (_state)
+        if (!isMove)
         {
-            case State.Move:
-                Move();
-                break;
-            case State.Dead:
-                Dead();
-                break;
+            Move();
         }
     }
 
@@ -39,21 +29,17 @@ public class WaddleDee : MonoBehaviour
         _rigidbody2D.velocity = movement;
     }
 
-    private void Dead()
-    {
-        this.gameObject.SetActive(false);
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
-            _state = State.Dead;
+            isMove = true;
+            Destroy(this.gameObject, 0.5f);
         }
         if (other.gameObject.tag == "Wall")
         {
             moveSpeed = moveSpeed * -1f; // 방향 전환을 위한 식
-            Debug.Log("웨이들 디의 벽 충돌로 인한 방향 전환");
+            Debug.Log("웨이들 디 방향 전환");
         }
     }
 }

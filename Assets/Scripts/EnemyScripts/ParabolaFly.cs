@@ -6,61 +6,40 @@ using UnityEditor.Experimental.GraphView;
 
 public class ParabolaFly : MonoBehaviour
 {
-    float dist = 8f;
-    float speed = 2.5f;
-    float frequency = 2.5f;
-    float waveHeight = 2.5f;
+    [SerializeField] float dist = 8f;
+    [SerializeField] float speed = 2.5f;
+    [SerializeField] float frequency = 2.5f;
+    [SerializeField] float waveHeight = 2.5f;
     
     private Vector3 position;
     private Vector3 localScale;
     private Vector3 direction;
+
+    private bool isFly = false;
     
     private Transform kirbyTransform;
-
-    private enum State
-    {
-        LeftDirectionFly,
-        RightDirectionFly,
-        Dead
-    }
-
-    private State _state = State.LeftDirectionFly;
     
     void Start()
     {
         position = transform.position;
         localScale = transform.localScale;
 
-        kirbyTransform = GameObject.Find("Kirby").transform;
+        kirbyTransform = GameObject.FindWithTag("Kirby").transform;
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
-
-        if (direction.x < 0)
-        {
-            _state = State.LeftDirectionFly;
-        }
-        else
-        {
-            _state = State.RightDirectionFly;
-        }
+        
     }
 
     void Update()
     {
-
-
-        switch (_state)
+        if (direction.x < 0 && !isFly)
         {
-            case State.LeftDirectionFly:
-                LeftDirectionFly();
-                break;
-            case State.RightDirectionFly:
-                RightDirectionFly();
-                break;
-            case State.Dead:
-                Dead();
-                break;
+            LeftDirectionFly();
+        }
+        else if (direction.x > 0 && !isFly)
+        {
+            RightDirectionFly();
         }
     }
 
@@ -81,16 +60,12 @@ public class ParabolaFly : MonoBehaviour
         transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
     }
 
-    private void Dead()
-    {
-        this.gameObject.SetActive(false);
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
-            Destroy(gameObject);
+            isFly = true;
+            Destroy(this.gameObject, 0.5f);
         }
     }
 }

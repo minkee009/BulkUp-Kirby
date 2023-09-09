@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HotHead : MonoBehaviour
-{
-    public float moveSpeed = 2f; // 이동 속도
-    private int randomNumber;
+{ 
+    [SerializeField] private float moveSpeed = 2f; // 이동 속도
+    [SerializeField] private float attackRange = 7f;
+  
+    [SerializeField] private GameObject fireBall;
+    [SerializeField] private GameObject fire;
     
-    private float currentTime;
+    [SerializeField] private bool ismove = false;
+    [SerializeField] private bool isAttack = false;
+
+    private float distanceToKirby;
     
     private Rigidbody2D _rigidbody2D;
 
-    public GameObject fireBall;
-    private enum State
-    {
-        Move,
-        Charge,
-        ShortDistanceAttack,
-        LongDistanceAttack,
-        Dead
-    }
+    private Transform kirbyTransform;
 
-    private State _state = State.Move;
+    private Vector2 direction;
     
     private void Start()
     {
@@ -30,30 +28,21 @@ public class HotHead : MonoBehaviour
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
-        
-        if (randomNumber == 4)
+        kirbyTransform = GameObject.FindWithTag("Kirby").transform;
+
+        distanceToKirby = Vector2.Distance(kirbyTransform.transform.position, this.transform.position);
+
+        direction = kirbyTransform.transform.position - this.transform.position;
+        direction.Normalize();
+
+        if (!ismove)
         {
-            _state = State.Charge;
+            Move();
         }
-        
-        switch (_state)
+
+        if (!isAttack)
         {
-            case State.Move:
-                Move();
-                break;
-            case State.Charge:
-                Charge();
-                break;
-            case State.ShortDistanceAttack:
-                ShortDistanceAttack();
-                break;
-            case State.LongDistanceAttack:
-                LongDistanceAttack();
-                break;
-            case State.Dead:
-                Dead();
-                break;
+            StartCoroutine(Charge());
         }
     }
 
@@ -63,44 +52,78 @@ public class HotHead : MonoBehaviour
         _rigidbody2D.velocity = movement;
     }
 
-    private void Charge()
+    IEnumerator Charge()
     {
-        if (currentTime > 1.5)
+        if (!isAttack)
         {
-            _state = State.Move;
-            
-            currentTime = 0;
+            isAttack = true;
+            ismove = true;
+
+            yield return new WaitForSeconds(1.5f);
+
+            if (distanceToKirby > attackRange)
+            {
+                StartCoroutine(LongDistanceAttack());
+            }
+            else
+            {
+                StartCoroutine(ShortDistanceAttack());
+            }
         }
     }
 
-    private void ShortDistanceAttack()
+    IEnumerator ShortDistanceAttack()
     {
+        if (direction.x < 0)
+        {
+            GameObject leftFireAttack = Instantiate(fire);
+            leftFireAttack.transform.position = transform.position;
+            leftFireAttack.transform.rotation = Quaternion.Euler(0,0,180);
+            
+            Destroy(leftFireAttack, 3f);
+
+        }
+        else
+        {
+            GameObject leftFireAttack = Instantiate(fire);
+            leftFireAttack.transform.position = transform.position;
+            leftFireAttack.transform.rotation = Quaternion.Euler(0,0,0);
+            
+            Destroy(leftFireAttack, 3f);
+        }
         
+        yield return new WaitForSeconds(3.1f);
+
+        ismove = false;
+        
+        yield return new WaitForSeconds(2.5f);
+
+        isAttack = false;
     }
 
-    private void LongDistanceAttack()
+    IEnumerator LongDistanceAttack()
     {
         GameObject fireBallAttack = Instantiate(fireBall);
         fireBallAttack.transform.position = transform.position;
-    }
-
-    private void Dead()
-    {
-        this.gameObject.SetActive(false);
-    }
-
-    private void RandomNumber()
-    {
-        randomNumber = Random.Range(0, 5);
         
-        Debug.Log("RandomNumber");
-    }
+        Destroy(fireBallAttack, 5f);
+        
+        yield return new WaitForSeconds(1.1f);
 
+        ismove = false;
+        
+        yield return new WaitForSeconds(2.0f);
+
+        isAttack = false;
+    }
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
-            _state = State.Dead;
+            ismove = true;
+            isAttack = true;
+            Destroy(this.gameObject, 0.5f);
         }
         if (other.gameObject.tag == "Wall")
         {
