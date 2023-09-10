@@ -41,14 +41,14 @@ public class ParabolaFly : MonoBehaviour
     {
         if (direction.x > 0)
         {
-            localScale.x = 1;
+            localScale.x = 0.5f;
             transform.transform.localScale = localScale;
             position += transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
         }
         else
         {
-            localScale.x = -1;
+            localScale.x = -0.5f;
             transform.transform.localScale = localScale;
             position -= transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;

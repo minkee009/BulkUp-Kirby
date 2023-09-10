@@ -58,7 +58,7 @@ public class KirbyJumping : KirbyState
             if (!kc.hasInhaledObj)
                 kc.kirbyAnimator.Play("Char_Kirby_Falling");
             kc.kirbyAnimator.Update(0f);
-            kc.currentYVel = 0f;
+            kc.currentYVel = Mathf.Lerp(kc.currentYVel,0f,0.4f);
             kc.GetFSM.SwitchState("Fall");
         }
     }

@@ -112,7 +112,7 @@ public class KirbyController : MonoBehaviour
         DashCheck();
         isDash = dontUseDashInput ? false : isDash;
         #endregion
-        stateMSG.text = _fsm.Current.GetKey;
+        if(stateMSG != null) stateMSG.text = _fsm.Current.GetKey;
     }
 
     private void FixedUpdate()
