@@ -56,10 +56,10 @@ public class KirbyHovering : KirbyState
         }
         else
         {
-            kc.CalculateYVelocity(hoverGravity, 4f);
+            kc.CalculateVelocity(ref kc.currentYVel,-1,hoverGravity, 8f, 0f);
         }
 
-        kc.CalculateXVelocity(h, hoverMoveSpeed, hoverAcceleration, hoverDecceleration);
+        kc.CalculateVelocity(ref kc.currentXVel,h, hoverMoveSpeed, hoverAcceleration, hoverDecceleration);
     }
 
     public override void Exit()

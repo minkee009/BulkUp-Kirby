@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art/CutScene/CS_KirbyRun.aseprite.meta
 guid: f321914b019c24c5fb00af07d69ec6c1
+========
+guid: 23e4f32482b01431a82da16464f89e28
+>>>>>>>> JeongMingi:Assets/Scenes/KirbyMovement.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
