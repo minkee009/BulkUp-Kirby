@@ -18,7 +18,14 @@ public class KirbyIdle : KirbyState
 
     public override void Enter()
     {
-        kc.kirbyAnimator.Play("Char_Kirby_Idle");
+        if(Mathf.Abs(kc.currentXVel) > 0f)
+        {
+            kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Walking" : "Char_Kirby_Inhaled_Walking");
+        }
+        else
+        {
+            kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Idle" : "Char_Kirby_Inhaled_Idle");
+        }
     }
 
     public override void OnPrePhysCheck()
@@ -51,8 +58,9 @@ public class KirbyIdle : KirbyState
 
     public override void OnWallHit()
     {
-        if(Mathf.Abs(kc.currentXVel) > 0.05f)
+        if (Mathf.Abs(kc.currentXVel) > 0.05f)
         {
+            if (kc.hasInhaledObj) return;
             kc.PlayCollisionAnimation(2);
         }
     }
@@ -63,25 +71,29 @@ public class KirbyIdle : KirbyState
         //관성 정지 스프라이트 체인지
         if (isTurning)
         {
-            kc.kirbyAnimator.Play("Char_Kirby_Turning");
+            kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Turning" : "Char_Kirby_Inhaled_Idle"); 
         }
         else
         {
             if(Mathf.Abs(kc.currentXVel) > 0.05f)
             {
-                kc.kirbyAnimator.Play("Char_Kirby_Walking");
+                kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Walking" : "Char_Kirby_Inhaled_Walking"); 
                 kc.kirbyAnimator.SetFloat("WalkSpeed", Mathf.Abs(kc.currentXVel) / moveSpeed);
             }
             else
             {
-                kc.kirbyAnimator.Play("Char_Kirby_Idle");
+                kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Idle" : "Char_Kirby_Inhaled_Idle"); 
             }
-            
         }
 
+        //대쉬 이펙트 재생
         if (kc.isDash)
         {
-            //대쉬 이펙트 재생
+            
+        }
+        else
+        {
+
         }
 
         if (!kc.isGrounded)
@@ -94,14 +106,15 @@ public class KirbyIdle : KirbyState
         {
             if(kc.vInput < 0f && !isTurning)
             {
-                kc.GetFSM.SwitchState("Crouch");
+                //Crouching 트랜지션
+                kc.GetFSM.SwitchState("Crouch"); //작업필요
                 return;
             }
         }
 
+        //점프 트랜지션
         if (!isTurning && kc.jumpInput)
         {
-            //점프 트랜지션
             kc.GetFSM.SwitchState("Jump");
             return;
         }
@@ -116,7 +129,7 @@ public class KirbyIdle : KirbyState
             enterHoverCounter = 0f;
         }
 
-        if(enterHoverCounter > 0.2f)
+        if(!kc.hasInhaledObj && enterHoverCounter > 0.2f)
         {
             kc.GetFSM.SwitchState("Hover");
             return;
@@ -134,8 +147,9 @@ public class KirbyIdle : KirbyState
 
         var setFriction = isTurning ? forceStopFriction : groundFriction;
         var maxSpeed = kc.isDash ? dashSpeed : moveSpeed;
+        var inhaledScale = kc.hasInhaledObj ? 0.7f : 1f;
 
-        kc.CalculateXVelocity(h, maxSpeed,acceleration, setFriction);
+        kc.CalculateVelocity(ref kc.currentXVel, h, maxSpeed * inhaledScale, acceleration * inhaledScale, setFriction);
     }
 
     public override void Exit()

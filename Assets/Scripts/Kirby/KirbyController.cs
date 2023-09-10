@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
+using System.Threading;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public enum SpecialAbility
 {
     None = 0,
+    Beam,
+    Spark,
+    Fire
 }
 
 public class KirbyController : MonoBehaviour
@@ -14,13 +19,18 @@ public class KirbyController : MonoBehaviour
     public KirbyFSM<string,KirbyState> GetFSM => _fsm;
 
     //컴포넌트
-    public BoxCollider2D box;
+    public BoxCollider2D physBox;
+    public BoxCollider2D hitBox;
     public Rigidbody2D rb;
     public LayerMask groundMask;
+
+    public Transform spritePivot;
     public Animator kirbyAnimator;
     public SpriteRenderer kirbySprite;
     public SpriteRenderer colhitSprite;
     public Sprite[] colhitDirSprite; //[0] : 바닥, [1] : 천장, [2] : 오른쪽,왼쪽
+
+    public SpecialAbility ihObjAbility;
 
     //입력
     public float hInput;
@@ -29,6 +39,7 @@ public class KirbyController : MonoBehaviour
     public bool jumpHoldInput;
     public bool actInput;
     public bool actHoldInput;
+    public bool selectInput;
 
     //공용 상태
     public bool isGrounded;
@@ -37,6 +48,8 @@ public class KirbyController : MonoBehaviour
     public bool isPlayingColHItAnim;
     public bool isWallHit;
     public bool isCellingHit;
+    public bool isPlayingAction;
+    public bool hasInhaledObj;
 
     public SpecialAbility ability = SpecialAbility.None;
 
@@ -91,6 +104,11 @@ public class KirbyController : MonoBehaviour
 
         actHoldInput = Input.GetKey(KeyCode.X);
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            selectInput = true;
+        }
+
         DashCheck();
         isDash = dontUseDashInput ? false : isDash;
         #endregion
@@ -112,7 +130,28 @@ public class KirbyController : MonoBehaviour
             }
         }
 
+        //셀렉트 키 실행
+        if (ability != SpecialAbility.None && selectInput)
+        {
+            // ability star 생성 함수 실행
+        }
+
         //액션 키 실행
+        if (!(_fsm.Current.interactActionInput && actInput) || isPlayingAction)
+        {
+            goto SkipActionExcute;
+        }
+
+        if (ability == SpecialAbility.None)
+        {
+            _fsm.SwitchState(!hasInhaledObj ? "Inhale" : "Exhale");
+        }
+        else
+        {
+            _fsm.SwitchState("Action");
+        }
+
+        SkipActionExcute:
 
 
         //전이 실행 (물리체크 전)
@@ -174,6 +213,7 @@ public class KirbyController : MonoBehaviour
 
         jumpInput = false;
         actInput = false;
+        selectInput = false;
     }
 
     #region 체킹용 함수
@@ -182,7 +222,7 @@ public class KirbyController : MonoBehaviour
     {
         isGrounded = false;
 
-        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(box.size.x * transform.lossyScale.x, box.size.y * transform.lossyScale.y * 0.5f), 
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x, physBox.size.y * transform.lossyScale.y * 0.5f), 
             0f, Vector2.down, transform.lossyScale.y * 0.25f + 0.02f, groundMask);
         if (Time.time >= lastTimeJumped + 0.2f && raycastHit.collider != null)
         {
@@ -193,7 +233,7 @@ public class KirbyController : MonoBehaviour
 
     public bool CheckCellingHit()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(box.size.x * transform.lossyScale.x, box.size.y * transform.lossyScale.y * 0.5f), 
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x, physBox.size.y * transform.lossyScale.y * 0.5f), 
             0f, Vector2.up, transform.lossyScale.y * 0.25f + 0.02f, groundMask);
         if (raycastHit.collider != null)
         {
@@ -207,7 +247,7 @@ public class KirbyController : MonoBehaviour
         var realVector = rightDir ? Vector2.right : Vector2.left;
 
         //히트함수 수정
-        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(box.size.x * transform.lossyScale.x * 0.5f, box.size.y * (transform.lossyScale.y)),
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x * 0.5f, physBox.size.y * (transform.lossyScale.y)),
             0f, realVector, transform.lossyScale.x * 0.25f + 0.02f, groundMask);
         if (raycastHit.collider != null && Vector2.Dot(-realVector,raycastHit.normal) > 0.7f)
         {
@@ -285,22 +325,17 @@ public class KirbyController : MonoBehaviour
         //이때 Ability Star를 생성함 Ability Star엔 해당 Ability 타입 정보가 들어가 있음
     }
 
-    public void CalculateXVelocity(float xInput,float maxSpeed,float acceleration,float friction)
+    public void CalculateVelocity(ref float velocity, float input, float maxSpeed, float acceleration, float friction)
     {
         //가속
-        currentXVel += xInput * acceleration * Time.deltaTime;
+        velocity += input * acceleration * Time.deltaTime;
 
         //감속
-        var minus = currentXVel > 0 ? 1 : -1;
-        currentXVel = minus * Mathf.Max(0f, Mathf.Abs(currentXVel) - friction * Time.deltaTime);
+        var minus = velocity > 0 ? 1 : -1;
+        velocity = minus * Mathf.Max(0f, Mathf.Abs(velocity) - friction * Time.deltaTime);
 
-        //최종
-        currentXVel = Mathf.Clamp(currentXVel, -maxSpeed, maxSpeed);
-    }
-
-    public void CalculateYVelocity(float gravityForce,float sharpness)
-    {
-        currentYVel = Mathf.Lerp(currentYVel, -gravityForce, sharpness * Time.deltaTime);
+        //최대속도 제한
+        velocity = Mathf.Clamp(velocity, -maxSpeed, maxSpeed);
     }
 
     public void PlayCollisionAnimation(int dirNum)

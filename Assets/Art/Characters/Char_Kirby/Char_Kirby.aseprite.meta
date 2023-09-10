@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Char_Kirby_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5531915, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 78
-      width: 64
-      height: 64
+      y: 91
+      width: 47
+      height: 33
     spriteID: 797d307daa10b443584781b852055c03
     spriteBone: []
     spriteOutline: []
@@ -138,18 +138,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 78}
+    uvTransform: {x: 4, y: 91}
   - name: Char_Kirby_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5531915, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 150
-      width: 64
-      height: 64
+      x: 59
+      y: 91
+      width: 47
+      height: 33
     spriteID: e7f0d798521e84febb12a2663aebf4ca
     spriteBone: []
     spriteOutline: []
@@ -158,18 +158,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 150}
+    uvTransform: {x: 59, y: 91}
   - name: Char_Kirby_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5263158, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 222
-      width: 64
-      height: 64
+      y: 4
+      width: 57
+      height: 39
     spriteID: a7a080eab9b994355926c3dc6837610d
     spriteBone: []
     spriteOutline: []
@@ -178,18 +178,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 222}
+    uvTransform: {x: 4, y: 4}
   - name: Char_Kirby_Frame_3
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.47058827, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 294
-      width: 64
-      height: 64
+      x: 201
+      y: 4
+      width: 51
+      height: 34
     spriteID: 8a5a453871be843b186bbeffe757573a
     spriteBone: []
     spriteOutline: []
@@ -198,18 +198,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 294}
+    uvTransform: {x: 201, y: 4}
   - name: Char_Kirby_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5344828, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 366
-      width: 64
-      height: 64
+      x: 69
+      y: 4
+      width: 58
+      height: 36
     spriteID: 4fcdda21f45164733b0d7052db85f47e
     spriteBone: []
     spriteOutline: []
@@ -218,7 +218,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 366}
+    uvTransform: {x: 69, y: 4}
   - name: Char_Kirby_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -227,9 +227,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 438
-      width: 64
-      height: 64
+      y: 51
+      width: 50
+      height: 32
     spriteID: 05eb964e4029041c7a28cb19175859fd
     spriteBone: []
     spriteOutline: []
@@ -238,7 +238,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 438}
+    uvTransform: {x: 4, y: 51}
   - name: Char_Kirby_Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -246,10 +246,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
+      x: 135
       y: 4
-      width: 64
-      height: 64
+      width: 58
+      height: 33
     spriteID: f99bdd9f2b5ec43dbb5378771eb36073
     spriteBone: []
     spriteOutline: []
@@ -258,18 +258,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 4}
+    uvTransform: {x: 135, y: 4}
   - name: Char_Kirby_Frame_7
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -2.125, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 76
-      width: 64
-      height: 64
+      x: 244
+      y: 132
+      width: 8
+      height: 16
     spriteID: 29ac375dc301d4188bf97261180855bb
     spriteBone: []
     spriteOutline: []
@@ -278,18 +278,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 76}
+    uvTransform: {x: 244, y: 132}
   - name: Char_Kirby_Frame_8
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 148
-      width: 64
-      height: 64
+      x: 100
+      y: 132
+      width: 16
+      height: 16
     spriteID: eb0b9c11eb55547489c803e84bcfe711
     spriteBone: []
     spriteOutline: []
@@ -298,18 +298,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 148}
+    uvTransform: {x: 100, y: 132}
   - name: Char_Kirby_Frame_9
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 220
-      width: 64
-      height: 64
+      x: 124
+      y: 132
+      width: 16
+      height: 16
     spriteID: bbee5d7d27c2b4be091e4448c910e446
     spriteBone: []
     spriteOutline: []
@@ -318,18 +318,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 220}
+    uvTransform: {x: 124, y: 132}
   - name: Char_Kirby_Frame_10
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 292
-      width: 64
-      height: 64
+      x: 4
+      y: 132
+      width: 16
+      height: 24
     spriteID: 60de8d16fe86f409dbff14e1b3da12ca
     spriteBone: []
     spriteOutline: []
@@ -338,18 +338,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 292}
+    uvTransform: {x: 4, y: 132}
   - name: Char_Kirby_Frame_11
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.2916667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 364
-      width: 64
-      height: 64
+      x: 114
+      y: 91
+      width: 24
+      height: 24
     spriteID: aa5b29e903dbc4444bab34ffde76f41b
     spriteBone: []
     spriteOutline: []
@@ -358,18 +358,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 364}
+    uvTransform: {x: 114, y: 91}
   - name: Char_Kirby_Frame_12
     originalName: 
-    pivot: {x: 0.5, y: 0.030303031}
+    pivot: {x: -0.2916667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 64
-      height: 66
+      x: 146
+      y: 91
+      width: 24
+      height: 24
     spriteID: 1c85ebfec7bba49efb408c235b3a0ffb
     spriteBone: []
     spriteOutline: []
@@ -378,18 +378,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 146, y: 91}
   - name: Char_Kirby_Frame_13
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.2916667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 76
-      y: 436
-      width: 64
-      height: 64
+      x: 178
+      y: 91
+      width: 24
+      height: 24
     spriteID: c5e88719df55943d1bf4aeace88e9fdc
     spriteBone: []
     spriteOutline: []
@@ -398,18 +398,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 436}
+    uvTransform: {x: 178, y: 91}
   - name: Char_Kirby_Frame_14
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.2916667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
-      y: 4
-      width: 64
-      height: 64
+      x: 210
+      y: 91
+      width: 24
+      height: 24
     spriteID: 1a8a57bfc82db47bbb12bbb1126eb7f2
     spriteBone: []
     spriteOutline: []
@@ -418,18 +418,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 4}
+    uvTransform: {x: 210, y: 91}
   - name: Char_Kirby_Frame_15
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
-      y: 76
-      width: 64
-      height: 64
+      x: 28
+      y: 132
+      width: 16
+      height: 24
     spriteID: cfa877fc8a06a4a1eb317f1d383cdd0e
     spriteBone: []
     spriteOutline: []
@@ -438,18 +438,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 76}
+    uvTransform: {x: 28, y: 132}
   - name: Char_Kirby_Frame_16
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 148
-      y: 148
-      width: 64
-      height: 64
+      y: 132
+      width: 16
+      height: 16
     spriteID: 9854134964691498199a3a70fb581e42
     spriteBone: []
     spriteOutline: []
@@ -458,18 +458,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 148}
+    uvTransform: {x: 148, y: 132}
   - name: Char_Kirby_Frame_17
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
-      y: 220
-      width: 64
-      height: 64
+      x: 172
+      y: 132
+      width: 16
+      height: 16
     spriteID: 483f33ed3cde14ed081e52c33ac24ee8
     spriteBone: []
     spriteOutline: []
@@ -478,18 +478,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 220}
+    uvTransform: {x: 172, y: 132}
   - name: Char_Kirby_Frame_18
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
-      y: 292
-      width: 64
-      height: 64
+      x: 196
+      y: 132
+      width: 16
+      height: 16
     spriteID: 1b9c5d062dd504f43bcbb06447e79014
     spriteBone: []
     spriteOutline: []
@@ -498,18 +498,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 292}
+    uvTransform: {x: 196, y: 132}
   - name: Char_Kirby_Frame_19
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.6875, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
-      y: 364
-      width: 64
-      height: 64
+      x: 52
+      y: 132
+      width: 16
+      height: 24
     spriteID: 2b93596192fdc4cd292aa8f58ea778bf
     spriteBone: []
     spriteOutline: []
@@ -518,18 +518,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 364}
+    uvTransform: {x: 52, y: 132}
   - name: Char_Kirby_Frame_20
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.25, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
-      y: 436
-      width: 64
-      height: 64
+      x: 62
+      y: 51
+      width: 24
+      height: 24
     spriteID: 8697b7b8f0b754936a3c9d913ecb16da
     spriteBone: []
     spriteOutline: []
@@ -538,18 +538,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 436}
+    uvTransform: {x: 62, y: 51}
   - name: Char_Kirby_Frame_21
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.25, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 220
-      y: 4
-      width: 64
-      height: 64
+      x: 94
+      y: 51
+      width: 24
+      height: 24
     spriteID: f912732648a5d4fa284f141dfda8b9f1
     spriteBone: []
     spriteOutline: []
@@ -558,18 +558,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 4}
+    uvTransform: {x: 94, y: 51}
   - name: Char_Kirby_Frame_22
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.25, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 220
-      y: 76
-      width: 64
-      height: 64
+      x: 126
+      y: 51
+      width: 24
+      height: 24
     spriteID: 5be66019c1a3443ec8da355653d77ee6
     spriteBone: []
     spriteOutline: []
@@ -578,18 +578,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 76}
+    uvTransform: {x: 126, y: 51}
   - name: Char_Kirby_Frame_23
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.25, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 220
-      y: 148
-      width: 64
-      height: 64
+      x: 158
+      y: 51
+      width: 24
+      height: 24
     spriteID: b7e76461afc3643dd938c17c87d507b8
     spriteBone: []
     spriteOutline: []
@@ -598,18 +598,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 148}
+    uvTransform: {x: 158, y: 51}
   - name: Char_Kirby_Frame_24
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.25, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 220
-      y: 220
-      width: 64
-      height: 64
+      x: 190
+      y: 51
+      width: 24
+      height: 24
     spriteID: 4ec6fc3b0f73243f3b43ea770a43f1ac
     spriteBone: []
     spriteOutline: []
@@ -618,18 +618,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 220}
+    uvTransform: {x: 190, y: 51}
   - name: Char_Kirby_Frame_25
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.25, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 220
-      y: 292
-      width: 64
-      height: 64
+      x: 222
+      y: 51
+      width: 24
+      height: 24
     spriteID: a1b8e07cf5bc4404ea84cdad82c94beb
     spriteBone: []
     spriteOutline: []
@@ -638,18 +638,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 292}
+    uvTransform: {x: 222, y: 51}
   - name: Char_Kirby_Frame_26
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.625, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 220
-      y: 364
-      width: 64
-      height: 64
+      x: 76
+      y: 132
+      width: 16
+      height: 24
     spriteID: b714d8b828839403aaa84981fde2dacb
     spriteBone: []
     spriteOutline: []
@@ -658,18 +658,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 364}
+    uvTransform: {x: 76, y: 132}
   - name: Char_Kirby_Frame_27
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: -0.625, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 220
-      y: 436
-      width: 64
-      height: 64
+      y: 132
+      width: 16
+      height: 16
     spriteID: 5a6fdea3fc3de47abae21f61cfee65c1
     spriteBone: []
     spriteOutline: []
@@ -678,367 +678,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 220, y: 436}
-  - name: Char_Kirby_Frame_28
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 4
-      width: 64
-      height: 64
-    spriteID: 31294d71434010a48952d227aa11e6fb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 4}
-  - name: Char_Kirby_Frame_29
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 76
-      width: 64
-      height: 64
-    spriteID: 4c3be1bc24301784c976e80014d94a0d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 76}
-  - name: Char_Kirby_Frame_30
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 148
-      width: 64
-      height: 64
-    spriteID: 156b5761de6612340a01c0024401ecb8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 148}
-  - name: Char_Kirby_Frame_31
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 220
-      width: 64
-      height: 64
-    spriteID: fcaea2e415135ec4d8b26cf4d603f56e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 220}
-  - name: Char_Kirby_Frame_32
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 292
-      width: 64
-      height: 64
-    spriteID: 28bb020867bbe784cb73745bdeeae503
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 292}
-  - name: Char_Kirby_Frame_33
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 364
-      width: 64
-      height: 64
-    spriteID: ac2151e0f69d0ba4e802eb0b05c3aab9
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 364}
-  - name: Char_Kirby_Frame_34
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 292
-      y: 436
-      width: 64
-      height: 64
-    spriteID: 38edd7b316add7d41b2a27f9df525df1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 292, y: 436}
-  - name: Char_Kirby_Frame_35
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 4
-      width: 64
-      height: 64
-    spriteID: c7359cde0ee1c6c4e8bc2f13f01e1a06
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 4}
-  - name: Char_Kirby_Frame_36
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 76
-      width: 64
-      height: 64
-    spriteID: 706f7206cc6637f4b8131afef761e8c6
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 76}
-  - name: Char_Kirby_Frame_37
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 148
-      width: 64
-      height: 64
-    spriteID: 86373ec9a5da57d4b99825b4450e844e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 148}
-  - name: Char_Kirby_Frame_38
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 220
-      width: 64
-      height: 64
-    spriteID: 7928bc342fa5eb74cb5518a6874cf742
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 220}
-  - name: Char_Kirby_Frame_39
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 292
-      width: 64
-      height: 64
-    spriteID: 1d825f7499100fe4586cec1e87fb470b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 292}
-  - name: Char_Kirby_Frame_40
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 364
-      width: 64
-      height: 64
-    spriteID: 9fa806b8de414b2429bc5e2bc9c8684c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 364}
-  - name: Char_Kirby_Frame_41
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 364
-      y: 436
-      width: 64
-      height: 64
-    spriteID: b921e8b45a1a4234f95c07caf61428bd
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 364, y: 436}
-  - name: Char_Kirby_Frame_42
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 436
-      y: 4
-      width: 64
-      height: 64
-    spriteID: 49d17ab1c8ac3c34fa3483c9ab473fc1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 436, y: 4}
-  - name: Char_Kirby_Frame_43
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 436
-      y: 76
-      width: 64
-      height: 64
-    spriteID: a0b6260b1616e244c9ab11b7cd6abe05
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 436, y: 76}
-  - name: Char_Kirby_Frame_44
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 436
-      y: 148
-      width: 64
-      height: 64
-    spriteID: a94b2a9d0f82e0d4fa47b8cffffd79a1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 436, y: 148}
-  - name: Char_Kirby_Frame_45
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 436
-      y: 220
-      width: 64
-      height: 64
-    spriteID: c1ec7ac006e5fe44d812060f998a0d87
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 436, y: 220}
+    uvTransform: {x: 220, y: 132}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -1051,371 +691,227 @@ ScriptedImporter:
     - name: Char_Kirby_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
+        x: 6
         y: 0
-        width: 64
-        height: 64
+        width: 47
+        height: 33
       spriteId: 797d307daa10b443584781b852055c03
     - name: Char_Kirby_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
+        x: 6
         y: 0
-        width: 64
-        height: 64
+        width: 47
+        height: 33
       spriteId: e7f0d798521e84febb12a2663aebf4ca
     - name: Char_Kirby_Frame_2
       frameIndex: 2
       cellRect:
-        x: 0
+        x: 2
         y: 0
-        width: 64
-        height: 64
+        width: 57
+        height: 39
       spriteId: a7a080eab9b994355926c3dc6837610d
     - name: Char_Kirby_Frame_3
       frameIndex: 3
       cellRect:
-        x: 0
+        x: 8
         y: 0
-        width: 64
-        height: 64
+        width: 51
+        height: 34
       spriteId: 8a5a453871be843b186bbeffe757573a
     - name: Char_Kirby_Frame_4
       frameIndex: 4
       cellRect:
-        x: 0
+        x: 1
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 36
       spriteId: 4fcdda21f45164733b0d7052db85f47e
     - name: Char_Kirby_Frame_5
       frameIndex: 5
       cellRect:
-        x: 0
+        x: 7
         y: 0
-        width: 64
-        height: 64
+        width: 50
+        height: 32
       spriteId: 05eb964e4029041c7a28cb19175859fd
     - name: Char_Kirby_Frame_6
       frameIndex: 6
       cellRect:
-        x: 0
+        x: 3
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 33
       spriteId: f99bdd9f2b5ec43dbb5378771eb36073
     - name: Char_Kirby_Frame_7
       frameIndex: 7
       cellRect:
-        x: 0
+        x: 49
         y: 0
-        width: 64
-        height: 64
+        width: 8
+        height: 16
       spriteId: 29ac375dc301d4188bf97261180855bb
     - name: Char_Kirby_Frame_8
       frameIndex: 8
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       spriteId: eb0b9c11eb55547489c803e84bcfe711
     - name: Char_Kirby_Frame_9
       frameIndex: 9
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       spriteId: bbee5d7d27c2b4be091e4448c910e446
     - name: Char_Kirby_Frame_10
       frameIndex: 10
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 24
       spriteId: 60de8d16fe86f409dbff14e1b3da12ca
     - name: Char_Kirby_Frame_11
       frameIndex: 11
       cellRect:
-        x: 0
+        x: 39
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: aa5b29e903dbc4444bab34ffde76f41b
     - name: Char_Kirby_Frame_12
       frameIndex: 12
       cellRect:
-        x: 0
-        y: -2
-        width: 64
-        height: 66
+        x: 39
+        y: 0
+        width: 24
+        height: 24
       spriteId: 1c85ebfec7bba49efb408c235b3a0ffb
     - name: Char_Kirby_Frame_13
       frameIndex: 13
       cellRect:
-        x: 0
+        x: 39
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: c5e88719df55943d1bf4aeace88e9fdc
     - name: Char_Kirby_Frame_14
       frameIndex: 14
       cellRect:
-        x: 0
+        x: 39
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: 1a8a57bfc82db47bbb12bbb1126eb7f2
     - name: Char_Kirby_Frame_15
       frameIndex: 15
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 24
       spriteId: cfa877fc8a06a4a1eb317f1d383cdd0e
     - name: Char_Kirby_Frame_16
       frameIndex: 16
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       spriteId: 9854134964691498199a3a70fb581e42
     - name: Char_Kirby_Frame_17
       frameIndex: 17
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       spriteId: 483f33ed3cde14ed081e52c33ac24ee8
     - name: Char_Kirby_Frame_18
       frameIndex: 18
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       spriteId: 1b9c5d062dd504f43bcbb06447e79014
     - name: Char_Kirby_Frame_19
       frameIndex: 19
       cellRect:
-        x: 0
+        x: 43
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 24
       spriteId: 2b93596192fdc4cd292aa8f58ea778bf
     - name: Char_Kirby_Frame_20
       frameIndex: 20
       cellRect:
-        x: 0
+        x: 38
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: 8697b7b8f0b754936a3c9d913ecb16da
     - name: Char_Kirby_Frame_21
       frameIndex: 21
       cellRect:
-        x: 0
+        x: 38
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: f912732648a5d4fa284f141dfda8b9f1
     - name: Char_Kirby_Frame_22
       frameIndex: 22
       cellRect:
-        x: 0
+        x: 38
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: 5be66019c1a3443ec8da355653d77ee6
     - name: Char_Kirby_Frame_23
       frameIndex: 23
       cellRect:
-        x: 0
+        x: 38
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: b7e76461afc3643dd938c17c87d507b8
     - name: Char_Kirby_Frame_24
       frameIndex: 24
       cellRect:
-        x: 0
+        x: 38
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: 4ec6fc3b0f73243f3b43ea770a43f1ac
     - name: Char_Kirby_Frame_25
       frameIndex: 25
       cellRect:
-        x: 0
+        x: 38
         y: 0
-        width: 64
-        height: 64
+        width: 24
+        height: 24
       spriteId: a1b8e07cf5bc4404ea84cdad82c94beb
     - name: Char_Kirby_Frame_26
       frameIndex: 26
       cellRect:
-        x: 0
+        x: 42
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 24
       spriteId: b714d8b828839403aaa84981fde2dacb
     - name: Char_Kirby_Frame_27
       frameIndex: 27
       cellRect:
-        x: 0
+        x: 42
         y: 0
-        width: 64
-        height: 64
+        width: 16
+        height: 16
       spriteId: 5a6fdea3fc3de47abae21f61cfee65c1
-    - name: Char_Kirby_Frame_28
-      frameIndex: 28
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 31294d71434010a48952d227aa11e6fb
-    - name: Char_Kirby_Frame_29
-      frameIndex: 29
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 4c3be1bc24301784c976e80014d94a0d
-    - name: Char_Kirby_Frame_30
-      frameIndex: 30
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 156b5761de6612340a01c0024401ecb8
-    - name: Char_Kirby_Frame_31
-      frameIndex: 31
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: fcaea2e415135ec4d8b26cf4d603f56e
-    - name: Char_Kirby_Frame_32
-      frameIndex: 32
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 28bb020867bbe784cb73745bdeeae503
-    - name: Char_Kirby_Frame_33
-      frameIndex: 33
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: ac2151e0f69d0ba4e802eb0b05c3aab9
-    - name: Char_Kirby_Frame_34
-      frameIndex: 34
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 38edd7b316add7d41b2a27f9df525df1
-    - name: Char_Kirby_Frame_35
-      frameIndex: 35
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: c7359cde0ee1c6c4e8bc2f13f01e1a06
-    - name: Char_Kirby_Frame_36
-      frameIndex: 36
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 706f7206cc6637f4b8131afef761e8c6
-    - name: Char_Kirby_Frame_37
-      frameIndex: 37
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 86373ec9a5da57d4b99825b4450e844e
-    - name: Char_Kirby_Frame_38
-      frameIndex: 38
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 7928bc342fa5eb74cb5518a6874cf742
-    - name: Char_Kirby_Frame_39
-      frameIndex: 39
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 1d825f7499100fe4586cec1e87fb470b
-    - name: Char_Kirby_Frame_40
-      frameIndex: 40
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 9fa806b8de414b2429bc5e2bc9c8684c
-    - name: Char_Kirby_Frame_41
-      frameIndex: 41
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: b921e8b45a1a4234f95c07caf61428bd
-    - name: Char_Kirby_Frame_42
-      frameIndex: 42
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: 49d17ab1c8ac3c34fa3483c9ab473fc1
-    - name: Char_Kirby_Frame_43
-      frameIndex: 43
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: a0b6260b1616e244c9ab11b7cd6abe05
-    - name: Char_Kirby_Frame_44
-      frameIndex: 44
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: a94b2a9d0f82e0d4fa47b8cffffd79a1
-    - name: Char_Kirby_Frame_45
-      frameIndex: 45
-      cellRect:
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      spriteId: c1ec7ac006e5fe44d812060f998a0d87
     linkedCells: []
     parentIndex: -1
   platformSettings: []
