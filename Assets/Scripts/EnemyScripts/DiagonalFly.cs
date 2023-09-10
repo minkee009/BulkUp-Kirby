@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class DiagonalFly : MonoBehaviour
 {
-    [SerializeField] private float speed = 0.1f;
+    [SerializeField] [Range(0f, 0.1f)] private float speed = 0.1f;
+    [SerializeField] private float velocityX = 0.05f;
+    
     [SerializeField] private bool isFly = false;
     
     private Transform kirbyTransform;
@@ -19,31 +21,31 @@ public class DiagonalFly : MonoBehaviour
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
+        
+        Destroy(this.gameObject, 3.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (direction.x < 0 && !isFly)
+        if (!isFly)
         {
-            LeftFly();
-        }
-        else if(direction.x > 0 && !isFly)
-        {
-            RightFly();
+            Fly();
         }
     }
 
-    private void LeftFly()
+    private void Fly()
     {
-            this.transform.Translate(new Vector2(-0.05f, 0.05f) * speed);
+        if (direction.x < 0)
+        {
+            this.transform.Translate(new Vector2(-velocityX, 0.05f) * speed);
+        }
+        else
+        {
+            this.transform.Translate(new Vector2(velocityX, 0.05f) * speed);
+        }
     }
-
-    private void RightFly()
-    {
-            this.transform.Translate(new Vector2(0.05f, 0.05f) * speed);
-    }
-
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Kirby")

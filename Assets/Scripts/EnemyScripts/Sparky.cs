@@ -3,37 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Sparky : MonoBehaviour
 {
-    [SerializeField] private float jumpDistance = 1.5f;
-    [SerializeField] private float lowJumpPower = 3.5f; 
-    [SerializeField] private float highJumpPower = 5.0f;
-    [SerializeField] private float attackRange = 7.0f;
+    [SerializeField] [Range(0f, 10f)] private float jumpDistance = 1.5f; // 이동 거리
+    [SerializeField] [Range(0f, 10f)] private float lowJumpPower = 2.0f; // 최소 점프력
+    [SerializeField] [Range(0f, 10f)] private float highJumpPower = 5.0f; // 최대 점프력
+    [SerializeField] [Range(0f, 20f)] private float detectionRange = 7.0f; // 범위 내 커비가 있을 시, 공격
     
-    [SerializeField] private GameObject spark;
+    [SerializeField] private bool isMove = true;
+    [SerializeField] private bool isJumping = false;
+    [SerializeField] private bool isAttack = false; 
+    
+    [SerializeField] private GameObject spark; // 공격 게임 오브젝트
     
     private float distanceToKirby;
-
-    private bool isJumping = false;
-    private bool isMove = false;
-    private bool isAttack = false; 
-
+    
     private Transform kirbyTransform;
 
     private Rigidbody2D _rigidbody2D;
 
     private Vector2 direction;
-
-    private float jumpRandomNumber;
+    
+    private float randomJumpPower; // 점프력을 랜덤으로 할당
     
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("JumpRandomNumber", 0f, 1f);
+        InvokeRepeating("RandomJumpPower", 0f, 1f);
     }
 
     // Update is called once per frame
@@ -45,60 +46,34 @@ public class Sparky : MonoBehaviour
         direction.Normalize();
 
         distanceToKirby = Vector2.Distance(kirbyTransform.transform.position, this.transform.position);
-        
-        if (direction.x < 0 && !isMove)
-        {
-            LeftMove();
 
-        }
-        else if (direction.x > 0 && !isMove)
+        if (isMove)
         {
-            RightMove();
+            Move();
         }
-        if (!isAttack && distanceToKirby < attackRange)
+
+        if (!isAttack && distanceToKirby < detectionRange)
         {
-            isMove = true;
+            isMove = false;
 
             StartCoroutine(Charge());
         }
-
     }
 
-    private void LeftMove()
+    private void Move()
     {
         if (!isJumping)
         {
-            isJumping = true;
-            if (jumpRandomNumber == 0)
+            if (direction.x < 0)
             {
-                _rigidbody2D.velocity = new Vector2(-jumpDistance, lowJumpPower);
+                isJumping = true;
+                _rigidbody2D.velocity = new Vector2(-jumpDistance, randomJumpPower);
                 Debug.Log("점프");
             }
-            else if (jumpRandomNumber == 1)
+            else
             {
-                _rigidbody2D.velocity = new Vector2(-jumpDistance, highJumpPower);
-                Debug.Log("점프");
-            }
-        }
-        else
-        {
-            return;
-        }
-    }
-
-    private void RightMove()
-    {
-        if (!isJumping)
-        {
-            isJumping = true;
-            if (jumpRandomNumber == 0)
-            {
-                _rigidbody2D.velocity = new Vector2(jumpDistance, lowJumpPower);
-                Debug.Log("점프");
-            }
-            else if (jumpRandomNumber == 1)
-            {
-                _rigidbody2D.velocity = new Vector2(jumpDistance, highJumpPower);
+                isJumping = true;
+                _rigidbody2D.velocity = new Vector2(jumpDistance, randomJumpPower);
                 Debug.Log("점프");
             }
         }
@@ -121,23 +96,23 @@ public class Sparky : MonoBehaviour
         
         yield return new WaitForSeconds(1.5f);
 
-        isMove = false;
+        isMove = true;
         
         yield return new WaitForSeconds(3f);
 
         isAttack = false;
     }
 
-    void JumpRandomNumber()
+    void RandomJumpPower()
     {
-        jumpRandomNumber = Random.Range(0, 2);
+        randomJumpPower = Random.Range(lowJumpPower, highJumpPower);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            isMove = true;
+            isMove = false;
             isJumping = true;
             isAttack = true;
             Destroy(this.gameObject, 0.5f);

@@ -100,10 +100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  attackRange: 7
   fireBall: {fileID: 8736558249985540690, guid: d4aabaa8f2eb04926a4c6c97b9113147, type: 3}
   fire: {fileID: 8746925935552815724, guid: 27049c0c6bdf14840a67d9a5e30aab0a, type: 3}
-  ismove: 0
+  ismove: 1
   isAttack: 0
+  isLeftMove: 0
+  isRightMove: 0
 --- !u!50 &173190656793488275
 Rigidbody2D:
   serializedVersion: 4

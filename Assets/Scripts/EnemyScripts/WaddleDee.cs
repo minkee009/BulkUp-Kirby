@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class WaddleDee : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2f; // 이동 속도
-
-    private bool isMove = false;
+    [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2f; // 이동 속도
+    
+    [SerializeField] private bool isMove = true;
     
     private Rigidbody2D _rigidbody2D;
     
@@ -16,8 +16,8 @@ public class WaddleDee : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (!isMove)
+    {                         
+        if (isMove)
         {
             Move();
         }
@@ -33,7 +33,7 @@ public class WaddleDee : MonoBehaviour
     {
         if (other.gameObject.tag == "Kirby")
         {
-            isMove = true;
+            isMove = false;
             Destroy(this.gameObject, 0.5f);
         }
         if (other.gameObject.tag == "Wall")

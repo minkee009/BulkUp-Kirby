@@ -6,15 +6,15 @@ using Random = UnityEngine.Random;
 
 public class WaddleDoo : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2.0f;
-    [SerializeField] private float jumpPower = 8.0f;
+    [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2.0f;
+    [SerializeField] [Range(0f, 10f)] private float jumpPower = 8.0f;
     
-    [SerializeField] private bool isMove = false;
+    [SerializeField] private bool isMove = true;
     [SerializeField] private bool isJumping = false;
     [SerializeField] private bool isCharge = false;
     [SerializeField] private bool isAttack = false;
     
-    [SerializeField] private GameObject beam;
+    [SerializeField] private GameObject beam; // 빔 공격 게임 오브젝트
 
     private int randomNumber;
 
@@ -27,30 +27,30 @@ public class WaddleDoo : MonoBehaviour
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         
-        InvokeRepeating("RandomNumber", 1f, 3f);
+        InvokeRepeating("RandomNumber", 0f, 3.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isMove)
+        if (isMove)
         {
             StartCoroutine(Move());
         }
         
-        if (!isCharge && randomNumber == 1)
+        if (!isCharge && randomNumber == 0)
         {
-            isMove = true;
+            isMove = false;
             isCharge = true;
-            randomNumber = 0;
+            randomNumber = 2;
             
             StopCoroutine(Move());
             
             StartCoroutine(Charge());
         }
-        if (!isJumping && randomNumber == 2)
+        if (!isJumping && randomNumber == 1)
         {
-            randomNumber = 0;
+            randomNumber = 2;
             
             Jump();
         }
@@ -83,17 +83,13 @@ public class WaddleDoo : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        if (movement.x < 0 && !isAttack)
+        if (!isAttack)
         {
-            StartCoroutine(LeftAttack());
-        }
-        else if (movement.x > 0 && !isAttack)
-        {
-            StartCoroutine(RightAttack());
+            StartCoroutine(Attack());
         }
     }
 
-    IEnumerator LeftAttack()
+    IEnumerator Attack()
     {
         isAttack = true;
         
@@ -106,55 +102,42 @@ public class WaddleDoo : MonoBehaviour
             beamAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
             Destroy(beamAttack, 0.1f);
 
-            angle += 23.5f;
+            if (movement.x < 0)
+            {
+                angle += 23.5f;
+            }
+            else if (movement.x > 0)
+            {
+                angle -= 23.5f;
+            }
+
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return new WaitForSeconds(0.5f);
-
+        
+        isMove = true;
         isCharge = false;
-        isMove = false;
-        isAttack = false;
-    }
-    IEnumerator RightAttack()
-    {
-        isAttack = true;
-        
-        float angle = 360;
-
-        for (int i = 0; i < 6; i++)
-        {
-            GameObject beamAttack = Instantiate(beam);
-            beamAttack.transform.position = transform.position;
-            beamAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
-            Destroy(beamAttack, 0.1f);
-
-            angle -= 23.5f;
-            yield return new WaitForSeconds(0.1f);
-        }
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        isCharge = false;
-        isMove = false;
         isAttack = false;
     }
     
     void RandomNumber()
     {
-        randomNumber = Random.Range(0, 3);
+        randomNumber = Random.Range(0, 2);
+        Debug.Log("RandomNumber");
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            isMove = true;
+            isMove = false;
             isJumping = true;
             isCharge = true;
             isAttack = true;
             Destroy(this.gameObject, 0.5f);
         }
+        
         if (other.gameObject.CompareTag("Wall"))
         {
             moveSpeed *= -1.0f;

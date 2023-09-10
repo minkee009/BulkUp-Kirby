@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c0552a2e9434bc798138e040e6d2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpDistance: 1.5
-  lowJumpPower: 3.5
+  jumpDistance: 2
+  lowJumpPower: 2
   highJumpPower: 5
+  attackRange: 7
   spark: {fileID: 842181680503062733, guid: e2537d0e70cb341b98cff78032cf074d, type: 3}
 --- !u!61 &6776536519418029574
 BoxCollider2D:

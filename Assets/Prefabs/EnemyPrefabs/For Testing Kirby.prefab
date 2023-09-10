@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2442296873930346775}
   - component: {fileID: 7213773121860603955}
   m_Layer: 0
-  m_Name: Kirby
+  m_Name: For Testing Kirby
   m_TagString: Kirby
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
