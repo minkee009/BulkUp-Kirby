@@ -98,7 +98,7 @@ public class KirbyInhaling : KirbyState
                     }
                     capturedIhObjs[captureCount] = tmpIhObj;
                     tmpIhObj.rb.simulated = false;
-                    tmpIhObj.rb.isKinematic = false;
+                    tmpIhObj.rb.bodyType = RigidbodyType2D.Dynamic;
                     if(tmpIhObj.flyScript != null) tmpIhObj.flyScript.enabled = false;
                     tmpIhObj.col.enabled = false;
                     captureCount++;

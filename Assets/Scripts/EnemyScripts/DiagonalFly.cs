@@ -21,8 +21,7 @@ public class DiagonalFly : MonoBehaviour
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
-        
-        Destroy(this.gameObject, 3.5f);
+
     }
 
     // Update is called once per frame
