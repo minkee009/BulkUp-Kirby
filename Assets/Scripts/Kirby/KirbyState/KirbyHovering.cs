@@ -8,7 +8,7 @@ public class KirbyHovering : KirbyState
     public float hoverAcceleration = 24f;
     public float hoverDecceleration = 12f;
     public float hoverMoveSpeed = 4f;
-
+    public GameObject airBlastPrefab;
     public float hoverJumpSpeed = 3f;
     public float hoverGravity = 4f;
     WaitForSeconds jumpInputWaitTime = new WaitForSeconds(0.3f);
@@ -66,7 +66,6 @@ public class KirbyHovering : KirbyState
     {
         kc.dontUseDashInput = false;
         StopAllCoroutines();
-        kc.currentYVel = 0f;
         goingJump = false;
         playAnimation = false;
     }
@@ -93,6 +92,16 @@ public class KirbyHovering : KirbyState
 
     IEnumerator WaitForExit()
     {
+        var projectile = Instantiate(airBlastPrefab);
+        projectile.transform.position = transform.position + Vector3.up * 0.25f;
+
+        var projectileMove = projectile.GetComponent<ProjectileMovement>();
+        projectileMove.dir = (kc.isRightDir ? 1 : -1) * Vector3.right;
+
+        var projectileController = projectile.GetComponent<ProjectileController>();
+        projectileController.spriteRender.flipX = kc.isRightDir ? false : true;
+
+        Destroy(projectile, 0.4f);
         kc.kirbyAnimator.Play("Char_Kirby_exhaling_OnSky");
         playAnimation = true;
         yield return jumpInputWaitTime;

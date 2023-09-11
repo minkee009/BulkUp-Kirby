@@ -17,6 +17,7 @@ public class KirbyInhaling : KirbyState
     public int captureCount = 0;
     public bool captureStart;
     public bool animationPlaying;
+    public bool endExhale;
     public InhaleableObj[] capturedIhObjs = new InhaleableObj[5];
     
     //private 변수
@@ -56,6 +57,7 @@ public class KirbyInhaling : KirbyState
     {
         if (!captureStart && !animationPlaying && captureCount == 0 && !kc.actHoldInput)
         {
+            endExhale = true;
             StartCoroutine("EndAnimation");
         }
         if (captureStart && captureCount == 0)
@@ -72,6 +74,9 @@ public class KirbyInhaling : KirbyState
         kc.CalculateVelocity(ref kc.currentYVel, -1, 6f, 12f, 0f);
         if (kc.isGrounded)
             kc.currentYVel = 0f;
+
+        if (endExhale)
+            return;
 
         //박스 체킹
         if (!captureStart && captureCount == 0)
@@ -91,9 +96,16 @@ public class KirbyInhaling : KirbyState
                     {
                         continue;
                     }
-                    capturedIhObjs[captureCount] = tmpIhObj;
-                    tmpIhObj.rb.simulated = false;
-                    tmpIhObj.col.enabled = false;
+                    
+                    if(tmpIhObj.TryGetComponent(out Rigidbody2D rb))
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
+
+                    var instanceDoll = tmpIhObj.CreateDoll();
+                    capturedIhObjs[captureCount] = instanceDoll.GetComponent<InhaleableObj>();
+                    tmpIhObj.gameObject.SetActive(false);
+
                     captureCount++;
                 }
 
@@ -108,11 +120,9 @@ public class KirbyInhaling : KirbyState
                 {
 
                 }
+
+                captureStart = captureCount > 0 ? true : false;
             }
-        }
-        else
-        {
-            captureStart = true;
         }
 
         //빨아들이기
@@ -126,7 +136,7 @@ public class KirbyInhaling : KirbyState
             for (int i = 0; i < capturedIhObjs.Length; i++)
             {
                 if (capturedIhObjs[i] == null) continue;
-                if ((transform.position - capturedIhObjs[i].transform.position).magnitude < 0.5f)
+                if ((transform.position - capturedIhObjs[i].transform.position).magnitude <= 0.5f)
                 {
                     if (capturedIhObjs[i].isItem)
                     {
@@ -171,6 +181,7 @@ public class KirbyInhaling : KirbyState
         captureCount = 0;
         captureStart = false;
         animationPlaying = false;
+        endExhale = false;
         xSpeed = 0;
         ySpeed = 0;
         Array.Clear(capturedIhObjs,0, capturedIhObjs.Length);

@@ -30,8 +30,9 @@ public class KirbyFalling : KirbyState
         //약한 점프, 스프라이트 애니메이션 재생
         if (!kc.hasInhaledObj && kc.currentYVel < -fallAttackSpeed && inAirTime > 0.6f)
         {
+            inAirTime = 0f;
             interactActionInput = false;
-            kc.kirbyAnimator.Play("Char_Kirby_Falling",-1,0f);
+            kc.kirbyAnimator.Play("Char_Kirby_Falling_End", -1,0f);
             kc.isGrounded = false;
             kc.currentYVel = landJumpForce;
             kc.isDash = false;
