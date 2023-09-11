@@ -16,6 +16,8 @@ public class InhaleableObj : MonoBehaviour
         doll.transform.rotation = transform.rotation;
         doll.transform.localScale = transform.localScale;
 
+        doll.name = gameObject.name + " Doll";
+
         var spriteRender = doll.AddComponent<SpriteRenderer>();
         spriteRender.sprite = inhaleSprite;
 
