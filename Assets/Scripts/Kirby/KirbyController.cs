@@ -8,22 +8,22 @@ using UnityEngine;
 public enum SpecialAbility
 {
     None = 0,
-    Beam,
-    Spark,
-    Fire
+    Beam = 1,
+    Spark = 2,
+    Fire = 3
 }
 
 public class KirbyController : MonoBehaviour
 {
     KirbyFSM<string, KirbyState> _fsm;
-    public KirbyFSM<string,KirbyState> GetFSM => _fsm;
+    public KirbyFSM<string, KirbyState> GetFSM => _fsm;
 
     //컴포넌트
     public BoxCollider2D physBox;
     public BoxCollider2D hitBox;
     public Rigidbody2D rb;
     public LayerMask groundMask;
-
+    public GameObject abilityStarPrefab;
     public Transform spritePivot;
     public Animator kirbyAnimator;
     public SpriteRenderer kirbySprite;
@@ -76,7 +76,7 @@ public class KirbyController : MonoBehaviour
         _fsm = new KirbyFSM<string, KirbyState>();
 
         var states = GetComponents<KirbyState>();
-        foreach ( var state in states )
+        foreach (var state in states)
         {
             state.Initialize(this);
         }
@@ -94,7 +94,7 @@ public class KirbyController : MonoBehaviour
         {
             jumpInput = true;
         }
-        
+
         jumpHoldInput = Input.GetKey(KeyCode.Z);
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -112,7 +112,7 @@ public class KirbyController : MonoBehaviour
         DashCheck();
         isDash = dontUseDashInput ? false : isDash;
         #endregion
-        if(stateMSG != null) stateMSG.text = _fsm.Current.GetKey;
+        if (stateMSG != null) stateMSG.text = _fsm.Current.GetKey;
     }
 
     private void FixedUpdate()
@@ -134,6 +134,10 @@ public class KirbyController : MonoBehaviour
         if (ability != SpecialAbility.None && selectInput)
         {
             // ability star 생성 함수 실행
+            CreateAbilityStar();
+            // 색 원래대로 (기본으로 돌아가는 기능만들기)
+            ability = SpecialAbility.None;
+           
         }
 
         //액션 키 실행
@@ -142,16 +146,9 @@ public class KirbyController : MonoBehaviour
             goto SkipActionExcute;
         }
 
-        if (ability == SpecialAbility.None)
-        {
-            _fsm.SwitchState(!hasInhaledObj ? "Inhale" : "Exhale");
-        }
-        else
-        {
-            _fsm.SwitchState("Action");
-        }
+        PlayAbilityAction();
 
-        SkipActionExcute:
+    SkipActionExcute:
 
 
         //전이 실행 (물리체크 전)
@@ -206,7 +203,7 @@ public class KirbyController : MonoBehaviour
 
         //움직임 처리
         _fsm.Current.Excute();
-        rb.velocity = new Vector2(currentXVel,currentYVel);
+        rb.velocity = new Vector2(currentXVel, currentYVel);
 
         //애니메이션 처리
         kirbySprite.flipX = !isRightDir;
@@ -216,13 +213,23 @@ public class KirbyController : MonoBehaviour
         selectInput = false;
     }
 
+    public void CreateAbilityStar()
+    {
+        var currentInstance = Instantiate(abilityStarPrefab);
+        var starMove = currentInstance.GetComponent<AbilityStarMovement>();
+        starMove.minus = isRightDir ? -1 : 1;
+        starMove.Initialize();
+        currentInstance.GetComponent<InhaleableObj>().ability = ability;
+        currentInstance.transform.position = transform.position;
+    }
+
     #region 체킹용 함수
 
     public void GroundCheck()
     {
         isGrounded = false;
 
-        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x, physBox.size.y * transform.lossyScale.y * 0.5f), 
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x, physBox.size.y * transform.lossyScale.y * 0.5f),
             0f, Vector2.down, transform.lossyScale.y * 0.25f + 0.02f, groundMask);
         if (Time.time >= lastTimeJumped + 0.2f && raycastHit.collider != null)
         {
@@ -233,7 +240,7 @@ public class KirbyController : MonoBehaviour
 
     public bool CheckCellingHit()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x -0.02f, physBox.size.y * transform.lossyScale.y * 0.5f), 
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x - 0.02f, physBox.size.y * transform.lossyScale.y * 0.5f),
             0f, Vector2.up, transform.lossyScale.y * 0.25f + 0.02f, groundMask);
         if (raycastHit.collider != null)
         {
@@ -249,7 +256,7 @@ public class KirbyController : MonoBehaviour
         //히트함수 수정
         RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x * 0.5f, physBox.size.y * (transform.lossyScale.y)),
             0f, realVector, transform.lossyScale.x * 0.25f + 0.02f, groundMask);
-        if (raycastHit.collider != null && Vector2.Dot(-realVector,raycastHit.normal) > 0.7f)
+        if (raycastHit.collider != null && Vector2.Dot(-realVector, raycastHit.normal) > 0.7f)
         {
             return true;
         }
@@ -315,7 +322,7 @@ public class KirbyController : MonoBehaviour
 
     #endregion
 
-    #region 콜백
+    #region 외부 호출 함수
 
     public void ActDamaged()
     {
@@ -348,7 +355,7 @@ public class KirbyController : MonoBehaviour
 
     public void ForceStopCollisionAnimation()
     {
-        if(collisionAnimCoroutine != null)
+        if (collisionAnimCoroutine != null)
             StopCoroutine(collisionAnimCoroutine);
         isPlayingColHItAnim = false;
         colhitSprite.enabled = false;
@@ -379,13 +386,43 @@ public class KirbyController : MonoBehaviour
         colhitSprite.flipX = !isRightDir;
 
         yield return new WaitForSeconds(0.1f);
-        colhitSprite.transform.localPosition = new Vector3(0,-0.5f,0);
+        colhitSprite.transform.localPosition = new Vector3(0, -0.5f, 0);
 
         isPlayingColHItAnim = false;
         colhitSprite.enabled = false;
         kirbySprite.enabled = true;
     }
 
+    public void ChangeAbility()
+    {
+        if (ihObjAbility != SpecialAbility.None)
+        {
+            ability = ihObjAbility;
+            PlayAbilityAction();
+        }
+        else
+        {
+            GetFSM.SwitchState("Idle");
+        }
+        hasInhaledObj = false;
+        ihObjAbility = SpecialAbility.None;
+    }
+
+    public void PlayAbilityAction()
+    {
+        var stateString = "";
+        switch (ability)
+        {
+            case SpecialAbility.None:
+                stateString = !hasInhaledObj ? "Inhale" : "Exhale";
+                break;
+            case SpecialAbility.Beam:
+                stateString = "Beam";
+                break;
+        }
+        _fsm.SwitchState(stateString);
+
+    }
     #endregion
 }
 

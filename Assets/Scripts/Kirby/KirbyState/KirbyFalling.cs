@@ -14,6 +14,7 @@ public class KirbyFalling : KirbyState
     public float gravityAccel = 12f;
     public float fallAttackSpeed = 10.8f;
     public float landJumpForce = 15f;
+    public bool stopExcuteXAccel;
 
     public float inAirTime = 0f;
 
@@ -37,6 +38,8 @@ public class KirbyFalling : KirbyState
             kc.currentYVel = landJumpForce;
             kc.isDash = false;
             kc.lastTimeJumped = Time.time;
+            stopExcuteXAccel = true;
+            kc.lockDir = true;
         }
         else if(kc.currentYVel < 0.05f)
         {
@@ -82,7 +85,7 @@ public class KirbyFalling : KirbyState
         }
 
         //부풀기 트랜지션
-        if (!kc.hasInhaledObj && (kc.jumpInput || kc.vInput > 0))
+        if (!kc.hasInhaledObj && (kc.vInput > 0))
         {
             kc.GetFSM.SwitchState("Hover");
             return;
@@ -94,14 +97,20 @@ public class KirbyFalling : KirbyState
         var h = kc.hInput;
         inAirTime += Time.deltaTime;
         var inhaledScale = kc.hasInhaledObj ? 0.7f : 1f;
-        kc.CalculateVelocity(ref kc.currentXVel,h,airMoveSpeed * inhaledScale, airAcceleration * inhaledScale, airDecceleration);
-        kc.CalculateVelocity(ref kc.currentYVel, -1, gravityForce, gravityAccel, 0f);
+        
+        if(!stopExcuteXAccel)
+            kc.CalculateVelocity(ref kc.currentXVel,h,airMoveSpeed * inhaledScale, airAcceleration * inhaledScale, airDecceleration);
+        else
+            kc.CalculateVelocity(ref kc.currentXVel, 0, airMoveSpeed, airAcceleration * inhaledScale, airDecceleration);
 
+        kc.CalculateVelocity(ref kc.currentYVel, -1, gravityForce, gravityAccel, 0f);
     }
 
     public override void Exit()
     {
         interactActionInput = true;
+        kc.lockDir = false;
+        stopExcuteXAccel = false;
         inAirTime = 0f;
     }
 }

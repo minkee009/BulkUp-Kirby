@@ -17,8 +17,6 @@ public class Sparky : MonoBehaviour
     [SerializeField] private bool isJumping = false;
     [SerializeField] private bool isAttack = false; 
     
-    [SerializeField] private GameObject spark; // 공격 게임 오브젝트
-    
     private float distanceToKirby;
     
     private Transform kirbyTransform;
@@ -28,6 +26,8 @@ public class Sparky : MonoBehaviour
     private Vector2 direction;
     
     private float randomJumpPower; // 점프력을 랜덤으로 할당
+
+    private GameObject attackObject;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,8 @@ public class Sparky : MonoBehaviour
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
 
         InvokeRepeating("RandomJumpPower", 0f, 1f);
+
+        attackObject = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -89,12 +91,12 @@ public class Sparky : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
 
-        GameObject generateSpark = Instantiate(spark);
-        generateSpark.transform.position = transform.position;
+        attackObject.SetActive(true);
         
-        Destroy(generateSpark, 1.5f);
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        
+        attackObject.SetActive((false));
 
         isMove = true;
         
@@ -112,10 +114,12 @@ public class Sparky : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            isMove = false;
-            isJumping = true;
-            isAttack = true;
-            Destroy(this.gameObject, 0.5f);
+            this.gameObject.SetActive(false);
+            
+            // isMove = false;
+            // isJumping = true;
+            // isAttack = true;
+            // Destroy(this.gameObject, 0.5f);
         }
         if (other.gameObject.CompareTag("Ground"))
         {

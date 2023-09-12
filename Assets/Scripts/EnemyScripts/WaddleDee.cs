@@ -9,7 +9,8 @@ public class WaddleDee : MonoBehaviour
     [SerializeField] private bool isMove = true;
     
     private Rigidbody2D _rigidbody2D;
-    
+
+     
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
@@ -27,6 +28,7 @@ public class WaddleDee : MonoBehaviour
     {
         Vector2 movement = new Vector2(moveSpeed, _rigidbody2D.velocity.y);
         _rigidbody2D.velocity = movement;
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -34,7 +36,8 @@ public class WaddleDee : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             isMove = false;
-            Destroy(this.gameObject, 0.5f);
+            this.gameObject.SetActive(false);
+
         }
         if (other.gameObject.tag == "Wall")
         {

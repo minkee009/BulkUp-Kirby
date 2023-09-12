@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,7 +8,6 @@ public class KirbyCrouching : KirbyState
 {
     public float friction = 12f;
     public WaitForSeconds animTime = new WaitForSeconds(0.3f);
-    public KirbyState[] actionStates;
 
     public bool playAnimation;
     public bool stopExcuteInput;
@@ -67,18 +67,10 @@ public class KirbyCrouching : KirbyState
     //변신 이행
     IEnumerator Gulp()
     {
-        kc.kirbyAnimator.Play("Char_Kirby_Crouching");
-        kc.hitBox.enabled = false;
+        kc.kirbyAnimator.Play("Char_Kirby_Swallow");
         StartCoroutine("PlayReaction");
         yield return animTime;
-
-        kc.hitBox.enabled = true;
-        kc.ability = kc.ihObjAbility;
-        kc.hasInhaledObj = false;
-
-        //능력 추가
-        //kc.GetFSM.AddState("Action", keystate);
-        kc.GetFSM.SwitchState("Idle");
+        kc.ChangeAbility();
     }
 
     IEnumerator PlayReaction()
