@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7564469921962049855}
   - component: {fileID: 5489241583142138642}
   - component: {fileID: 3195660122357958835}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: ShootingStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7071597763841211487}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d28aaee269a614147bf5722b19d1058b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d28aaee269a614147bf5722b19d1058b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -197,6 +197,7 @@ MonoBehaviour:
   spriteRender: {fileID: 8010442986341156746}
   projectileAnim: {fileID: 7564469921962049855}
   animationClip: VFX_Kirby_Star_Blink
+  destroyEffect: {fileID: 0}
 --- !u!114 &3195660122357958835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   dir: {x: 1, y: 0, z: 0}
+  slowDownSpeed: 0
+  slowDownDestroy: 0
+  hasDestroyTime: 0
+  destroyTime: 0

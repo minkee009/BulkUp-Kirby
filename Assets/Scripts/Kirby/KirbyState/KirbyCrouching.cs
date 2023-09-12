@@ -18,6 +18,7 @@ public class KirbyCrouching : KirbyState
         {
             //삼키기
             stopExcuteInput = true;
+            kc.lockDir = true;
             StartCoroutine("Gulp");
         }
         else
@@ -62,29 +63,17 @@ public class KirbyCrouching : KirbyState
         StopAllCoroutines();
         playAnimation = false;
         stopExcuteInput = false;
+        kc.lockDir = false;
     }
 
     //변신 이행
     IEnumerator Gulp()
     {
         kc.kirbyAnimator.Play("Char_Kirby_Swallow");
-        StartCoroutine("PlayReaction");
+        kc.PlayReactionYdir();
         yield return animTime;
         kc.ChangeAbility();
-    }
-
-    IEnumerator PlayReaction()
-    {
-        var count = 0f;
-        while (count < 12f)
-        {
-            count += Time.deltaTime * 56f;
-
-            kc.spritePivot.localPosition = Vector3.up * Mathf.Sin(count) * 0.05f;
-            yield return null;
-        }
-
-        kc.spritePivot.localPosition = Vector3.zero;
+        kc.ChangeKirbySprite();
     }
 
 }

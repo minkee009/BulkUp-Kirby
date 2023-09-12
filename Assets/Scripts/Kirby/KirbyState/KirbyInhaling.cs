@@ -158,7 +158,7 @@ public class KirbyInhaling : KirbyState
                     }
 
                     //삼킨 오브젝트 삭제
-                    StartCoroutine("PlayReaction");
+                    kc.PlayReactionXdir();
                     Destroy(capturedIhObjs[i].gameObject);
                     captureCount--;
                     capturedIhObjs[i] = null;
@@ -212,20 +212,6 @@ public class KirbyInhaling : KirbyState
         kc.kirbyAnimator.Play("Char_Kirby_Inhaling_Stop");  
         yield return animEndTime;
         kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");
-    }
-
-    IEnumerator PlayReaction()
-    {
-        var count = 0f;
-        while(count < 12f)
-        {
-            count += Time.deltaTime * 56f;
-
-            kc.spritePivot.localPosition = Vector3.right * Mathf.Sin(count) * 0.05f;
-            yield return null;
-        }
-
-        kc.spritePivot.localPosition = Vector3.zero;
     }
 
     private void OnDrawGizmos()

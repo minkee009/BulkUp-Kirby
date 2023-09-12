@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 4472587591850647122}
   - component: {fileID: 8122876626831591019}
   - component: {fileID: 4673494887218537918}
+  - component: {fileID: 29037295369606701}
   m_Layer: 7
   m_Name: Kirby
   m_TagString: Kirby
@@ -434,6 +435,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  abilityStarPrefab: {fileID: 0}
   spritePivot: {fileID: 3695383373616789824}
   kirbyAnimator: {fileID: 4122278539098559856}
   kirbySprite: {fileID: 3379286209506715320}
@@ -510,6 +512,7 @@ MonoBehaviour:
   gravityAccel: 12
   fallAttackSpeed: 6
   landJumpForce: 2
+  stopExcuteXAccel: 0
   inAirTime: 0
 --- !u!114 &2934301514633195558
 MonoBehaviour:
@@ -548,6 +551,8 @@ MonoBehaviour:
   _key: Crouch
   interactActionInput: 0
   friction: 8
+  playAnimation: 0
+  stopExcuteInput: 0
 --- !u!114 &3818390048494368829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +621,7 @@ MonoBehaviour:
   - {fileID: 0}
   captureCount: 0
   captureStart: 0
-  animationPlaying: 0
+  playAnimation: 0
   endExhale: 0
   capturedIhObjs:
   - {fileID: 0}
@@ -642,3 +647,17 @@ MonoBehaviour:
   shootSpeed: 8
   holdHinput: 0
   setDir: 0
+--- !u!114 &29037295369606701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237407840175800782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9906917a0a155b34d84c0cc595859425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: Beam
+  interactActionInput: 1

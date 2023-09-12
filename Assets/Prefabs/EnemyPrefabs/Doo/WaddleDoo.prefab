@@ -119,11 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 4898265421670881275}
-  rb: {fileID: 8742563054944047517}
-  ability: 0
+  ability: 1
   isItem: 0
-  flyScript: {fileID: 0}
+  inhaleSprite: {fileID: 0}
 --- !u!61 &4898265421670881275
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -131,13 +131,13 @@ public class KirbyController : MonoBehaviour
         }
 
         //셀렉트 키 실행
-        if (ability != SpecialAbility.None && selectInput)
+        if (!isPlayingAction && ability != SpecialAbility.None && selectInput)
         {
             // ability star 생성 함수 실행
             CreateAbilityStar();
             // 색 원래대로 (기본으로 돌아가는 기능만들기)
             ability = SpecialAbility.None;
-           
+            ChangeKirbySprite();
         }
 
         //액션 키 실행
@@ -393,19 +393,53 @@ public class KirbyController : MonoBehaviour
         kirbySprite.enabled = true;
     }
 
+    public void PlayMorpingAction()
+    {
+        StartCoroutine("PlayMorpAct");
+    }
+
+    //변신공격
+    IEnumerator PlayMorpAct()
+    {
+        isPlayingAction = true;
+        hitBox.enabled = false;
+        yield return new WaitForSeconds(0.15f);
+        kirbyAnimator.Play("Char_Kirby_Jumping");
+        PlayReactionYdir();
+        yield return new WaitForSeconds(0.3f);
+        isPlayingAction = false;
+        PlayAbilityAction();
+        hitBox.enabled = true;
+    }
+
     public void ChangeAbility()
     {
+        hasInhaledObj = false;
         if (ihObjAbility != SpecialAbility.None)
         {
             ability = ihObjAbility;
-            PlayAbilityAction();
+            PlayMorpingAction();
         }
         else
         {
             GetFSM.SwitchState("Idle");
         }
-        hasInhaledObj = false;
         ihObjAbility = SpecialAbility.None;
+    }
+
+    public void ChangeKirbySprite()
+    {
+        switch (ability)
+        {
+            case SpecialAbility.None:
+                kirbySprite.color = Color.white;
+                break;
+            case SpecialAbility.Beam:
+                kirbySprite.color = new Color(0.9f, 0.85f, 0);
+                break;
+        }
+
+        colhitSprite.color = kirbySprite.color;
     }
 
     public void PlayAbilityAction()
@@ -422,6 +456,44 @@ public class KirbyController : MonoBehaviour
         }
         _fsm.SwitchState(stateString);
 
+    }
+
+    public void PlayReactionXdir()
+    {
+        StartCoroutine("PlayReactX");
+    }
+
+    public void PlayReactionYdir()
+    {
+        StartCoroutine("PlayReactY");
+    }
+
+    IEnumerator PlayReactY()
+    {
+        var count = 0f;
+        while (count < 12f)
+        {
+            count += Time.deltaTime * 56f;
+            var yValue = Mathf.Sin(count) * 0.05f;
+            spritePivot.localPosition = new Vector3(spritePivot.localPosition.x, yValue, spritePivot.localPosition.z);
+            yield return null;
+        }
+
+        spritePivot.localPosition = new Vector3(spritePivot.localPosition.x, 0f, spritePivot.localPosition.z);
+    }
+
+    IEnumerator PlayReactX()
+    {
+        var count = 0f;
+        while (count < 12f)
+        {
+            count += Time.deltaTime * 56f;
+            var xValue = Mathf.Sin(count) * 0.05f;
+            spritePivot.localPosition = new Vector3(xValue ,spritePivot.localPosition.y, spritePivot.localPosition.z);
+            yield return null;
+        }
+
+        spritePivot.localPosition = new Vector3(0f, spritePivot.localPosition.y, spritePivot.localPosition.z);
     }
     #endregion
 }
