@@ -233,7 +233,7 @@ public class KirbyController : MonoBehaviour
 
     public bool CheckCellingHit()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x, physBox.size.y * transform.lossyScale.y * 0.5f), 
+        RaycastHit2D raycastHit = Physics2D.BoxCast(transform.position, new Vector2(physBox.size.x * transform.lossyScale.x -0.02f, physBox.size.y * transform.lossyScale.y * 0.5f), 
             0f, Vector2.up, transform.lossyScale.y * 0.25f + 0.02f, groundMask);
         if (raycastHit.collider != null)
         {
@@ -373,7 +373,7 @@ public class KirbyController : MonoBehaviour
                 break;
             case 2:
                 colhitSprite.sprite = colhitDirSprite[2];
-                colhitSprite.transform.localPosition = new Vector3(isRightDir ? 0.5f : -0.5f, -0.5f, 0f);
+                colhitSprite.transform.localPosition = new Vector3(isRightDir ? 0.25f : -0.25f, -0.5f, 0f);
                 break;
         }
         colhitSprite.flipX = !isRightDir;

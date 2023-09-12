@@ -29,8 +29,6 @@ public class KirbyHovering : KirbyState
 
         if (!playAnimation && kc.actInput)
         {
-            StopAllCoroutines();
-            kc.currentYVel = 0f;
             StartCoroutine("WaitForExit");
             return;
         }
@@ -65,7 +63,9 @@ public class KirbyHovering : KirbyState
     public override void Exit()
     {
         kc.dontUseDashInput = false;
-        StopAllCoroutines();
+        StopCoroutine("HoverJump");
+        StopCoroutine("WaitForAnimation");
+        StopCoroutine("WaitForExit");
         goingJump = false;
         playAnimation = false;
     }
@@ -76,7 +76,8 @@ public class KirbyHovering : KirbyState
         goingJump = true;
         yield return jumpInputWaitTime;
         goingJump = false;
-        kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Hovering");
+        if(!playAnimation) 
+            kc.kirbyAnimator.Play("Char_Kirby_Inhaled_Hovering");
     }
 
     IEnumerator WaitForAnimation()
@@ -92,16 +93,7 @@ public class KirbyHovering : KirbyState
 
     IEnumerator WaitForExit()
     {
-        var projectile = Instantiate(airBlastPrefab);
-        projectile.transform.position = transform.position + Vector3.up * 0.25f;
-
-        var projectileMove = projectile.GetComponent<ProjectileMovement>();
-        projectileMove.dir = (kc.isRightDir ? 1 : -1) * Vector3.right;
-
-        var projectileController = projectile.GetComponent<ProjectileController>();
-        projectileController.spriteRender.flipX = kc.isRightDir ? false : true;
-
-        Destroy(projectile, 0.4f);
+        CreateAirBlast();
         kc.kirbyAnimator.Play("Char_Kirby_exhaling_OnSky");
         playAnimation = true;
         yield return jumpInputWaitTime;
@@ -114,5 +106,22 @@ public class KirbyHovering : KirbyState
             kc.GetFSM.SwitchState("Fall");
         }
         playAnimation = false;
+    }
+
+    ProjectileMovement CreateAirBlast()
+    {
+        var projectile = Instantiate(airBlastPrefab);
+        projectile.transform.position = transform.position + Vector3.up * 0.25f;
+
+        var projectileMove = projectile.GetComponent<ProjectileMovement>();
+        projectileMove.dir = (kc.isRightDir ? 1 : -1) * Vector3.right;
+        projectileMove.speed += Mathf.Abs(kc.currentXVel);
+        projectileMove.slowDownSpeed = 8f;
+        projectileMove.slowDownDestroy = true;
+
+        var projectileController = projectile.GetComponent<ProjectileController>();
+        projectileController.spriteRender.flipX = kc.isRightDir ? false : true;
+
+        return projectileMove;
     }
 }

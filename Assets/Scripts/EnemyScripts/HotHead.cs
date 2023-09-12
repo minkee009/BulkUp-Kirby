@@ -148,16 +148,21 @@ public class HotHead : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Kirby")
-        {
-            ismove = false;
-            isAttack = true;
-            Destroy(this.gameObject, 0.5f);
-        }
+        
         if (other.gameObject.tag == "Wall")
         {
             moveSpeed *= -1; // 방향 전환을 위한 식
             Debug.Log("핫 헤드의 벽 충돌로 인한 방향 전환");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Kirby")
+        {
+            ismove = false;
+            isAttack = true;
+            Destroy(this.gameObject, 0.5f);
         }
     }
 }

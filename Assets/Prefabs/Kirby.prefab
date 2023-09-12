@@ -507,9 +507,9 @@ MonoBehaviour:
   airDecceleration: 8
   airMoveSpeed: 4
   gravityForce: 6
-  gravityAccel: 15
-  fallAttackSpeed: 5.8
-  landJumpForce: 3
+  gravityAccel: 12
+  fallAttackSpeed: 6
+  landJumpForce: 2
   inAirTime: 0
 --- !u!114 &2934301514633195558
 MonoBehaviour:
@@ -583,6 +583,7 @@ MonoBehaviour:
   hoverAcceleration: 12
   hoverDecceleration: 6
   hoverMoveSpeed: 2
+  airBlastPrefab: {fileID: 0}
   hoverJumpSpeed: 2
   hoverGravity: 2
   playAnimation: 0
@@ -616,6 +617,7 @@ MonoBehaviour:
   captureCount: 0
   captureStart: 0
   animationPlaying: 0
+  endExhale: 0
   capturedIhObjs:
   - {fileID: 0}
   - {fileID: 0}
