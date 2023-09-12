@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class HotHead : MonoBehaviour
 { 
-    [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2f; 
+    [SerializeField] private float moveSpeed = 2f; 
     [SerializeField] [Range(0f, 20f)] private float detectionRange = 7f; // 근거리 공격과 원거리 공격 중 어떤 공격을 할지 정하는 범위
   
     // [SerializeField] private GameObject fire; // 근거리 공격 게임 오브젝트
@@ -29,7 +29,9 @@ public class HotHead : MonoBehaviour
     private GameObject leftFireAttack;
     private GameObject rightFireAttack;
     private GameObject fireBallAttack;
-    
+
+    private LayerMask _layerMask = 1 << 6;
+    private Vector2 rayDirection = Vector2.left;
     
     private void Start()
     {
@@ -69,6 +71,15 @@ public class HotHead : MonoBehaviour
             isRightMove = true;
             isLeftMove = false;
         }
+        Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        
+        if (hit)
+        {
+            moveSpeed *= -1;
+            rayDirection *= -1;
+        }
     }
 
     private void Move()
@@ -98,7 +109,7 @@ public class HotHead : MonoBehaviour
     {
         float attackDirection = 0;
 
-        if (kirbyTransform.transform.position.x < 0)
+        if (kirbyTransform.transform.position.x < this.transform.position.x)
         {
             leftFireAttack.SetActive(true);
         }
@@ -124,11 +135,13 @@ public class HotHead : MonoBehaviour
         if (isLeftMove&& this.transform.position.x < kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
         }
 
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
         }
 
         yield return new WaitForSeconds(2.5f);
@@ -151,10 +164,14 @@ public class HotHead : MonoBehaviour
         if (isLeftMove == true && this.transform.position.x < kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
+
         }
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
+
         }
         
         yield return new WaitForSeconds(2.0f);
@@ -171,11 +188,6 @@ public class HotHead : MonoBehaviour
             // ismove = false;
             // isAttack = true;
             // Destroy(this.gameObject, 0.5f);
-        }
-        if (other.gameObject.tag == "Wall")
-        {
-            moveSpeed *= -1; // 방향 전환을 위한 식
-            Debug.Log("핫 헤드의 벽 충돌로 인한 방향 전환");
         }
     }
 }

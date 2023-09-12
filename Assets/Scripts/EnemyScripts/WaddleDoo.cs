@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class WaddleDoo : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2.0f;
+    [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] [Range(0f, 10f)] private float jumpPower = 8.0f;
     
     [SerializeField] private bool isMove = true;
@@ -21,6 +21,9 @@ public class WaddleDoo : MonoBehaviour
     private Vector2 movement;
     
     private Rigidbody2D _rigidbody2D;
+
+    private LayerMask _layerMask = 1 << 6;
+    private Vector2 rayDirection = Vector2.left;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +56,15 @@ public class WaddleDoo : MonoBehaviour
             randomNumber = 2;
             
             Jump();
+        }
+        Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        
+        if (hit)
+        {
+            moveSpeed *= -1;
+            rayDirection *= -1;
         }
     }
 
@@ -98,10 +110,10 @@ public class WaddleDoo : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             GameObject beamAttack = Instantiate(beam);
-            beamAttack.transform.position = transform.position;
+            beamAttack.transform.position = transform.position + new Vector3(0, 0.25f, 0);
             beamAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
-            Destroy(beamAttack, 0.1f);
-
+            beamAttack.transform.parent = transform;
+            
             if (movement.x < 0)
             {
                 angle += 23.5f;
@@ -110,6 +122,8 @@ public class WaddleDoo : MonoBehaviour
             {
                 angle -= 23.5f;
             }
+            
+            Destroy(beamAttack, 0.1f);
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -138,12 +152,6 @@ public class WaddleDoo : MonoBehaviour
             // Destroy(this.gameObject, 0.5f);
             
             this.gameObject.SetActive(false);
-        }
-        
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            moveSpeed *= -1.0f;
-            Debug.Log("웨이들 두 방향 전환");
         }
 
         if (other.gameObject.CompareTag("Ground"))

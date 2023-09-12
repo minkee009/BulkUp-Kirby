@@ -6,7 +6,7 @@ using UnityEditor.Experimental.GraphView;
 
 public class ParabolaFly : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 10f)] private float speed = 2.5f; // 이동 속도
+    [SerializeField] private float speed = 2.5f; // 이동 속도
     [SerializeField] [Range(0f, 10f)] private float frequency = 2.5f; // 파동 빈도
     [SerializeField] [Range(0f, 10f)] private float waveHeight = 2.5f; // 파동 높이
     

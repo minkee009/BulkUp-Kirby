@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  frequency: 2
+  frequency: 3
   waveHeight: 1
   isFly: 1
 --- !u!61 &6397844613633747986
