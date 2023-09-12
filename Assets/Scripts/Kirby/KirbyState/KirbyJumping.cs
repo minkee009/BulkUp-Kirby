@@ -2,32 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class KirbyJumping : KirbyState
 {
-    public float jumpSpeed = 12f;
+    public float jumpSpeed = 8f;
     public float airAcceleration = 32f;
     public float airDecceleration = 8f;
     public float airMoveSpeed = 6f;
     public float airJumpTime = 0.2f;
+    public float gravityForce = 8f;
+    public float gravityAccel = 12f;
 
     public float jumpTimer = 0;
 
     public override void Enter()
     {
-        kc.rb.velocity += Vector2.up * 12f;
-        kc.rb.velocity += new Vector2(kc.hInput, 0f) * airAcceleration * Time.deltaTime;
+        kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Jumping" : "Char_Kirby_Inhaled_Jumping"); //작업필요
+        kc.currentYVel = jumpSpeed;
         kc.lastTimeJumped = Time.time;
+    }
+
+
+    public override void OnWallHit()
+    {
+        if (Mathf.Abs(kc.currentXVel) > 0.05f)
+        {
+            if (kc.hasInhaledObj) return;
+            kc.PlayCollisionAnimation(2);
+        } 
+    }
+
+    public override void OnCellingHit()
+    {
+        kc.currentYVel = 0f;
+        kc.GetFSM.SwitchState("Fall");
+        if (kc.hasInhaledObj) return;
+        kc.PlayCollisionAnimation(1);
     }
 
     public override void OnPostPhysCheck()
     {
-        if (kc.isGrounded)
+        if (!kc.hasInhaledObj && (kc.jumpInput || kc.vInput > 0f))
+        {
+            kc.GetFSM.SwitchState("Hover");
+            return;
+        }
+        if (jumpTimer > 0.02f && kc.isGrounded)
         {
             kc.GetFSM.SwitchState("Idle");
+            return;
         }
-        if (!kc.jumpHoldInput || jumpTimer > airJumpTime)
+        if (!kc.jumpHoldInput || kc.currentYVel <= 0f)
         {
+            if (!kc.hasInhaledObj)
+                kc.kirbyAnimator.Play("Char_Kirby_Falling");
+            kc.kirbyAnimator.Update(0f);
+            kc.currentYVel = Mathf.Lerp(kc.currentYVel,0f,0.4f);
             kc.GetFSM.SwitchState("Fall");
         }
     }
@@ -35,16 +66,11 @@ public class KirbyJumping : KirbyState
     public override void Excute()
     {
         var h = kc.hInput;
+
         jumpTimer += Time.deltaTime;
-
-        //가속
-        kc.rb.velocity += new Vector2(h, 0f) * airAcceleration * Time.deltaTime;
-
-        //감속
-        kc.rb.velocity += -kc.rb.velocity.normalized * airDecceleration * Time.deltaTime;
-
-        //최수종
-        kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -airMoveSpeed, airMoveSpeed), jumpSpeed);
+        var inhaledScale = kc.hasInhaledObj ? 0.7f : 1f;
+        kc.CalculateVelocity(ref kc.currentXVel,h,airMoveSpeed * inhaledScale, airAcceleration * inhaledScale, airDecceleration);
+        kc.CalculateVelocity(ref kc.currentYVel, -1, gravityForce, gravityAccel, 0f);
     }
 
     public override void Exit()

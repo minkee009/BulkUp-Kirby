@@ -10,26 +10,65 @@ public class KirbyFalling : KirbyState
     public float airAcceleration = 32f;
     public float airDecceleration = 8f;
     public float airMoveSpeed = 6f;
-    public float gravityForce = 12f;
+    public float gravityForce = 8f;
+    public float gravityAccel = 12f;
+    public float fallAttackSpeed = 10.8f;
+    public float landJumpForce = 15f;
 
-    public float currentYvel = 0f;
     public float inAirTime = 0f;
 
     public override void Enter()
     {
-        currentYvel = kc.rb.velocity.y;
+        if(!kc.kirbyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Char_Kirby_Falling"))
+        {
+            kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Falling_Middle" : "Char_Kirby_Inhaled_Falling"); //작업필요
+        }
     }
 
     public override void OnLand()
     {
         //약한 점프, 스프라이트 애니메이션 재생
-        if (currentYvel < -10.8f && inAirTime > 0.7f)
+        if (!kc.hasInhaledObj && kc.currentYVel < -fallAttackSpeed && inAirTime > 0.6f)
         {
+            inAirTime = 0f;
+            interactActionInput = false;
+            kc.kirbyAnimator.Play("Char_Kirby_Falling",-1,0f);
             kc.isGrounded = false;
-            currentYvel = 15f;
+            kc.currentYVel = landJumpForce;
             kc.isDash = false;
             kc.lastTimeJumped = Time.time;
         }
+        else if(kc.currentYVel < 0.05f)
+        {
+            interactActionInput = true;
+            if (kc.hasInhaledObj) return;
+            kc.PlayCollisionAnimation(0);
+        }
+    }
+
+    public override void OnPrePhysCheck()
+    {
+        if (inAirTime > 0.5f && kc.currentYVel < -fallAttackSpeed)
+        {
+            if (kc.hasInhaledObj) return;
+            kc.kirbyAnimator.Play("Char_Kirby_Falling_End");
+        }
+    }
+
+    public override void OnWallHit()
+    {
+        if (Mathf.Abs(kc.currentXVel) > 0.05f)
+        {
+            if (kc.hasInhaledObj) return;
+            kc.PlayCollisionAnimation(2);
+        }  
+    }
+
+    public override void OnCellingHit()
+    {
+        kc.currentYVel = 0f;
+        if (kc.hasInhaledObj) return;
+        kc.PlayCollisionAnimation(1);
     }
 
     public override void OnPostPhysCheck()
@@ -37,13 +76,16 @@ public class KirbyFalling : KirbyState
         //지상 트랜지션
         if (kc.isGrounded)
         {
+            kc.currentYVel = 0f;
             kc.GetFSM.SwitchState("Idle");
+            return;
         }
 
         //부풀기 트랜지션
-        if (kc.jumpInput || kc.vInput > 0)
+        if (!kc.hasInhaledObj && (kc.jumpInput || kc.vInput > 0))
         {
             kc.GetFSM.SwitchState("Hover");
+            return;
         }
     }
 
@@ -51,25 +93,15 @@ public class KirbyFalling : KirbyState
     {
         var h = kc.hInput;
         inAirTime += Time.deltaTime;
+        var inhaledScale = kc.hasInhaledObj ? 0.7f : 1f;
+        kc.CalculateVelocity(ref kc.currentXVel,h,airMoveSpeed * inhaledScale, airAcceleration * inhaledScale, airDecceleration);
+        kc.CalculateVelocity(ref kc.currentYVel, -1, gravityForce, gravityAccel, 0f);
 
-        currentYvel = Mathf.Lerp(currentYvel, -gravityForce, Time.deltaTime * 4f);
-
-        //가속
-        kc.rb.velocity += new Vector2(h, 0f) * airAcceleration * Time.deltaTime;
-
-        //감속
-        var minus = kc.rb.velocity.x > 0 ? 1 : -1;
-
-        kc.rb.velocity = new Vector2(minus * Mathf.Max(0f,Mathf.Abs(kc.rb.velocity.x) - airDecceleration * Time.deltaTime)
-            ,kc.rb.velocity.y);
-
-        //최수종
-        kc.rb.velocity = new Vector2(Mathf.Clamp(kc.rb.velocity.x, -airMoveSpeed, airMoveSpeed), currentYvel);
     }
 
     public override void Exit()
     {
-        currentYvel = 0f;
+        interactActionInput = true;
         inAirTime = 0f;
     }
 }

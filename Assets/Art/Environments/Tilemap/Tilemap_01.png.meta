@@ -1823,6 +1823,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tilemap_VegetableValley1_57
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e677f12144d1a81f0800000000000000
+      internalID: -1041988185583814802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap_VegetableValley1_58
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f4c049cde4293810800000000000000
+      internalID: 1745466934285092088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1915,6 +1957,8 @@ TextureImporter:
       Tilemap_VegetableValley1_54: 2028871877990283465
       Tilemap_VegetableValley1_55: 5634893388326223186
       Tilemap_VegetableValley1_56: -8491120599992900256
+      Tilemap_VegetableValley1_57: -1041988185583814802
+      Tilemap_VegetableValley1_58: 1745466934285092088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

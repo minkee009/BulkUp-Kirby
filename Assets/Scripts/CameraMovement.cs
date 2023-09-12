@@ -41,9 +41,9 @@ public class CameraMovement : MonoBehaviour
 
         Vector3[] points = { p2 + p3, p1 + p3, p1 + p4, p2 + p4 };
 
-        if (Center != null)
+        if(Center != null)
         {
-            for (int i = 0; i < points.Length; i++)
+            for(int i = 0; i < points.Length; i++)
             {
                 points[i] += Center.position;
             }
@@ -51,7 +51,7 @@ public class CameraMovement : MonoBehaviour
 
         Gizmos.color = Color.red;
 
-        for (int i = 0; i < points.Length; i++)
+        for(int i = 0;i<points.Length; i++)
         {
             Gizmos.DrawLine(points[i], points[(i + 1) % points.Length]);
         }
