@@ -147,8 +147,8 @@ TextureImporter:
       name: Walking_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 19
+        x: 1
+        y: 37
         width: 15
         height: 15
       alignment: 9
@@ -189,10 +189,10 @@ TextureImporter:
       name: Attaking_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 37
-        width: 15
-        height: 15
+        x: 37
+        y: 1
+        width: 16
+        height: 16
       alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,8 +210,8 @@ TextureImporter:
       name: Die_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 1
+        x: 1
+        y: 19
         width: 16
         height: 16
       alignment: 9
@@ -231,7 +231,7 @@ TextureImporter:
       name: Die_1
       rect:
         serializedVersion: 2
-        x: 1
+        x: 19
         y: 19
         width: 16
         height: 16
@@ -252,7 +252,7 @@ TextureImporter:
       name: Die_2
       rect:
         serializedVersion: 2
-        x: 19
+        x: 37
         y: 19
         width: 16
         height: 16
