@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,7 +17,7 @@ public class KirbyInhaling : KirbyState
 
     public int captureCount = 0;
     public bool captureStart;
-    public bool animationPlaying;
+    public bool playAnimation;
     public bool endExhale;
     public InhaleableObj[] capturedIhObjs = new InhaleableObj[5];
     
@@ -55,7 +56,8 @@ public class KirbyInhaling : KirbyState
 
     public override void OnPrePhysCheck()
     {
-        if (!captureStart && !animationPlaying && captureCount == 0 && !kc.actHoldInput)
+        if (endExhale) return;
+        if (!captureStart && !playAnimation && captureCount == 0 && !kc.actHoldInput)
         {
             endExhale = true;
             StartCoroutine("EndAnimation");
@@ -63,7 +65,8 @@ public class KirbyInhaling : KirbyState
         if (captureStart && captureCount == 0)
         {
             captureStart = false;
-            kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");
+            endExhale = true;
+            StartCoroutine("EndState");
         }
     }
 
@@ -96,11 +99,16 @@ public class KirbyInhaling : KirbyState
                     {
                         continue;
                     }
-                    capturedIhObjs[captureCount] = tmpIhObj;
-                    tmpIhObj.rb.simulated = false;
-                    tmpIhObj.rb.bodyType = RigidbodyType2D.Dynamic;
-                    if(tmpIhObj.flyScript != null) tmpIhObj.flyScript.enabled = false;
-                    tmpIhObj.col.enabled = false;
+                    
+                    if(tmpIhObj.TryGetComponent(out Rigidbody2D rb))
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
+
+                    var instanceDoll = tmpIhObj.CreateDoll();
+                    capturedIhObjs[captureCount] = instanceDoll.GetComponent<InhaleableObj>();
+                    tmpIhObj.gameObject.SetActive(false);
+
                     captureCount++;
                 }
 
@@ -150,6 +158,7 @@ public class KirbyInhaling : KirbyState
                     }
 
                     //삼킨 오브젝트 삭제
+                    StartCoroutine("PlayReaction");
                     Destroy(capturedIhObjs[i].gameObject);
                     captureCount--;
                     capturedIhObjs[i] = null;
@@ -170,12 +179,13 @@ public class KirbyInhaling : KirbyState
     public override void Exit()
     {
         StopAllCoroutines();
+        kc.spritePivot.localPosition = Vector3.zero;
         kc.isPlayingAction = false;
         kc.lockDir = false;
         kc.hitBox.enabled = true;
         captureCount = 0;
         captureStart = false;
-        animationPlaying = false;
+        playAnimation = false;
         endExhale = false;
         xSpeed = 0;
         ySpeed = 0;
@@ -184,10 +194,10 @@ public class KirbyInhaling : KirbyState
 
     IEnumerator StartAnimation()
     {
-        animationPlaying = true;
+        playAnimation = true;
         kc.kirbyAnimator.Play("Char_Kirby_Inhaling_OnGround");
         yield return animStartTime;
-        animationPlaying = false;
+        playAnimation = false;
     }
 
     IEnumerator EndAnimation()
@@ -195,6 +205,27 @@ public class KirbyInhaling : KirbyState
         kc.kirbyAnimator.Play("Char_Kirby_Exhaling_OnGround");
         yield return animEndTime;
         kc.GetFSM.SwitchState("Idle");
+    }
+
+    IEnumerator EndState()
+    {
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaling_Stop");  
+        yield return animEndTime;
+        kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");
+    }
+
+    IEnumerator PlayReaction()
+    {
+        var count = 0f;
+        while(count < 12f)
+        {
+            count += Time.deltaTime * 56f;
+
+            kc.spritePivot.localPosition = Vector3.right * Mathf.Sin(count) * 0.05f;
+            yield return null;
+        }
+
+        kc.spritePivot.localPosition = Vector3.zero;
     }
 
     private void OnDrawGizmos()
