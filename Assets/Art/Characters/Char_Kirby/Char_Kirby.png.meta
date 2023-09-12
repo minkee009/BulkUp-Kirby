@@ -273,7 +273,7 @@ TextureImporter:
       name: Crouching_0
       rect:
         serializedVersion: 2
-        x: 41
+        x: 81
         y: 217
         width: 38
         height: 21
@@ -1173,6 +1173,27 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: Gulp_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 217
+        width: 38
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: facc505b5f4d74000800000000000000
+      internalID: 20218875115588783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: Action_Beam_0
       rect:
         serializedVersion: 2
@@ -1435,6 +1456,7 @@ TextureImporter:
       Falling_1: 1996277581079447406
       Falling_2: 2370214711298654797
       Falling_3: 7221865282303073093
+      Gulp_0: 20218875115588783
       Hurt_nomal_0: 927187312018098480
       Hurt_nomal_1: 8494188827597219679
       Hurt_nomal_2: 1927623535334185954
