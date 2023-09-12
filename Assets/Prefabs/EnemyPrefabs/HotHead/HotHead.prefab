@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8754631090437682804, guid: aca10402093b943d1b36ad7401742eec, type: 3}
+  m_Sprite: {fileID: 5542297916538816281, guid: aca10402093b943d1b36ad7401742eec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab7aaec9f8e4915b58689e11e2347e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  moveSpeedX: 7
+  moveSpeedY: 1
 --- !u!50 &5407283456026655058
 Rigidbody2D:
   serializedVersion: 4
@@ -303,6 +304,7 @@ GameObject:
   - component: {fileID: 4187547407227490893}
   - component: {fileID: 1884350416653603513}
   - component: {fileID: 3706562345613017993}
+  - component: {fileID: 8917101569141344549}
   - component: {fileID: 699817973432284371}
   - component: {fileID: 173190656793488275}
   - component: {fileID: 2954595050488126505}
@@ -372,7 +374,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1815625823664879899, guid: aca10402093b943d1b36ad7401742eec, type: 3}
+  m_Sprite: {fileID: 1120228955578161923, guid: f06a4555cbacb4354b4397ade745085e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -401,6 +403,27 @@ MonoBehaviour:
   isAttack: 0
   isLeftMove: 0
   isRightMove: 0
+--- !u!95 &8917101569141344549
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016742174067438649}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a3f334d2f7ad44c6976d3d9fc7d05c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &699817973432284371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,11 +436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 2954595050488126505}
-  rb: {fileID: 173190656793488275}
   ability: 0
   isItem: 0
-  flyScript: {fileID: 0}
+  inhaleSprite: {fileID: 0}
 --- !u!50 &173190656793488275
 Rigidbody2D:
   serializedVersion: 4

@@ -16,7 +16,7 @@ public class WaddleDoo : MonoBehaviour
     
     [SerializeField] private GameObject beam; // 빔 공격 게임 오브젝트
 
-    private int randomNumber;
+    private int randomNumber = 0;
 
     private Vector2 movement;
     
@@ -25,12 +25,16 @@ public class WaddleDoo : MonoBehaviour
     private LayerMask _layerMask = 1 << 6;
     private Vector2 rayDirection = Vector2.left;
 
+    private SpriteRenderer _spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         
-        InvokeRepeating("RandomNumber", 0f, 3.5f);
+        InvokeRepeating("RandomNumber", 0f, 5f);
     }
 
     // Update is called once per frame
@@ -65,6 +69,15 @@ public class WaddleDoo : MonoBehaviour
         {
             moveSpeed *= -1;
             rayDirection *= -1;
+
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
         }
     }
 
@@ -145,12 +158,6 @@ public class WaddleDoo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            // isMove = false;
-            // isJumping = true;
-            // isCharge = true;
-            // isAttack = true;
-            // Destroy(this.gameObject, 0.5f);
-            
             this.gameObject.SetActive(false);
         }
 

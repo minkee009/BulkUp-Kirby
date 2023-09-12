@@ -32,10 +32,14 @@ public class HotHead : MonoBehaviour
 
     private LayerMask _layerMask = 1 << 6;
     private Vector2 rayDirection = Vector2.left;
+
+    private SpriteRenderer _spriteRenderer;
     
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         leftFireAttack = transform.GetChild(0).gameObject;
         rightFireAttack = transform.GetChild(1).gameObject;
@@ -79,6 +83,15 @@ public class HotHead : MonoBehaviour
         {
             moveSpeed *= -1;
             rayDirection *= -1;
+            
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
         }
     }
 
@@ -136,15 +149,19 @@ public class HotHead : MonoBehaviour
         {
             moveSpeed *= -1;
             rayDirection *= -1;
+
+            _spriteRenderer.flipX = true;
         }
 
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
             rayDirection *= -1;
+
+            _spriteRenderer.flipX = false;
         }
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(4f);
         
         isAttack = false;
     }
@@ -165,16 +182,18 @@ public class HotHead : MonoBehaviour
         {
             moveSpeed *= -1;
             rayDirection *= -1;
-
+            
+            _spriteRenderer.flipX = true;
         }
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
             rayDirection *= -1;
 
+            _spriteRenderer.flipX = false;
         }
         
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4f);
         
         isAttack = false;
     }
@@ -184,10 +203,6 @@ public class HotHead : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
-            
-            // ismove = false;
-            // isAttack = true;
-            // Destroy(this.gameObject, 0.5f);
         }
     }
 }

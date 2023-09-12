@@ -6,21 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="b4721b25-c89c-4bd7-91ff-5ccf90b857fc" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt_Flying.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt_Flying.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_Walking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_Walking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee_Walking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo_Walking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/DiagonalFlyBrontoBurt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/DiagonalFlyBrontoBurt.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/ParabolaFlyBrontoBurt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/ParabolaFlyBrontoBurt.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/FireAttack.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/FireAttack.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/FireBall.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/FireBall.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Dee/WaddleDee.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Dee/WaddleDee.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/Beam.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/Beam.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/WaddleDoo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/WaddleDoo.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/HotHead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/HotHead.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Spark.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Spark.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDee.prefab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDee.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo.meta" beforeDir="false" />
@@ -29,17 +30,12 @@
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo/WaddleDoo.prefab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo/WaddleDoo.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/DiagonalFly.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/DiagonalFly.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/ParabolaFly.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/ParabolaFly.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDee.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDee.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDoo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDoo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +66,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ChoiSeungwon&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;SeungWonChoi&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -150,6 +146,9 @@
       <workItem from="1694331527958" duration="11679000" />
       <workItem from="1694482967452" duration="690000" />
       <workItem from="1694485078044" duration="6742000" />
+      <workItem from="1694515667362" duration="542000" />
+      <workItem from="1694516252846" duration="14000" />
+      <workItem from="1694522703592" duration="5893000" />
     </task>
     <servers />
   </component>

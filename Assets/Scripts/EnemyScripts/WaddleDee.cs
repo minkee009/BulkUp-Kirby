@@ -13,16 +13,21 @@ public class WaddleDee : MonoBehaviour
 
     private LayerMask _layerMask = 1 << 6;
     private Vector2 rayDirection = Vector2.left;
+
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
     
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
-        
-        
+
+        _animator = GetComponent<Animator>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
-    {                         
+    {
         if (isMove)
         {
             Move();
@@ -36,6 +41,15 @@ public class WaddleDee : MonoBehaviour
         {
             moveSpeed *= -1;
             rayDirection *= -1;
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+
+            }
         }
     }
 
