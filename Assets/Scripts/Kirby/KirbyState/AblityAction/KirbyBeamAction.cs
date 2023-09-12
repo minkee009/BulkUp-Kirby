@@ -55,6 +55,8 @@ public class KirbyBeamAction : KirbyState
             yield return loopTime;
         }
 
+        yield return loopTime;
+
         kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");
     }
 }

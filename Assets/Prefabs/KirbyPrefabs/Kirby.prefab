@@ -435,6 +435,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  abilityStarPrefab: {fileID: 0}
   spritePivot: {fileID: 3695383373616789824}
   kirbyAnimator: {fileID: 4122278539098559856}
   kirbySprite: {fileID: 3379286209506715320}
@@ -587,7 +588,7 @@ MonoBehaviour:
   hoverAcceleration: 12
   hoverDecceleration: 6
   hoverMoveSpeed: 2
-  airBlastPrefab: {fileID: 0}
+  airBlastPrefab: {fileID: 4014846080182003122, guid: bbd4753d458cc7545a604bd850c40808, type: 3}
   hoverJumpSpeed: 2
   hoverGravity: 2
   playAnimation: 0
@@ -608,7 +609,7 @@ MonoBehaviour:
   interactActionInput: 1
   inhaleLayer:
     serializedVersion: 2
-    m_Bits: 567
+    m_Bits: 2615
   checkDist: 1
   inhaleAccel: 0.2
   tmpIhObj: {fileID: 0}
@@ -642,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: Exhale
   interactActionInput: 1
-  starPrefab: {fileID: 7071597763841211487, guid: fd6a01636134d2c4780fcf8ff6f91d2e, type: 3}
+  starPrefab: {fileID: 7071597763841211487, guid: 7e429cbdbdeae0f419754fde6355be38, type: 3}
   shootSpeed: 8
   holdHinput: 0
   setDir: 0
@@ -660,3 +661,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: Beam
   interactActionInput: 1
+  beam: {fileID: 415830364627043549, guid: 4b7ba453a8a41b6468d42e1cd1970c88, type: 3}

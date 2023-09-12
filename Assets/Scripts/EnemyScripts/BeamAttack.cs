@@ -17,11 +17,13 @@ public class BeamAttack : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collision2D other)
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Kirby")
+        if (collision.gameObject.tag == "Kirby")
         {
-            
+
         }
     }
 }

@@ -98,7 +98,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7071597763841211487}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: d28aaee269a614147bf5722b19d1058b, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 6200000, guid: d28aaee269a614147bf5722b19d1058b, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -212,3 +212,4 @@ MonoBehaviour:
   minus: 1
   rb: {fileID: 5476347974509929630}
   anim: {fileID: 7564469921962049855}
+  lastVelocity: {x: 0, y: 0}
