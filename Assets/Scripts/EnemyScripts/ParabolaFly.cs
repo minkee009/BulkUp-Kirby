@@ -41,14 +41,14 @@ public class ParabolaFly : MonoBehaviour
     {
         if (direction.x > 0)
         {
-            localScale.x = 0.5f;
+            localScale.x = 1f;
             transform.transform.localScale = localScale;
             position += transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
         }
         else
         {
-            localScale.x = -0.5f;
+            localScale.x = -1f;
             transform.transform.localScale = localScale;
             position -= transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
@@ -58,8 +58,10 @@ public class ParabolaFly : MonoBehaviour
     {
         if (other.gameObject.tag == "Kirby")
         {
-            isFly = false;
-            Destroy(this.gameObject, 0.5f);
+            this.gameObject.SetActive(false);
+            
+            // isFly = false;
+            // Destroy(this.gameObject, 0.5f);
         }
     }
 }

@@ -131,11 +131,13 @@ public class WaddleDoo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            isMove = false;
-            isJumping = true;
-            isCharge = true;
-            isAttack = true;
-            Destroy(this.gameObject, 0.5f);
+            // isMove = false;
+            // isJumping = true;
+            // isCharge = true;
+            // isAttack = true;
+            // Destroy(this.gameObject, 0.5f);
+            
+            this.gameObject.SetActive(false);
         }
         
         if (other.gameObject.CompareTag("Wall"))

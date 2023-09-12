@@ -8,8 +8,8 @@ public class HotHead : MonoBehaviour
     [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2f; 
     [SerializeField] [Range(0f, 20f)] private float detectionRange = 7f; // 근거리 공격과 원거리 공격 중 어떤 공격을 할지 정하는 범위
   
-    [SerializeField] private GameObject fire; // 근거리 공격 게임 오브젝트
-    [SerializeField] private GameObject fireBall; // 원거리 공격 게임 오브젝트
+    // [SerializeField] private GameObject fire; // 근거리 공격 게임 오브젝트
+    // [SerializeField] private GameObject fireBall; // 원거리 공격 게임 오브젝트
     
     [SerializeField] private bool ismove = true;
     [SerializeField] private bool isAttack = false;
@@ -24,10 +24,20 @@ public class HotHead : MonoBehaviour
 
     private Vector2 direction;
     private Vector2 movement;
+
+    
+    private GameObject leftFireAttack;
+    private GameObject rightFireAttack;
+    private GameObject fireBallAttack;
+    
     
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
+
+        leftFireAttack = transform.GetChild(0).gameObject;
+        rightFireAttack = transform.GetChild(1).gameObject;
+        fireBallAttack = transform.GetChild(2).gameObject;
     }
 
     private void Update()
@@ -90,20 +100,25 @@ public class HotHead : MonoBehaviour
 
         if (kirbyTransform.transform.position.x < 0)
         {
-            attackDirection = 180;
+            leftFireAttack.SetActive(true);
         }
         else
         {
-            attackDirection = 0;
+            rightFireAttack.SetActive(true);
         }
-        GameObject FireAttack = Instantiate(fire);
-        FireAttack.transform.position = transform.position;
-        FireAttack.transform.rotation = Quaternion.Euler(0,0,attackDirection);
-            
-        Destroy(FireAttack, 3f);
+        
+        // GameObject Firespawn = Instantiate(this.fireAttack);
+        // Firespawn.transform.position = transform.position + new Vector3(0, 0.25f, 0);
+        // Firespawn.transform.rotation = Quaternion.Euler(0,0,attackDirection);
+        // Firespawn.SetActive(true);
+        //     
+        // Destroy(Firespawn, 3f);
         
         yield return new WaitForSeconds(3.1f);
-
+        
+        rightFireAttack.SetActive(false);
+        leftFireAttack.SetActive(false);
+        
         ismove = true;
 
         if (isLeftMove&& this.transform.position.x < kirbyTransform.transform.position.x)
@@ -123,10 +138,11 @@ public class HotHead : MonoBehaviour
 
     IEnumerator LongDistanceAttack()
     {
-        GameObject fireBallAttack = Instantiate(fireBall);
-        fireBallAttack.transform.position = transform.position;
+        GameObject fireBallSpawn = Instantiate(this.fireBallAttack);
+        fireBallSpawn.transform.position = transform.position;
+        fireBallSpawn.SetActive(true);
         
-        Destroy(fireBallAttack, 5f);
+        Destroy(fireBallSpawn, 5f);
         
         yield return new WaitForSeconds(1.1f);
 
@@ -150,9 +166,11 @@ public class HotHead : MonoBehaviour
     {
         if (other.gameObject.tag == "Kirby")
         {
-            ismove = false;
-            isAttack = true;
-            Destroy(this.gameObject, 0.5f);
+            this.gameObject.SetActive(false);
+            
+            // ismove = false;
+            // isAttack = true;
+            // Destroy(this.gameObject, 0.5f);
         }
         if (other.gameObject.tag == "Wall")
         {
