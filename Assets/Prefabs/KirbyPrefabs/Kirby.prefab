@@ -510,7 +510,7 @@ MonoBehaviour:
   airMoveSpeed: 4
   gravityForce: 6
   gravityAccel: 12
-  fallAttackSpeed: 6
+  fallattackTime: 0.7
   landJumpForce: 2.5
   stopExcuteXAccel: 0
   inAirTime: 0

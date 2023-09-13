@@ -30,7 +30,7 @@ public class AbilityStarMovement : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-
+    #region 체크 함수
     public void GroundCheck()
     {
         isGrounded = false;
@@ -67,4 +67,5 @@ public class AbilityStarMovement : MonoBehaviour
         }
         return false;
     }
+    #endregion
 }
