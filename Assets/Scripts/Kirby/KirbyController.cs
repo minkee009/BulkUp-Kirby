@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Threading;
 using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public enum SpecialAbility
@@ -49,6 +48,7 @@ public class KirbyController : MonoBehaviour
     public bool isWallHit;
     public bool isCellingHit;
     public bool isPlayingAction;
+    public bool isStopReadActInput;
     public bool hasInhaledObj;
 
     public SpecialAbility ability = SpecialAbility.None;
@@ -103,6 +103,12 @@ public class KirbyController : MonoBehaviour
         }
 
         actHoldInput = Input.GetKey(KeyCode.X);
+
+        if (isStopReadActInput)
+        {
+            actInput = false;
+            actHoldInput = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -495,7 +501,20 @@ public class KirbyController : MonoBehaviour
 
         spritePivot.localPosition = new Vector3(0f, spritePivot.localPosition.y, spritePivot.localPosition.z);
     }
+
+    IEnumerator StopReadActInput(float time)
+    {
+        var count = 0f;
+        isStopReadActInput = true;
+        while (count < time)
+        {
+            count += Time.deltaTime;
+            yield return null;
+        }
+        isStopReadActInput = false;
+    }
     #endregion
+
 }
 
 

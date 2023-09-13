@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class HotHead : MonoBehaviour
 { 
-    [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2f; 
+    [SerializeField] private float moveSpeed = 2f; 
     [SerializeField] [Range(0f, 20f)] private float detectionRange = 7f; // 근거리 공격과 원거리 공격 중 어떤 공격을 할지 정하는 범위
   
     // [SerializeField] private GameObject fire; // 근거리 공격 게임 오브젝트
@@ -29,11 +29,17 @@ public class HotHead : MonoBehaviour
     private GameObject leftFireAttack;
     private GameObject rightFireAttack;
     private GameObject fireBallAttack;
-    
+
+    private LayerMask _layerMask = 1 << 6;
+    private Vector2 rayDirection = Vector2.left;
+
+    private SpriteRenderer _spriteRenderer;
     
     private void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         leftFireAttack = transform.GetChild(0).gameObject;
         rightFireAttack = transform.GetChild(1).gameObject;
@@ -69,6 +75,24 @@ public class HotHead : MonoBehaviour
             isRightMove = true;
             isLeftMove = false;
         }
+        Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        
+        if (hit)
+        {
+            moveSpeed *= -1;
+            rayDirection *= -1;
+            
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
+        }
     }
 
     private void Move()
@@ -98,7 +122,7 @@ public class HotHead : MonoBehaviour
     {
         float attackDirection = 0;
 
-        if (kirbyTransform.transform.position.x < 0)
+        if (kirbyTransform.transform.position.x < this.transform.position.x)
         {
             leftFireAttack.SetActive(true);
         }
@@ -124,14 +148,20 @@ public class HotHead : MonoBehaviour
         if (isLeftMove&& this.transform.position.x < kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
+
+            _spriteRenderer.flipX = true;
         }
 
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
+
+            _spriteRenderer.flipX = false;
         }
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(4f);
         
         isAttack = false;
     }
@@ -151,13 +181,19 @@ public class HotHead : MonoBehaviour
         if (isLeftMove == true && this.transform.position.x < kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
+            
+            _spriteRenderer.flipX = true;
         }
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
+            rayDirection *= -1;
+
+            _spriteRenderer.flipX = false;
         }
         
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(4f);
         
         isAttack = false;
     }
@@ -167,15 +203,6 @@ public class HotHead : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
-            
-            // ismove = false;
-            // isAttack = true;
-            // Destroy(this.gameObject, 0.5f);
-        }
-        if (other.gameObject.tag == "Wall")
-        {
-            moveSpeed *= -1; // 방향 전환을 위한 식
-            Debug.Log("핫 헤드의 벽 충돌로 인한 방향 전환");
         }
     }
 }

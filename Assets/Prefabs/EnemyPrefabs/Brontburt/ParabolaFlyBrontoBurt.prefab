@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3891264684902748699}
   - component: {fileID: 314549703102918467}
   - component: {fileID: 7422208188846138403}
+  - component: {fileID: 2982349754604721887}
   - component: {fileID: 6397844613633747986}
   - component: {fileID: 7098816872705124307}
   - component: {fileID: 5498670385398496326}
@@ -79,10 +80,10 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -3457048095024082990, guid: 94c3df828bb854f6497d94413d05e9c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,9 +102,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  frequency: 2
+  frequency: 3
   waveHeight: 1
   isFly: 1
+--- !u!95 &2982349754604721887
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2881504034656754674}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dfa56514950d9455da4d0918ad06d83d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &6397844613633747986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +163,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.5, y: 0.5}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -188,8 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 6397844613633747986}
-  rb: {fileID: 7098816872705124307}
   ability: 0
   isItem: 0
-  flyScript: {fileID: 7422208188846138403}
+  inhaleSprite: {fileID: 0}

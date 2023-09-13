@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class WaddleDoo : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 10f)] private float moveSpeed = 2.0f;
+    [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] [Range(0f, 10f)] private float jumpPower = 8.0f;
     
     [SerializeField] private bool isMove = true;
@@ -16,18 +16,25 @@ public class WaddleDoo : MonoBehaviour
     
     [SerializeField] private GameObject beam; // 빔 공격 게임 오브젝트
 
-    private int randomNumber;
+    private int randomNumber = 0;
 
     private Vector2 movement;
     
     private Rigidbody2D _rigidbody2D;
 
+    private LayerMask _layerMask = 1 << 6;
+    private Vector2 rayDirection = Vector2.left;
+
+    private SpriteRenderer _spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         
-        InvokeRepeating("RandomNumber", 0f, 3.5f);
+        InvokeRepeating("RandomNumber", 0f, 5f);
     }
 
     // Update is called once per frame
@@ -35,7 +42,7 @@ public class WaddleDoo : MonoBehaviour
     {
         if (isMove)
         {
-            StartCoroutine(Move());
+            StartCoroutine("Move");
         }
         
         if (!isCharge && randomNumber == 0)
@@ -44,15 +51,33 @@ public class WaddleDoo : MonoBehaviour
             isCharge = true;
             randomNumber = 2;
             
-            StopCoroutine(Move());
+            StopCoroutine("Move");
             
-            StartCoroutine(Charge());
+            StartCoroutine("Charge");
         }
         if (!isJumping && randomNumber == 1)
         {
             randomNumber = 2;
             
             Jump();
+        }
+        Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        
+        if (hit)
+        {
+            moveSpeed *= -1;
+            rayDirection *= -1;
+
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
         }
     }
 
@@ -85,7 +110,7 @@ public class WaddleDoo : MonoBehaviour
 
         if (!isAttack)
         {
-            StartCoroutine(Attack());
+            StartCoroutine("Attack");
         }
     }
 
@@ -98,10 +123,10 @@ public class WaddleDoo : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             GameObject beamAttack = Instantiate(beam);
-            beamAttack.transform.position = transform.position;
+            beamAttack.transform.position = transform.position + new Vector3(0, 0.25f, 0);
             beamAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
-            Destroy(beamAttack, 0.1f);
-
+            beamAttack.transform.parent = transform;
+            
             if (movement.x < 0)
             {
                 angle += 23.5f;
@@ -110,6 +135,8 @@ public class WaddleDoo : MonoBehaviour
             {
                 angle -= 23.5f;
             }
+            
+            Destroy(beamAttack, 0.1f);
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -120,7 +147,21 @@ public class WaddleDoo : MonoBehaviour
         isCharge = false;
         isAttack = false;
     }
-    
+
+    private void OnEnable()
+    {
+        InvokeRepeating("RandomNumber", 0f, 5f);
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        isMove = true;
+        isJumping = false;
+        isCharge = false;
+        isAttack = false;
+    }
+
     void RandomNumber()
     {
         randomNumber = Random.Range(0, 2);
@@ -131,19 +172,7 @@ public class WaddleDoo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            // isMove = false;
-            // isJumping = true;
-            // isCharge = true;
-            // isAttack = true;
-            // Destroy(this.gameObject, 0.5f);
-            
             this.gameObject.SetActive(false);
-        }
-        
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            moveSpeed *= -1.0f;
-            Debug.Log("웨이들 두 방향 전환");
         }
 
         if (other.gameObject.CompareTag("Ground"))

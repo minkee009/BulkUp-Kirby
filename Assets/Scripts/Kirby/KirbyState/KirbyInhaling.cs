@@ -15,6 +15,7 @@ public class KirbyInhaling : KirbyState
     public WaitForSeconds animStartTime = new WaitForSeconds(0.45f);
     public WaitForSeconds animEndTime = new WaitForSeconds(0.3f);
 
+    public GameObject dustFX;
     public int captureCount = 0;
     public bool captureStart;
     public bool playAnimation;
@@ -49,6 +50,9 @@ public class KirbyInhaling : KirbyState
 
     public override void Enter()
     {
+        dustFX.transform.localPosition = new Vector3(kc.isRightDir ? 1.5f : -1.5f, 0.25f, 0);
+        dustFX.GetComponent<SpriteRenderer>().flipX = !kc.isRightDir;
+        dustFX.SetActive(true);
         kc.isPlayingAction = true;
         StartCoroutine("StartAnimation");
         kc.lockDir = true;
@@ -178,6 +182,7 @@ public class KirbyInhaling : KirbyState
 
     public override void Exit()
     {
+        dustFX.SetActive(false);
         StopAllCoroutines();
         kc.spritePivot.localPosition = Vector3.zero;
         kc.isPlayingAction = false;
@@ -202,6 +207,7 @@ public class KirbyInhaling : KirbyState
 
     IEnumerator EndAnimation()
     {
+        dustFX.SetActive(false);
         kc.kirbyAnimator.Play("Char_Kirby_Exhaling_OnGround");
         yield return animEndTime;
         kc.GetFSM.SwitchState("Idle");
@@ -209,6 +215,7 @@ public class KirbyInhaling : KirbyState
 
     IEnumerator EndState()
     {
+        dustFX.SetActive(false);
         kc.kirbyAnimator.Play("Char_Kirby_Inhaling_Stop");  
         yield return animEndTime;
         kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8335060277548394214}
   - component: {fileID: 6205822645970349478}
   - component: {fileID: 1044774056201675506}
+  - component: {fileID: 2943004361393920606}
   - component: {fileID: 4898265421670881275}
   - component: {fileID: 8742563054944047517}
   m_Layer: 9
@@ -100,13 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc2bcdb46b4a445189fd6be371a2453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: -2
-  jumpPower: 10
+  moveSpeed: -1.5
+  jumpPower: 5
   isMove: 1
   isJumping: 0
   isCharge: 0
   isAttack: 0
-  beam: {fileID: 415830364627043549, guid: f992c81db922440c1848dd6999836fa4, type: 3}
+  beam: {fileID: 415830364627043549, guid: c03fa34e7b48d1d43a7218b88a765800, type: 3}
 --- !u!114 &1044774056201675506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +123,27 @@ MonoBehaviour:
   ability: 1
   isItem: 0
   inhaleSprite: {fileID: 0}
+--- !u!95 &2943004361393920606
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036067449642100533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84c86738b830c4cc8a28659335720c56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &4898265421670881275
 BoxCollider2D:
   m_ObjectHideFlags: 0

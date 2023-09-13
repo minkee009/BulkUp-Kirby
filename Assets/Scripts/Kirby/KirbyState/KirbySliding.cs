@@ -10,9 +10,13 @@ public class KirbySliding : KirbyState
     public float friction = 20f;
 
     public float slideTimer = 0f;
+    public FootDustMaker dustmaker;
 
     public override void Enter()
     {
+        dustmaker.gameObject.SetActive(true);
+        dustmaker.transform.localPosition = new Vector3(kc.isRightDir ? -0.5f : 0.5f, -0.5f, 0f);
+        dustmaker.dustDir = new Vector3(kc.isRightDir ? -0.3f : 0.3f, 0.05f, 0f);
         kc.lockDir = true;
         kc.kirbyAnimator.Play("Char_Kirby_Sliding");
         kc.currentXVel = slideSpeed * (kc.isRightDir ? 1f : -1f);
@@ -55,6 +59,7 @@ public class KirbySliding : KirbyState
 
     public override void Exit()
     {
+        dustmaker.gameObject.SetActive(false);
         kc.lockDir = false;
         slideTimer = 0f;
     }
