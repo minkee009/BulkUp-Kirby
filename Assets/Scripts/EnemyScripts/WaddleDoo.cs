@@ -42,7 +42,7 @@ public class WaddleDoo : MonoBehaviour
     {
         if (isMove)
         {
-            StartCoroutine(Move());
+            StartCoroutine("Move");
         }
         
         if (!isCharge && randomNumber == 0)
@@ -51,9 +51,9 @@ public class WaddleDoo : MonoBehaviour
             isCharge = true;
             randomNumber = 2;
             
-            StopCoroutine(Move());
+            StopCoroutine("Move");
             
-            StartCoroutine(Charge());
+            StartCoroutine("Charge");
         }
         if (!isJumping && randomNumber == 1)
         {
@@ -110,7 +110,7 @@ public class WaddleDoo : MonoBehaviour
 
         if (!isAttack)
         {
-            StartCoroutine(Attack());
+            StartCoroutine("Attack");
         }
     }
 
@@ -147,7 +147,21 @@ public class WaddleDoo : MonoBehaviour
         isCharge = false;
         isAttack = false;
     }
-    
+
+    private void OnEnable()
+    {
+        InvokeRepeating("RandomNumber", 0f, 5f);
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        isMove = true;
+        isJumping = false;
+        isCharge = false;
+        isAttack = false;
+    }
+
     void RandomNumber()
     {
         randomNumber = Random.Range(0, 2);

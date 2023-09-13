@@ -16923,10 +16923,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DooSpawnPoint (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8741885342637040470, guid: f3350a5b4fbcd481cb870995bb5c4572, type: 3}
-      propertyPath: monsterPrefab
-      value: 
-      objectReference: {fileID: 3036067449642100533, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
     - target: {fileID: 8744703923186832023, guid: f3350a5b4fbcd481cb870995bb5c4572, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.413
@@ -23739,7 +23735,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 16.6997, y: -10.8452}
+  m_AnchoredPosition: {x: 16.699707, y: -10.845215}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1825426468

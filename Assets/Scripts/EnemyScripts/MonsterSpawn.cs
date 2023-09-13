@@ -5,12 +5,12 @@ public class MonsterSpawn : MonoBehaviour
     public Transform spawnPoint; // 스폰 포인트의 Transform
     public GameObject monsterPrefab; // 생성할 몬스터 프리팹
     private bool hasSpawned = false; // 몬스터가 이미 생성되었는지 여부를 확인하기 위한 변수
-    
-    
+
+    private GameObject _myMonster;
 
     private void Update()
     {
-        if (!hasSpawned)
+        if (!hasSpawned && _myMonster == null)
         {
             // 스폰 포인트의 월드 좌표를 뷰포트 좌표로 변환
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(spawnPoint.position);
@@ -19,16 +19,15 @@ public class MonsterSpawn : MonoBehaviour
             if (viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1)
             {
                 // 몬스터 생성
-                Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+                _myMonster = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
             
                 // 몬스터가 이미 생성되었다고 표시
                 hasSpawned = true;
             }
-
-            if (monsterPrefab == null)
-            {
-                hasSpawned = false;
-            }
+        }
+        else if (!_myMonster.activeSelf)
+        {
+            hasSpawned = false;
         }
     }
 }

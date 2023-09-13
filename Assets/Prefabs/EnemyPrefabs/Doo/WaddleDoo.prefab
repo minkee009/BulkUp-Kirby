@@ -107,7 +107,7 @@ MonoBehaviour:
   isJumping: 0
   isCharge: 0
   isAttack: 0
-  beam: {fileID: 415830364627043549, guid: f992c81db922440c1848dd6999836fa4, type: 3}
+  beam: {fileID: 415830364627043549, guid: c03fa34e7b48d1d43a7218b88a765800, type: 3}
 --- !u!114 &1044774056201675506
 MonoBehaviour:
   m_ObjectHideFlags: 0
