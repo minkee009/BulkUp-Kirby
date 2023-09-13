@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Gamemanager : MonoBehaviour
     public int kirbyLife;
     public static Gamemanager instance;
     public GameObject[] hpBar = new GameObject[6];
+
+    public UnityAction OnKirbyMorphing;
 
     private void Awake()
     {
@@ -37,6 +40,7 @@ public class Gamemanager : MonoBehaviour
     void Update()
     {
         CheckHp();
+
     }
 
     public void Damaged(int damageAmount)
