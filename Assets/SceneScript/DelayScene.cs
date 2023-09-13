@@ -21,7 +21,7 @@ public class DelayScene : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         
-        if (Input.GetKey(KeyCode.UpArrow) && other.CompareTag("Player"))
+        if (Input.GetKey(KeyCode.UpArrow) && other.CompareTag("Kirby"))
         {
             Invoke("LoadScene", delayTime);
             Debug.Log("완");

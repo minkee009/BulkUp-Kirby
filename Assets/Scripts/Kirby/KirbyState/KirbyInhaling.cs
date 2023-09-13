@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,9 +15,10 @@ public class KirbyInhaling : KirbyState
     public WaitForSeconds animStartTime = new WaitForSeconds(0.45f);
     public WaitForSeconds animEndTime = new WaitForSeconds(0.3f);
 
+    public GameObject dustFX;
     public int captureCount = 0;
     public bool captureStart;
-    public bool animationPlaying;
+    public bool playAnimation;
     public bool endExhale;
     public InhaleableObj[] capturedIhObjs = new InhaleableObj[5];
     
@@ -48,6 +50,9 @@ public class KirbyInhaling : KirbyState
 
     public override void Enter()
     {
+        dustFX.transform.localPosition = new Vector3(kc.isRightDir ? 1.5f : -1.5f, 0.25f, 0);
+        dustFX.GetComponent<SpriteRenderer>().flipX = !kc.isRightDir;
+        dustFX.SetActive(true);
         kc.isPlayingAction = true;
         StartCoroutine("StartAnimation");
         kc.lockDir = true;
@@ -55,7 +60,8 @@ public class KirbyInhaling : KirbyState
 
     public override void OnPrePhysCheck()
     {
-        if (!captureStart && !animationPlaying && captureCount == 0 && !kc.actHoldInput)
+        if (endExhale) return;
+        if (!captureStart && !playAnimation && captureCount == 0 && !kc.actHoldInput)
         {
             endExhale = true;
             StartCoroutine("EndAnimation");
@@ -63,7 +69,8 @@ public class KirbyInhaling : KirbyState
         if (captureStart && captureCount == 0)
         {
             captureStart = false;
-            kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");
+            endExhale = true;
+            StartCoroutine("EndState");
         }
     }
 
@@ -96,11 +103,16 @@ public class KirbyInhaling : KirbyState
                     {
                         continue;
                     }
-                    capturedIhObjs[captureCount] = tmpIhObj;
-                    tmpIhObj.rb.simulated = false;
-                    tmpIhObj.rb.isKinematic = false;
-                    if(tmpIhObj.flyScript != null) tmpIhObj.flyScript.enabled = false;
-                    tmpIhObj.col.enabled = false;
+                    
+                    if(tmpIhObj.TryGetComponent(out Rigidbody2D rb))
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
+
+                    var instanceDoll = tmpIhObj.CreateDoll();
+                    capturedIhObjs[captureCount] = instanceDoll.GetComponent<InhaleableObj>();
+                    tmpIhObj.gameObject.SetActive(false);
+
                     captureCount++;
                 }
 
@@ -150,6 +162,7 @@ public class KirbyInhaling : KirbyState
                     }
 
                     //삼킨 오브젝트 삭제
+                    kc.PlayReactionXdir();
                     Destroy(capturedIhObjs[i].gameObject);
                     captureCount--;
                     capturedIhObjs[i] = null;
@@ -169,13 +182,15 @@ public class KirbyInhaling : KirbyState
 
     public override void Exit()
     {
+        dustFX.SetActive(false);
         StopAllCoroutines();
+        kc.spritePivot.localPosition = Vector3.zero;
         kc.isPlayingAction = false;
         kc.lockDir = false;
         kc.hitBox.enabled = true;
         captureCount = 0;
         captureStart = false;
-        animationPlaying = false;
+        playAnimation = false;
         endExhale = false;
         xSpeed = 0;
         ySpeed = 0;
@@ -184,17 +199,26 @@ public class KirbyInhaling : KirbyState
 
     IEnumerator StartAnimation()
     {
-        animationPlaying = true;
+        playAnimation = true;
         kc.kirbyAnimator.Play("Char_Kirby_Inhaling_OnGround");
         yield return animStartTime;
-        animationPlaying = false;
+        playAnimation = false;
     }
 
     IEnumerator EndAnimation()
     {
+        dustFX.SetActive(false);
         kc.kirbyAnimator.Play("Char_Kirby_Exhaling_OnGround");
         yield return animEndTime;
         kc.GetFSM.SwitchState("Idle");
+    }
+
+    IEnumerator EndState()
+    {
+        dustFX.SetActive(false);
+        kc.kirbyAnimator.Play("Char_Kirby_Inhaling_Stop");  
+        yield return animEndTime;
+        kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");
     }
 
     private void OnDrawGizmos()

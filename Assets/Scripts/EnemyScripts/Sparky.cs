@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class Sparky : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 10f)] private float jumpDistance = 1.5f; // 이동 거리
+    [SerializeField] private float jumpDistance = 1.5f; // 이동 거리
     [SerializeField] [Range(0f, 10f)] private float lowJumpPower = 2.0f; // 최소 점프력
     [SerializeField] [Range(0f, 10f)] private float highJumpPower = 5.0f; // 최대 점프력
     [SerializeField] [Range(0f, 20f)] private float detectionRange = 7.0f; // 범위 내 커비가 있을 시, 공격
@@ -16,8 +16,6 @@ public class Sparky : MonoBehaviour
     [SerializeField] private bool isMove = true;
     [SerializeField] private bool isJumping = false;
     [SerializeField] private bool isAttack = false; 
-    
-    [SerializeField] private GameObject spark; // 공격 게임 오브젝트
     
     private float distanceToKirby;
     
@@ -28,13 +26,21 @@ public class Sparky : MonoBehaviour
     private Vector2 direction;
     
     private float randomJumpPower; // 점프력을 랜덤으로 할당
+
+    private GameObject attackObject;
+
+    private SpriteRenderer _spriteRenderer;
     
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
 
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
         InvokeRepeating("RandomJumpPower", 0f, 1f);
+
+        attackObject = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -68,13 +74,16 @@ public class Sparky : MonoBehaviour
             {
                 isJumping = true;
                 _rigidbody2D.velocity = new Vector2(-jumpDistance, randomJumpPower);
-                Debug.Log("점프");
+
+                _spriteRenderer.flipX = false;
             }
             else
             {
                 isJumping = true;
                 _rigidbody2D.velocity = new Vector2(jumpDistance, randomJumpPower);
-                Debug.Log("점프");
+                
+                _spriteRenderer.flipX = true;
+
             }
         }
         else
@@ -89,12 +98,12 @@ public class Sparky : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
 
-        GameObject generateSpark = Instantiate(spark);
-        generateSpark.transform.position = transform.position;
+        attackObject.SetActive(true);
         
-        Destroy(generateSpark, 1.5f);
         
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        
+        attackObject.SetActive((false));
 
         isMove = true;
         
@@ -112,11 +121,9 @@ public class Sparky : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
-            isMove = false;
-            isJumping = true;
-            isAttack = true;
-            Destroy(this.gameObject, 0.5f);
+            this.gameObject.SetActive(false);
         }
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
