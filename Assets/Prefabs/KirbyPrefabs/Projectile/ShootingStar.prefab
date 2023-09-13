@@ -125,7 +125,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -197,9 +197,7 @@ MonoBehaviour:
   spriteRender: {fileID: 8010442986341156746}
   projectileAnim: {fileID: 7564469921962049855}
   animationClip: VFX_Kirby_Star_Blink
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 576
+  destroyEffect: {fileID: 4371344471010586856, guid: 7416cfda9f6c4974b8c3690ca36c04d0, type: 3}
 --- !u!114 &3195660122357958835
 MonoBehaviour:
   m_ObjectHideFlags: 0

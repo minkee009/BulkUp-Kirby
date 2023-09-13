@@ -125,6 +125,7 @@ MonoBehaviour:
   spriteRender: {fileID: 8722834763851380006}
   projectileAnim: {fileID: 1991288143588219990}
   animationClip: VFX_Kirby_Exhale
+  destroyEffect: {fileID: 4371344471010586856, guid: 7416cfda9f6c4974b8c3690ca36c04d0, type: 3}
 --- !u!114 &7798507775601691453
 MonoBehaviour:
   m_ObjectHideFlags: 0

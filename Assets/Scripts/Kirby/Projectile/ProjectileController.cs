@@ -23,6 +23,12 @@ public class ProjectileController : MonoBehaviour
         if (other.gameObject.layer == 6 
             || other.gameObject.layer == 9)
         {
+            if(destroyEffect != null)
+            {
+                var deathFX = Instantiate(destroyEffect);
+                deathFX.transform.position = transform.position;
+            }
+
             Destroy(gameObject);
         }
     }

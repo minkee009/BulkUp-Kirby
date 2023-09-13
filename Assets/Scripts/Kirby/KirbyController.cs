@@ -48,7 +48,7 @@ public class KirbyController : MonoBehaviour
     public bool isWallHit;
     public bool isCellingHit;
     public bool isPlayingAction;
-    public bool isStopReadActInput;
+    public bool isStopReadInput;
     public bool hasInhaledObj;
 
     public SpecialAbility ability = SpecialAbility.None;
@@ -86,6 +86,18 @@ public class KirbyController : MonoBehaviour
 
     private void Update()
     {
+        if (isStopReadInput)
+        {
+            hInput = 0f;
+            vInput = 0f;
+            jumpInput = false;
+            jumpHoldInput = false;
+            actInput = false;
+            actHoldInput = false;
+            selectInput = false;
+            return;
+        }
+
         #region 입력 업데이트
         hInput = (Input.GetKey(KeyCode.LeftArrow) ? -1f : 0f) + (Input.GetKey(KeyCode.RightArrow) ? 1f : 0f);
         vInput = (Input.GetKey(KeyCode.DownArrow) ? -1f : 0f) + (Input.GetKey(KeyCode.UpArrow) ? 1f : 0f);
@@ -104,12 +116,6 @@ public class KirbyController : MonoBehaviour
 
         actHoldInput = Input.GetKey(KeyCode.X);
 
-        if (isStopReadActInput)
-        {
-            actInput = false;
-            actHoldInput = false;
-        }
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             selectInput = true;
@@ -118,6 +124,8 @@ public class KirbyController : MonoBehaviour
         DashCheck();
         isDash = dontUseDashInput ? false : isDash;
         #endregion
+
+        //Debug용 상태 출력
         if (stateMSG != null) stateMSG.text = _fsm.Current.GetKey;
     }
 
@@ -355,7 +363,7 @@ public class KirbyController : MonoBehaviour
     {
         if (!isPlayingColHItAnim)
         {
-            collisionAnimCoroutine = StartCoroutine(PlayColAnim(dirNum));
+            collisionAnimCoroutine = StartCoroutine("PlayColAnim",dirNum);
         }
     }
 
@@ -409,13 +417,31 @@ public class KirbyController : MonoBehaviour
     {
         isPlayingAction = true;
         hitBox.enabled = false;
+
         yield return new WaitForSeconds(0.15f);
+
         kirbyAnimator.Play("Char_Kirby_Jumping");
         PlayReactionYdir();
+        ChangeKirbySprite();
+
         yield return new WaitForSeconds(0.3f);
+
         isPlayingAction = false;
         PlayAbilityAction();
+
+        var stopInputTime = 0f;
+        isStopReadInput = true;
+        //언제까지 무적,키씹힘 인지 지정해줘야함
+        switch (ability)
+        {
+            case SpecialAbility.Fire:
+                stopInputTime = 3f;
+                break;
+        }
+
+        yield return new WaitForSeconds(stopInputTime);
         hitBox.enabled = true;
+        isStopReadInput = false;
     }
 
     public void ChangeAbility()
@@ -502,16 +528,16 @@ public class KirbyController : MonoBehaviour
         spritePivot.localPosition = new Vector3(0f, spritePivot.localPosition.y, spritePivot.localPosition.z);
     }
 
-    IEnumerator StopReadActInput(float time)
+    public IEnumerator StopReadInput(float time)
     {
         var count = 0f;
-        isStopReadActInput = true;
+        isStopReadInput = true;
         while (count < time)
         {
             count += Time.deltaTime;
             yield return null;
         }
-        isStopReadActInput = false;
+        isStopReadInput = false;
     }
     #endregion
 

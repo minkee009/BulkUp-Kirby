@@ -73,7 +73,6 @@ public class KirbyCrouching : KirbyState
         kc.PlayReactionYdir();
         yield return animTime;
         kc.ChangeAbility();
-        kc.ChangeKirbySprite();
     }
 
 }
