@@ -12,8 +12,9 @@ public class KirbyFalling : KirbyState
     public float airMoveSpeed = 6f;
     public float gravityForce = 8f;
     public float gravityAccel = 12f;
-    public float fallAttackSpeed = 10.8f;
+    public float fallattackTime = 0.8f;
     public float landJumpForce = 15f;
+    public bool stopExcuteXAccel;
 
     public float inAirTime = 0f;
 
@@ -28,15 +29,17 @@ public class KirbyFalling : KirbyState
     public override void OnLand()
     {
         //약한 점프, 스프라이트 애니메이션 재생
-        if (!kc.hasInhaledObj && kc.currentYVel < -fallAttackSpeed && inAirTime > 0.6f)
+        if (!kc.hasInhaledObj && kc.currentYVel < -gravityForce + 0.01f && inAirTime > fallattackTime)
         {
             inAirTime = 0f;
             interactActionInput = false;
-            kc.kirbyAnimator.Play("Char_Kirby_Falling",-1,0f);
+            kc.kirbyAnimator.Play("Char_Kirby_Falling_End", -1,0f);
             kc.isGrounded = false;
             kc.currentYVel = landJumpForce;
             kc.isDash = false;
             kc.lastTimeJumped = Time.time;
+            stopExcuteXAccel = true;
+            kc.lockDir = true;
         }
         else if(kc.currentYVel < 0.05f)
         {
@@ -48,7 +51,7 @@ public class KirbyFalling : KirbyState
 
     public override void OnPrePhysCheck()
     {
-        if (inAirTime > 0.5f && kc.currentYVel < -fallAttackSpeed)
+        if (inAirTime > fallattackTime && kc.currentYVel < -gravityForce + 0.01f)
         {
             if (kc.hasInhaledObj) return;
             kc.kirbyAnimator.Play("Char_Kirby_Falling_End");
@@ -82,7 +85,7 @@ public class KirbyFalling : KirbyState
         }
 
         //부풀기 트랜지션
-        if (!kc.hasInhaledObj && (kc.jumpInput || kc.vInput > 0))
+        if (!kc.hasInhaledObj && (kc.vInput > 0))
         {
             kc.GetFSM.SwitchState("Hover");
             return;
@@ -94,14 +97,20 @@ public class KirbyFalling : KirbyState
         var h = kc.hInput;
         inAirTime += Time.deltaTime;
         var inhaledScale = kc.hasInhaledObj ? 0.7f : 1f;
-        kc.CalculateVelocity(ref kc.currentXVel,h,airMoveSpeed * inhaledScale, airAcceleration * inhaledScale, airDecceleration);
-        kc.CalculateVelocity(ref kc.currentYVel, -1, gravityForce, gravityAccel, 0f);
+        
+        if(!stopExcuteXAccel)
+            kc.CalculateVelocity(ref kc.currentXVel,h,airMoveSpeed * inhaledScale, airAcceleration * inhaledScale, airDecceleration);
+        else
+            kc.CalculateVelocity(ref kc.currentXVel, 0, airMoveSpeed, airAcceleration * inhaledScale, airDecceleration);
 
+        kc.CalculateVelocity(ref kc.currentYVel, -1, gravityForce, gravityAccel, 0f);
     }
 
     public override void Exit()
     {
         interactActionInput = true;
+        kc.lockDir = false;
+        stopExcuteXAccel = false;
         inAirTime = 0f;
     }
 }

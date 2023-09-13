@@ -5,22 +5,24 @@ using UnityEngine.Serialization;
 
 public class FireBallMovemoent : MonoBehaviour
 { 
-    [SerializeField] [Range(0.01f, 2f)] private float speed = 0.01f;
-    
-    private float velocityX = 1.5f;
-    // [SerializeField] private float velocityY = 1.5f;
+    [SerializeField] private float moveSpeedX = 5f;
+    [SerializeField] private float moveSpeedY = 1.0f;
 
     private Transform kirbyTransform;
 
     private Vector2 direction;
+
+    private Rigidbody2D _rigidbody2D;
     
     // Start is called before the first frame update
     void Start()
     {
         kirbyTransform = GameObject.FindWithTag("Kirby").transform;
-
+        
         direction = kirbyTransform.transform.position - transform.position;
         direction.Normalize();
+
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,30 +32,30 @@ public class FireBallMovemoent : MonoBehaviour
         {
             if (direction.y > 0)
             {
-                transform.Translate(new Vector2(-velocityX, 0.2f) * speed);
+                transform.Translate(new Vector2(-moveSpeedX * Time.deltaTime, moveSpeedY * Time.deltaTime));
             }
             else if (direction.y < 0)
             {
-                transform.Translate(new Vector2(-velocityX, -0.2f) * speed);
+                transform.Translate(new Vector2(-moveSpeedX * Time.deltaTime, -moveSpeedY * Time.deltaTime));
             }
-            else
+            else if (direction.y == 0)
             { 
-                transform.Translate(new Vector2(-velocityX, 0) * speed);
+                transform.Translate(new Vector2(-moveSpeedX * Time.deltaTime, 0));
             }
         }
         else
         {
             if (direction.y > 0)
             {
-                transform.Translate(new Vector2(velocityX, 0.2f) * speed);
+                transform.Translate(new Vector2(moveSpeedX * Time.deltaTime, moveSpeedY * Time.deltaTime));
             }
             else if (direction.y < 0)
             {
-                transform.Translate(new Vector2(velocityX, -0.2f) * speed);
+                transform.Translate(new Vector2(moveSpeedX * Time.deltaTime, -moveSpeedY * Time.deltaTime));
             }
-            else
+            else if (direction.y == 0)
             { 
-                transform.Translate(new Vector2(velocityX, 0) * speed);
+                transform.Translate(new Vector2(moveSpeedX * Time.deltaTime, 0));
             }
         }
     }

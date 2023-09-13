@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class DiagonalFly : MonoBehaviour
 {
-    [SerializeField] [Range(0f, 0.1f)] private float speed = 0.1f;
-    [SerializeField] private float velocityX = 0.05f;
+    [SerializeField] private float moveSpeed = 5f;
     
     [SerializeField] private bool isFly = false;
     
     private Transform kirbyTransform;
 
     private Vector2 direction;
+
+    private Rigidbody2D _rigidbody2D;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class DiagonalFly : MonoBehaviour
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
+
+        _rigidbody2D = GetComponent<Rigidbody2D>();
 
     }
 
@@ -37,11 +40,11 @@ public class DiagonalFly : MonoBehaviour
     {
         if (direction.x < 0)
         {
-            this.transform.Translate(new Vector2(-velocityX, 0.05f) * speed);
+            this.transform.Translate(new Vector2(-moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime));
         }
         else
         {
-            this.transform.Translate(new Vector2(velocityX, 0.05f) * speed);
+            this.transform.Translate(new Vector2(moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime));
         }
     }
     
@@ -49,8 +52,10 @@ public class DiagonalFly : MonoBehaviour
     {
         if (other.gameObject.tag == "Kirby")
         {
-            isFly = true;
-            Destroy(this.gameObject, 0.5f);
+            this.gameObject.SetActive(false);
+            
+            // isFly = true;
+            // Destroy(this.gameObject, 0.5f);
         }
     }
 }
