@@ -64,9 +64,7 @@ public class WaddleDee : MonoBehaviour
     {
         if (other.gameObject.tag == "Kirby")
         {
-            isMove = false;
             this.gameObject.SetActive(false);
-
         }
     }
 }

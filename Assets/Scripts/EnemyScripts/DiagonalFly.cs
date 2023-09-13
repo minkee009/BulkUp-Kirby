@@ -53,9 +53,6 @@ public class DiagonalFly : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
-            
-            // isFly = true;
-            // Destroy(this.gameObject, 0.5f);
         }
     }
 }

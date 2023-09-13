@@ -59,9 +59,6 @@ public class ParabolaFly : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
-            
-            // isFly = false;
-            // Destroy(this.gameObject, 0.5f);
         }
     }
 }
