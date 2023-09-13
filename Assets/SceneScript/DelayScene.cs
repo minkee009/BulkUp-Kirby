@@ -23,8 +23,8 @@ public class DelayScene : MonoBehaviour
         
         if (Input.GetKey(KeyCode.UpArrow) && other.CompareTag("Kirby"))
         {
-            Debug.Log("완");
             Invoke("LoadScene", delayTime);
+            Debug.Log("완");
         }
         
     }
