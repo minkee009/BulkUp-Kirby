@@ -435,7 +435,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  abilityStarPrefab: {fileID: 0}
+  abilityStarPrefab: {fileID: 7071597763841211487, guid: 723cb90ce588ad041a1e9cc26c68cedb, type: 3}
   spritePivot: {fileID: 3695383373616789824}
   kirbyAnimator: {fileID: 4122278539098559856}
   kirbySprite: {fileID: 3379286209506715320}
