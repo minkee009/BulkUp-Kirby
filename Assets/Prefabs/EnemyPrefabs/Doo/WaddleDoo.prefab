@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: 0
+  ability: 1
   isItem: 0
   inhaleSprite: {fileID: 0}
 --- !u!95 &2943004361393920606

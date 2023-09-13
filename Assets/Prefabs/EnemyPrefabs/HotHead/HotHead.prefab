@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 699817973432284371}
   - component: {fileID: 173190656793488275}
   - component: {fileID: 2954595050488126505}
+  - component: {fileID: 597901010422861805}
   m_Layer: 9
   m_Name: HotHead
   m_TagString: Untagged
@@ -511,6 +512,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &597901010422861805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016742174067438649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: 0
+  isItem: 0
+  inhaleSprite: {fileID: 0}
 --- !u!1 &7416835121772359745
 GameObject:
   m_ObjectHideFlags: 0

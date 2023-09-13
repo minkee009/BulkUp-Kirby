@@ -39,7 +39,7 @@ public class KirbyBeamAction : KirbyState
         for (int i = 0; i < 6; i++)
         {
             GameObject beamAttack = Instantiate(beam, transform);
-            beamAttack.transform.position = transform.position;
+            beamAttack.transform.position = transform.position + (kc.isRightDir ? 1 : -1) * Vector3.right * 0.5f + Vector3.up * 0.25f;
             beamAttack.transform.rotation = Quaternion.Euler(0, 0, angle);
             Destroy(beamAttack, 0.1f);
 

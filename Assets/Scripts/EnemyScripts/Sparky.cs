@@ -123,6 +123,7 @@ public class Sparky : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
