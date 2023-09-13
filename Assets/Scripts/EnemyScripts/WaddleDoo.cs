@@ -69,7 +69,7 @@ public class WaddleDoo : MonoBehaviour
         }
         Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.27f, _layerMask);
         
         if (hit)
         {
@@ -149,15 +149,16 @@ public class WaddleDoo : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
-
+        _animator.SetBool("isWalk", true);
+        _animator.SetBool("isAttack", false);
+        
         yield return new WaitForSeconds(0.5f);
         
         isMove = true;
         isCharge = false;
         isAttack = false;
         
-        _animator.SetBool("isWalk", true);
-        _animator.SetBool("isAttack", false);
+
     }
     
     void RandomNumber()

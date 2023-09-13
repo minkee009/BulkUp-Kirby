@@ -37,7 +37,7 @@ public class WaddleDee : MonoBehaviour
 
         Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.27f, _layerMask);
         
         if (hit)
         {
