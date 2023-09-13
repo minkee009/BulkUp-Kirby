@@ -354,7 +354,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8237407840175800782}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6b9906b00dcffd44791a106892aff768, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -661,4 +661,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: Beam
   interactActionInput: 1
-  beam: {fileID: 415830364627043549, guid: 4b7ba453a8a41b6468d42e1cd1970c88, type: 3}
+  beam: {fileID: 415830364627043549, guid: c03fa34e7b48d1d43a7218b88a765800, type: 3}
