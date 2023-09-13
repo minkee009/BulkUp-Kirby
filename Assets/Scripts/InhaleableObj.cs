@@ -19,7 +19,20 @@ public class InhaleableObj : MonoBehaviour
         doll.name = gameObject.name + " Doll";
 
         var spriteRender = doll.AddComponent<SpriteRenderer>();
-        spriteRender.sprite = inhaleSprite;
+
+        var g = GetComponent<SpriteRenderer>();
+        spriteRender.flipX = g.flipX;
+
+        if (inhaleSprite != null)
+        {
+            spriteRender.sprite = inhaleSprite;
+        }
+        else
+        {
+           
+            spriteRender.sprite = g.sprite;
+        }
+        
 
         var inhaleableObj = doll.AddComponent<InhaleableObj>();
         inhaleableObj.ability = ability;

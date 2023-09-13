@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 4472587591850647122}
   - component: {fileID: 8122876626831591019}
   - component: {fileID: 4673494887218537918}
+  - component: {fileID: 1594269687604275189}
   m_Layer: 7
   m_Name: Kirby
   m_TagString: Kirby
@@ -387,7 +388,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &8315577677803515875
 Rigidbody2D:
@@ -434,6 +435,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  abilityStarPrefab: {fileID: 0}
   spritePivot: {fileID: 3695383373616789824}
   kirbyAnimator: {fileID: 4122278539098559856}
   kirbySprite: {fileID: 3379286209506715320}
@@ -508,8 +510,9 @@ MonoBehaviour:
   airMoveSpeed: 4
   gravityForce: 6
   gravityAccel: 12
-  fallAttackSpeed: 6
-  landJumpForce: 2
+  fallattackTime: 0.7
+  landJumpForce: 2.5
+  stopExcuteXAccel: 0
   inAirTime: 0
 --- !u!114 &2934301514633195558
 MonoBehaviour:
@@ -548,6 +551,8 @@ MonoBehaviour:
   _key: Crouch
   interactActionInput: 0
   friction: 8
+  playAnimation: 0
+  stopExcuteInput: 0
 --- !u!114 &3818390048494368829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +588,7 @@ MonoBehaviour:
   hoverAcceleration: 12
   hoverDecceleration: 6
   hoverMoveSpeed: 2
-  airBlastPrefab: {fileID: 0}
+  airBlastPrefab: {fileID: 4014846080182003122, guid: bbd4753d458cc7545a604bd850c40808, type: 3}
   hoverJumpSpeed: 2
   hoverGravity: 2
   playAnimation: 0
@@ -604,7 +609,7 @@ MonoBehaviour:
   interactActionInput: 1
   inhaleLayer:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 2615
   checkDist: 1
   inhaleAccel: 0.2
   tmpIhObj: {fileID: 0}
@@ -616,7 +621,7 @@ MonoBehaviour:
   - {fileID: 0}
   captureCount: 0
   captureStart: 0
-  animationPlaying: 0
+  playAnimation: 0
   endExhale: 0
   capturedIhObjs:
   - {fileID: 0}
@@ -638,7 +643,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key: Exhale
   interactActionInput: 1
-  starPrefab: {fileID: 7071597763841211487, guid: fd6a01636134d2c4780fcf8ff6f91d2e, type: 3}
+  starPrefab: {fileID: 7071597763841211487, guid: 7e429cbdbdeae0f419754fde6355be38, type: 3}
   shootSpeed: 8
   holdHinput: 0
   setDir: 0
+--- !u!114 &1594269687604275189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237407840175800782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9906917a0a155b34d84c0cc595859425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: Beam
+  interactActionInput: 1
+  beam: {fileID: 415830364627043549, guid: 4b7ba453a8a41b6468d42e1cd1970c88, type: 3}

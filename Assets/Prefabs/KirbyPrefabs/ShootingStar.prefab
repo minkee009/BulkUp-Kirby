@@ -197,6 +197,9 @@ MonoBehaviour:
   spriteRender: {fileID: 8010442986341156746}
   projectileAnim: {fileID: 7564469921962049855}
   animationClip: VFX_Kirby_Star_Blink
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 576
 --- !u!114 &3195660122357958835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   dir: {x: 1, y: 0, z: 0}
+  slowDownSpeed: 0
+  slowDownDestroy: 0
+  hasDestroyTime: 0
+  destroyTime: 0
