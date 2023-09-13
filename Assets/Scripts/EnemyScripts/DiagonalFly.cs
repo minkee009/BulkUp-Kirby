@@ -14,6 +14,8 @@ public class DiagonalFly : MonoBehaviour
     private Vector2 direction;
 
     private Rigidbody2D _rigidbody2D;
+
+    [SerializeField] private GameObject dieAnim;
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,11 @@ public class DiagonalFly : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
+
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
     }
 }

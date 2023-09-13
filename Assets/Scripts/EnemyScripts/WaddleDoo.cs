@@ -27,12 +27,18 @@ public class WaddleDoo : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    private Animator _animator;
+
+    [SerializeField] private GameObject dieAnim;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _animator = GetComponent<Animator>();
         
         InvokeRepeating("RandomNumber", 0f, 5f);
     }
@@ -106,6 +112,9 @@ public class WaddleDoo : MonoBehaviour
 
     IEnumerator Charge()
     {
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttack", true);
+        
         yield return new WaitForSeconds(1f);
 
         if (!isAttack)
@@ -146,6 +155,9 @@ public class WaddleDoo : MonoBehaviour
         isMove = true;
         isCharge = false;
         isAttack = false;
+        
+        _animator.SetBool("isWalk", true);
+        _animator.SetBool("isAttack", false);
     }
     
     void RandomNumber()
@@ -159,6 +171,11 @@ public class WaddleDoo : MonoBehaviour
         if (other.gameObject.CompareTag("Kirby"))
         {
             this.gameObject.SetActive(false);
+
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
 
         if (other.gameObject.CompareTag("Ground"))

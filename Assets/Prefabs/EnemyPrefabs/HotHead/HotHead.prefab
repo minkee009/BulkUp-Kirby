@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 1884350416653603513}
   - component: {fileID: 3706562345613017993}
   - component: {fileID: 8917101569141344549}
-  - component: {fileID: 699817973432284371}
   - component: {fileID: 173190656793488275}
   - component: {fileID: 2954595050488126505}
   m_Layer: 9
@@ -403,6 +402,7 @@ MonoBehaviour:
   isAttack: 0
   isLeftMove: 0
   isRightMove: 0
+  dieAnim: {fileID: 6398427068905448115, guid: 0ef771118071b4a768ea12c5d43434ce, type: 3}
 --- !u!95 &8917101569141344549
 Animator:
   serializedVersion: 5
@@ -424,21 +424,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &699817973432284371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016742174067438649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ability: 0
-  isItem: 0
-  inhaleSprite: {fileID: 0}
 --- !u!50 &173190656793488275
 Rigidbody2D:
   serializedVersion: 4

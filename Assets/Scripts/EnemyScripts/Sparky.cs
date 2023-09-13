@@ -30,6 +30,13 @@ public class Sparky : MonoBehaviour
     private GameObject attackObject;
 
     private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private GameObject dieAnim;
+
+    private Animator _animator;
+    
+    private LayerMask _layerMask = 1 << 6;
+    private Vector2 rayDirection = Vector2.down;
     
     // Start is called before the first frame update
     void Start()
@@ -37,6 +44,8 @@ public class Sparky : MonoBehaviour
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _animator = GetComponent<Animator>();
 
         InvokeRepeating("RandomJumpPower", 0f, 1f);
 
@@ -52,7 +61,7 @@ public class Sparky : MonoBehaviour
         direction.Normalize();
 
         distanceToKirby = Vector2.Distance(kirbyTransform.transform.position, this.transform.position);
-
+        
         if (isMove)
         {
             Move();
@@ -64,12 +73,35 @@ public class Sparky : MonoBehaviour
 
             StartCoroutine(Charge());
         }
+
+
+        if (isJumping)
+        {
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("isWalk", true);
+            _animator.SetBool("isAttacking", false);
+            _animator.SetBool("isAttackVFX", false);
+        }
+        
+        Debug.DrawRay(transform.position, rayDirection);
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 0.2f, _layerMask);
+
+        if (hit)
+        {
+            _animator.SetBool("Idle", true);
+            _animator.SetBool("isWalk", false);
+            _animator.SetBool("isAttacking", false);
+            _animator.SetBool("isAttackVFX", false);
+        }
+
     }
 
     private void Move()
     {
         if (!isJumping)
         {
+
             if (direction.x < 0)
             {
                 isJumping = true;
@@ -96,16 +128,31 @@ public class Sparky : MonoBehaviour
     {
         isAttack = true;
         
+        _animator.SetBool("Idle", false);
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttacking", true);
+        _animator.SetBool("isAttackVFX", false);
+        
         yield return new WaitForSeconds(1f);
 
         attackObject.SetActive(true);
         
+        _animator.SetBool("Idle", false);
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttacking", false);
+        _animator.SetBool("isAttackVFX", true);
         
         yield return new WaitForSeconds(2f);
         
         attackObject.SetActive((false));
 
         isMove = true;
+        
+        _animator.SetBool("Idle", true);
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttacking", false);
+        _animator.SetBool("isAttackVFX", false);
+        
         
         yield return new WaitForSeconds(3f);
 
@@ -122,6 +169,11 @@ public class Sparky : MonoBehaviour
         if (other.gameObject.CompareTag("Kirby"))
         {
             this.gameObject.SetActive(false);
+            
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
         if (other.gameObject.CompareTag("Ground"))
         {

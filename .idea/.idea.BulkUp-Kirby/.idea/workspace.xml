@@ -9,30 +9,50 @@
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt_Flying.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_BrontoBurt/Char_BrontoBurt_Flying.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_AttackReady.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_AttackReady.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_Attaking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_Attaking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_HotHead/Char_HotHead_Walking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Action_Beam.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Action_Beam.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Action_Beam.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Action_Beam.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Exhaling_OnGround.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Exhaling_OnGround.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Falling.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Falling.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Inhaled_Flying.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Inhaled_Flying.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Inhaled_Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Inhaled_Idle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Inhaled_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Inhaled_Walking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_JJiBoo.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_JJiBoo.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Swallow.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Swallow.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Swallow.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Swallow.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Turning.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Turning.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby_Walking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_AttackVFX.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_AttackVFX.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_Attacking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_Attacking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky_Walking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee_Walking.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo_Attaking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo_Attaking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo_Walking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDoo/Char_WaddleDoo_Walking.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/UI/UI_GameStopMenu.aseprite" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UI/UI_GameStopMenu.aseprite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/UI/UI_GameStopMenu.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UI/UI_GameStopMenu.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX Animator/ShootingStarController.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX Animator/ShootingStarController.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Star_Blink.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Star_Blink.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/DiagonalFlyBrontoBurt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/DiagonalFlyBrontoBurt.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/ParabolaFlyBrontoBurt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Brontburt/ParabolaFlyBrontoBurt.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Dee/WaddleDee.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Dee/WaddleDee.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/Beam.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/Beam.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/DooSpawnPoint.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/DooSpawnPoint.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/WaddleDoo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Doo/WaddleDoo.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/HotHead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/HotHead/HotHead.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDee.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDee.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo/Beam.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo/Beam.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo/WaddleDoo.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/WaddleDoo/WaddleDoo.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/DiagonalFly.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/DiagonalFly.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/ParabolaFly.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/ParabolaFly.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDee.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDee.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDoo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/WaddleDoo.cs" afterDir="false" />
@@ -149,6 +169,8 @@
       <workItem from="1694515667362" duration="542000" />
       <workItem from="1694516252846" duration="14000" />
       <workItem from="1694522703592" duration="5893000" />
+      <workItem from="1694565789679" duration="3348000" />
+      <workItem from="1694576656610" duration="12039000" />
     </task>
     <servers />
   </component>

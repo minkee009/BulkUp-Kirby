@@ -16,6 +16,8 @@ public class WaddleDee : MonoBehaviour
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private GameObject dieAnim;
     
     private void Start()
     {
@@ -65,6 +67,11 @@ public class WaddleDee : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
+
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die,0.5f);
         }
     }
 }
