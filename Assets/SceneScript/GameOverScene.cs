@@ -14,8 +14,7 @@ public class GameOverScene : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
-    // Start
-    // Start is called before the first frame update
+    
     void Start()
     {
         
