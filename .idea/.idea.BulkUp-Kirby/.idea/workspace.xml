@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b4721b25-c89c-4bd7-91ff-5ccf90b857fc" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/Boss.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/FallDumdbell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/FallDumdbell.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/ThrowDumbbell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/ThrowDumbbell.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -126,6 +129,10 @@
       <workItem from="1694576656610" duration="13076000" />
       <workItem from="1694604492268" duration="15000" />
       <workItem from="1694604513592" duration="5210000" />
+      <workItem from="1694650146347" duration="5000" />
+      <workItem from="1694683111396" duration="4000" />
+      <workItem from="1694683177058" duration="6859000" />
+      <workItem from="1694698094329" duration="1405000" />
     </task>
     <servers />
   </component>
