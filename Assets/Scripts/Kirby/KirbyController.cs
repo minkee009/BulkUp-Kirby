@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public enum SpecialAbility
@@ -17,6 +18,9 @@ public class KirbyController : MonoBehaviour
     KirbyFSM<string, KirbyState> _fsm;
     public KirbyFSM<string, KirbyState> GetFSM => _fsm;
 
+    // 애니메이터 (서영)
+    public AnimatorController[] animController;
+
     //컴포넌트
     public BoxCollider2D physBox;
     public BoxCollider2D hitBox;
@@ -28,6 +32,7 @@ public class KirbyController : MonoBehaviour
     public SpriteRenderer kirbySprite;
     public SpriteRenderer colhitSprite;
     public Sprite[] colhitDirSprite; //[0] : 바닥, [1] : 천장, [2] : 오른쪽,왼쪽
+    public GameObject starDustPrefab; 
 
     public SpecialAbility ihObjAbility;
 
@@ -180,6 +185,7 @@ public class KirbyController : MonoBehaviour
             if (!wasWallHit)
             {
                 _fsm.Current.OnWallHit();
+                PlayStarDust();
                 currentXVel = 0f;
             }
         }
@@ -192,6 +198,7 @@ public class KirbyController : MonoBehaviour
             if (!wasCellingHit)
             {
                 _fsm.Current.OnCellingHit();
+                PlayStarDust();
             }
         }
 
@@ -202,6 +209,7 @@ public class KirbyController : MonoBehaviour
         {
             //착지 이벤트
             _fsm.Current.OnLand();
+            PlayStarDust();
 
             //대쉬 조절
             if (isDash && hInput == 0)
@@ -465,9 +473,11 @@ public class KirbyController : MonoBehaviour
         {
             case SpecialAbility.None:
                 kirbySprite.color = Color.white;
+                kirbyAnimator.runtimeAnimatorController = animController[0];
                 break;
             case SpecialAbility.Beam:
                 kirbySprite.color = new Color(0.9f, 0.85f, 0);
+                kirbyAnimator.runtimeAnimatorController = animController[1];
                 break;
         }
 
@@ -538,6 +548,13 @@ public class KirbyController : MonoBehaviour
             yield return null;
         }
         isStopReadInput = false;
+    }
+
+    public void PlayStarDust()
+    {
+        var star = Instantiate(starDustPrefab);
+        star.transform.position = transform.position + Vector3.forward * -2f;
+        star.GetComponent<ProjectileMovement>().dir = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1, 1f), 0).normalized;
     }
     #endregion
 

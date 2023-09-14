@@ -648,6 +648,7 @@ MonoBehaviour:
   - {fileID: -3444060371671205496, guid: 41360bdf1e1f1445b9d781e918cf16c9, type: 3}
   - {fileID: -3444060371671205496, guid: 41360bdf1e1f1445b9d781e918cf16c9, type: 3}
   - {fileID: 4174143901940742237, guid: 41360bdf1e1f1445b9d781e918cf16c9, type: 3}
+  starDustPrefab: {fileID: 4371344471010586856, guid: 94f735a244f17a34fbe4e8e298958070, type: 3}
   ihObjAbility: 0
   hInput: 0
   vInput: 0
@@ -663,7 +664,7 @@ MonoBehaviour:
   isWallHit: 0
   isCellingHit: 0
   isPlayingAction: 0
-  isStopReadActInput: 0
+  isStopReadInput: 0
   hasInhaledObj: 0
   ability: 0
   lastTimeJumped: 0
