@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DooSpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3924346888964265701, guid: f3350a5b4fbcd481cb870995bb5c4572, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8744703923186832023, guid: f3350a5b4fbcd481cb870995bb5c4572, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.5
@@ -1506,6 +1510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BrontoBurtSpawnPoint2
       objectReference: {fileID: 0}
+    - target: {fileID: 1721615383963745254, guid: 5ea6e667a85ff493b828df285988b63c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2076,6 +2084,10 @@ PrefabInstance:
     - target: {fileID: 4940405574829887955, guid: d0400807b2fb041e19b2b4a7ebd5737f, type: 3}
       propertyPath: m_Name
       value: DeeSpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940405574829887955, guid: d0400807b2fb041e19b2b4a7ebd5737f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17005,6 +17017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DooSpawnPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3924346888964265701, guid: f3350a5b4fbcd481cb870995bb5c4572, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8744703923186832023, guid: f3350a5b4fbcd481cb870995bb5c4572, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.413
@@ -21993,6 +22009,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7769238673439930327, guid: d3da265b49145944c93bf98d0438602d, type: 3}
   m_PrefabInstance: {fileID: 1699481}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1186089852
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577768013584155485, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036067449642100533, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
+      propertyPath: m_Name
+      value: WaddleDoo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93a618bfe0dff5546b5133d173f13e4f, type: 3}
 --- !u!1 &1221943336
 GameObject:
   m_ObjectHideFlags: 0
@@ -22876,6 +22949,10 @@ PrefabInstance:
     - target: {fileID: 4323686790734532267, guid: 5c8eaa5e0e2ba4d548611d907d0d0d83, type: 3}
       propertyPath: m_Name
       value: BrontoBurtSpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323686790734532267, guid: 5c8eaa5e0e2ba4d548611d907d0d0d83, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24162,3 +24239,4 @@ SceneRoots:
   - {fileID: 1391813070}
   - {fileID: 969505723}
   - {fileID: 2080208284}
+  - {fileID: 1186089852}

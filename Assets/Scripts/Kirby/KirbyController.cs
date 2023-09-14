@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor.Animations;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public enum SpecialAbility
@@ -54,6 +55,7 @@ public class KirbyController : MonoBehaviour
     public bool isCellingHit;
     public bool isPlayingAction;
     public bool isStopReadInput;
+    public bool isDamaged;
     public bool hasInhaledObj;
 
     public SpecialAbility ability = SpecialAbility.None;
@@ -91,6 +93,11 @@ public class KirbyController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            StartCoroutine("LowDamaged");
+        }
+
         if (isStopReadInput)
         {
             hInput = 0f;
@@ -136,6 +143,11 @@ public class KirbyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDamaged)
+        {
+            return;
+        }
+
         //커비 방향체크
         if (!lockDir)
         {
@@ -477,7 +489,7 @@ public class KirbyController : MonoBehaviour
                 break;
             case SpecialAbility.Beam:
                 kirbySprite.color = new Color(0.9f, 0.85f, 0);
-                kirbyAnimator.runtimeAnimatorController = animController[1];
+                kirbyAnimator.runtimeAnimatorController = animController[0];
                 break;
         }
 
@@ -557,6 +569,32 @@ public class KirbyController : MonoBehaviour
         star.GetComponent<ProjectileMovement>().dir = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1, 1f), 0).normalized;
     }
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isDamaged && (collision.gameObject.layer == 10 || collision.gameObject.layer == 9))
+        {
+            //damaged
+            StartCoroutine("LowDamaged");
+        }
+    }
+
+    IEnumerator LowDamaged()
+    {
+        var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        var count = 0f;
+        isDamaged = true;
+        currentXVel = 0f;
+        currentYVel = 0f;
+        while (count < 0.4f)
+        {
+            rb.velocity = new Vector2(isRightDir ? -2f : 2f, 0f);
+            count += Time.deltaTime;
+            yield return null;
+        }
+        isDamaged = false;
+        kirbyAnimator.Play(clipName);
+    }
 
 }
 
