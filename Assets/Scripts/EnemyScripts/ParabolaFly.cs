@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor.Experimental.GraphView;
 
 public class ParabolaFly : MonoBehaviour
 {
@@ -12,17 +13,21 @@ public class ParabolaFly : MonoBehaviour
     [SerializeField] private bool isFly = true;
     
     private Vector3 position;
-    private Vector3 localScale;
     private Vector3 direction;
     
     private Transform kirbyTransform;
+
+    private SpriteRenderer _spriteRenderer;
+    
+    [SerializeField] private GameObject dieAnim;
+    
     
     void Start()
     {
         position = transform.position;
-        localScale = transform.localScale;
 
         kirbyTransform = GameObject.FindWithTag("Kirby").transform;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
@@ -40,27 +45,30 @@ public class ParabolaFly : MonoBehaviour
     {
         if (direction.x > 0)
         {
-            localScale.x = 1f;
-            transform.transform.localScale = localScale;
+            _spriteRenderer.flipX = true;
+
             position += transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
         }
         else
         {
-            localScale.x = -1f;
-            transform.transform.localScale = localScale;
+            _spriteRenderer.flipX = false;
+
             position -= transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
         }
     }
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
             
-            // isFly = false;
-            // Destroy(this.gameObject, 0.5f);
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
     }
 }

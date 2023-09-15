@@ -27,12 +27,18 @@ public class WaddleDoo : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    private Animator _animator;
+
+    [SerializeField] private GameObject dieAnim;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _animator = GetComponent<Animator>();
         
         InvokeRepeating("RandomNumber", 0f, 5f);
     }
@@ -42,7 +48,7 @@ public class WaddleDoo : MonoBehaviour
     {
         if (isMove)
         {
-            StartCoroutine("Move");
+            StartCoroutine(Move());
         }
         
         if (!isCharge && randomNumber == 0)
@@ -51,9 +57,9 @@ public class WaddleDoo : MonoBehaviour
             isCharge = true;
             randomNumber = 2;
             
-            StopCoroutine("Move");
+            StopCoroutine(Move());
             
-            StartCoroutine("Charge");
+            StartCoroutine(Charge());
         }
         if (!isJumping && randomNumber == 1)
         {
@@ -63,7 +69,7 @@ public class WaddleDoo : MonoBehaviour
         }
         Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.27f, _layerMask);
         
         if (hit)
         {
@@ -106,11 +112,14 @@ public class WaddleDoo : MonoBehaviour
 
     IEnumerator Charge()
     {
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttack", true);
+        
         yield return new WaitForSeconds(1f);
 
         if (!isAttack)
         {
-            StartCoroutine("Attack");
+            StartCoroutine(Attack());
         }
     }
 
@@ -140,28 +149,18 @@ public class WaddleDoo : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
-
+        _animator.SetBool("isWalk", true);
+        _animator.SetBool("isAttack", false);
+        
         yield return new WaitForSeconds(0.5f);
         
         isMove = true;
         isCharge = false;
         isAttack = false;
-    }
+        
 
-    private void OnEnable()
-    {
-        InvokeRepeating("RandomNumber", 0f, 5f);
     }
-
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-        isMove = true;
-        isJumping = false;
-        isCharge = false;
-        isAttack = false;
-    }
-
+    
     void RandomNumber()
     {
         randomNumber = Random.Range(0, 2);
@@ -170,14 +169,22 @@ public class WaddleDoo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Kirby"))
-        {
-            this.gameObject.SetActive(false);
-        }
-
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Kirby"))
+        {
+            this.gameObject.SetActive(false);
+
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
     }
 }

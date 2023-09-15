@@ -21,7 +21,9 @@ public class KirbySliding : KirbyState
         kc.hitBox.size = new Vector2(0.5f, 0.5f);
         kc.hitBox.offset = new Vector2(kc.isRightDir ? -.25f : .25f, -0.25f);
         kc.atkBox.enabled = true;
-        
+        kc.atkBox.size = new Vector2(0.75f, 0.5f);
+        kc.atkBox.offset = new Vector2(kc.isRightDir ? 0.5f : -0.5f, -0.25f);
+        //kc.atkBox.transform.localPosition = new Vector3()
         kc.kirbyAnimator.Play("Char_Kirby_Sliding");
         kc.currentXVel = slideSpeed * (kc.isRightDir ? 1f : -1f);
     }
@@ -68,6 +70,7 @@ public class KirbySliding : KirbyState
         dustmaker.gameObject.SetActive(false);
         kc.hitBox.size = new Vector2(1f, 1f);
         kc.hitBox.offset = new Vector2(0f, 0f);
+        kc.atkBox.enabled = false;
         kc.lockDir = false;
         slideTimer = 0f;
     }

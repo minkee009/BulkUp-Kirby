@@ -11,12 +11,17 @@ public class BeamAttack : MonoBehaviour
         
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Update is called once per frame
+    void Update()
     {
-        if (collision.gameObject.tag == "Kirby")
-        {
+        
+    }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Kirby")
+        {
+            
         }
     }
 }

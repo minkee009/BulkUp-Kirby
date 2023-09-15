@@ -25,7 +25,7 @@ public class KirbyController : MonoBehaviour
     //ÄÄÆ÷³ÍÆ®
     public BoxCollider2D physBox;
     public BoxCollider2D hitBox;
-    public Collider2D atkBox;
+    public BoxCollider2D atkBox;
     public Rigidbody2D rb;
     public LayerMask groundMask;
     public GameObject abilityStarPrefab;

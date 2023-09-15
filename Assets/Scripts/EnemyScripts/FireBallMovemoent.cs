@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,14 @@ public class FireBallMovemoent : MonoBehaviour
             { 
                 transform.Translate(new Vector2(moveSpeedX * Time.deltaTime, 0));
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Kirby"))
+        {
+            this.gameObject.SetActive(false);
         }
     }
 }
