@@ -65,6 +65,7 @@ public class KirbyIdle : KirbyState
     {
         if (Mathf.Abs(kc.currentXVel) > 0.05f)
         {
+            kc.PlayStarDust();
             if (kc.hasInhaledObj) return;
             kc.PlayCollisionAnimation(2);
         }

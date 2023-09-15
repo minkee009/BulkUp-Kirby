@@ -18,6 +18,10 @@ public class KirbySliding : KirbyState
         dustmaker.transform.localPosition = new Vector3(kc.isRightDir ? -0.5f : 0.5f, -0.5f, 0f);
         dustmaker.dustDir = new Vector3(kc.isRightDir ? -0.3f : 0.3f, 0.05f, 0f);
         kc.lockDir = true;
+        kc.hitBox.size = new Vector2(0.5f, 0.5f);
+        kc.hitBox.offset = new Vector2(kc.isRightDir ? -.25f : .25f, -0.25f);
+        kc.atkBox.enabled = true;
+        
         kc.kirbyAnimator.Play("Char_Kirby_Sliding");
         kc.currentXVel = slideSpeed * (kc.isRightDir ? 1f : -1f);
     }
@@ -27,6 +31,7 @@ public class KirbySliding : KirbyState
         if (kc.CheckWallhit(kc.isRightDir))
         {
             kc.PlayCollisionAnimation(2);
+            kc.PlayStarDust();
             kc.currentXVel = 0f;
             kc.GetFSM.SwitchState("Idle");
             return;
@@ -55,11 +60,14 @@ public class KirbySliding : KirbyState
         slideTimer += Time.deltaTime; 
         var minus = kc.currentXVel > 0 ? 1 : -1;
         kc.currentXVel = minus * Mathf.Max(0f, Mathf.Abs(kc.currentXVel) - friction * Time.deltaTime);
+        
     }
 
     public override void Exit()
     {
         dustmaker.gameObject.SetActive(false);
+        kc.hitBox.size = new Vector2(1f, 1f);
+        kc.hitBox.offset = new Vector2(0f, 0f);
         kc.lockDir = false;
         slideTimer = 0f;
     }

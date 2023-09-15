@@ -25,6 +25,7 @@ public class KirbyController : MonoBehaviour
     //컴포넌트
     public BoxCollider2D physBox;
     public BoxCollider2D hitBox;
+    public Collider2D atkBox;
     public Rigidbody2D rb;
     public LayerMask groundMask;
     public GameObject abilityStarPrefab;
@@ -49,14 +50,19 @@ public class KirbyController : MonoBehaviour
     //공용 상태
     public bool isGrounded;
     public bool isDash;
+    public bool isInvincibility; //작업 필요
+    public bool hasInhaledObj;
+
     public bool isRightDir;
+    public bool isPlayingAction;
+
     public bool isPlayingColHItAnim;
     public bool isWallHit;
     public bool isCellingHit;
-    public bool isPlayingAction;
+
     public bool isStopReadInput;
-    public bool isDamaged;
-    public bool hasInhaledObj;
+    public bool isStopExcuteFSM;
+
 
     public SpecialAbility ability = SpecialAbility.None;
 
@@ -93,10 +99,10 @@ public class KirbyController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            StartCoroutine("LowDamaged");
-        }
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    StartCoroutine("LowDamaged");
+        //}
 
         if (isStopReadInput)
         {
@@ -143,7 +149,7 @@ public class KirbyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDamaged)
+        if (isStopExcuteFSM)
         {
             return;
         }
@@ -197,7 +203,6 @@ public class KirbyController : MonoBehaviour
             if (!wasWallHit)
             {
                 _fsm.Current.OnWallHit();
-                PlayStarDust();
                 currentXVel = 0f;
             }
         }
@@ -210,7 +215,6 @@ public class KirbyController : MonoBehaviour
             if (!wasCellingHit)
             {
                 _fsm.Current.OnCellingHit();
-                PlayStarDust();
             }
         }
 
@@ -221,8 +225,7 @@ public class KirbyController : MonoBehaviour
         {
             //착지 이벤트
             _fsm.Current.OnLand();
-            PlayStarDust();
-
+            
             //대쉬 조절
             if (isDash && hInput == 0)
             {
@@ -455,7 +458,10 @@ public class KirbyController : MonoBehaviour
         switch (ability)
         {
             case SpecialAbility.Fire:
-                stopInputTime = 3f;
+                stopInputTime = 0.4f;
+                break;
+            case SpecialAbility.Beam:
+                stopInputTime = 0.6f;
                 break;
         }
 
@@ -570,20 +576,24 @@ public class KirbyController : MonoBehaviour
     }
     #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!isDamaged && (collision.gameObject.layer == 10 || collision.gameObject.layer == 9))
-        {
-            //damaged
-            StartCoroutine("LowDamaged");
-        }
-    }
-
     IEnumerator LowDamaged()
     {
         var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         var count = 0f;
-        isDamaged = true;
+        if(ability != SpecialAbility.None)
+        {
+            CreateAbilityStar();
+            ability = SpecialAbility.None;
+            ChangeKirbySprite();
+        }
+        if (isPlayingAction)
+        {
+            _fsm.SwitchState("Idle");
+        }
+        hitBox.enabled = false;
+        kirbyAnimator.Play("Char_Kirby_Hurt_nomal");
+        isStopExcuteFSM = true;
+        isStopReadInput = true;
         currentXVel = 0f;
         currentYVel = 0f;
         while (count < 0.4f)
@@ -592,7 +602,9 @@ public class KirbyController : MonoBehaviour
             count += Time.deltaTime;
             yield return null;
         }
-        isDamaged = false;
+        isStopExcuteFSM = false;
+        isStopReadInput = false;
+        hitBox.enabled = true;
         kirbyAnimator.Play(clipName);
     }
 

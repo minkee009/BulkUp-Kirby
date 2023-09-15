@@ -401,6 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 198974308332534084}
   - component: {fileID: 3739446367764696362}
+  - component: {fileID: 4661771655629825578}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Kirby
@@ -468,6 +469,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4661771655629825578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6182059359566560978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137bf75f102219840b74e4c5a337e96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kc: {fileID: 7540628809314787159}
 --- !u!1 &6508394302652772529
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50e1b051403e754192e361a26f72e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animController: []
   physBox: {fileID: 8214916752687541500}
   hitBox: {fileID: 3739446367764696362}
   rb: {fileID: 8315577677803515875}
@@ -659,13 +674,15 @@ MonoBehaviour:
   selectInput: 0
   isGrounded: 0
   isDash: 0
+  isInvincibility: 0
+  hasInhaledObj: 0
   isRightDir: 1
+  isPlayingAction: 0
   isPlayingColHItAnim: 0
   isWallHit: 0
   isCellingHit: 0
-  isPlayingAction: 0
   isStopReadInput: 0
-  hasInhaledObj: 0
+  isStopExcuteFSM: 0
   ability: 0
   lastTimeJumped: 0
   lockDir: 0

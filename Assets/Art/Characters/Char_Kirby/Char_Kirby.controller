@@ -387,13 +387,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: KurbyState
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -771,7 +771,7 @@ AnimatorStateMachine:
     m_Position: {x: 745, y: 585, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4313379750903057728}
-    m_Position: {x: 790, y: 260, z: 0}
+    m_Position: {x: 800, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6637469786212352432}
     m_Position: {x: 570, y: 260, z: 0}
