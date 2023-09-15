@@ -201,27 +201,28 @@ public class HotHead : MonoBehaviour
         _animator.SetBool("isWalk", false);
         _animator.SetBool("isAttackReady", false);
         _animator.SetBool("isAttack", true);
-        
+
         GameObject fireBallSpawn = Instantiate(this.fireBallAttack);
         fireBallSpawn.transform.position = transform.position;
         fireBallSpawn.SetActive(true);
-        
+
         Destroy(fireBallSpawn, 5f);
-        
+
         yield return new WaitForSeconds(1.1f);
 
         ismove = true;
         _animator.SetBool("isWalk", true);
         _animator.SetBool("isAttackReady", false);
         _animator.SetBool("isAttack", false);
-        
+
         if (isLeftMove == true && this.transform.position.x < kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
             rayDirection *= -1;
-            
+
             _spriteRenderer.flipX = true;
         }
+
         if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
         {
             moveSpeed *= -1;
@@ -229,15 +230,13 @@ public class HotHead : MonoBehaviour
 
             _spriteRenderer.flipX = false;
         }
-        
-        yield return new WaitForSeconds(4f);
-        
-        isAttack = false;
-        
 
+        yield return new WaitForSeconds(4f);
+
+        isAttack = false;
     }
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
@@ -247,6 +246,6 @@ public class HotHead : MonoBehaviour
             die.transform.position = transform.position;
             
             Destroy(die, 0.5f);
-        }    
+        }
     }
 }

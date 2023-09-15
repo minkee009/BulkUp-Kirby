@@ -62,7 +62,7 @@ public class WaddleDee : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
@@ -72,6 +72,6 @@ public class WaddleDee : MonoBehaviour
             die.transform.position = transform.position;
             
             Destroy(die,0.5f);
-        }    
+        }
     }
 }

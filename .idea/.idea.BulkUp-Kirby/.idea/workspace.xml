@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b4721b25-c89c-4bd7-91ff-5ccf90b857fc" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.aseprite" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.aseprite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Kirby/Char_Kirby.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.aseprite" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.aseprite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/DiagonalFly.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/DiagonalFly.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" afterDir="false" />
@@ -135,7 +143,7 @@
       <workItem from="1694683111396" duration="4000" />
       <workItem from="1694683177058" duration="6859000" />
       <workItem from="1694698094329" duration="1819000" />
-      <workItem from="1694743196433" duration="2820000" />
+      <workItem from="1694743196433" duration="4334000" />
     </task>
     <servers />
   </component>
