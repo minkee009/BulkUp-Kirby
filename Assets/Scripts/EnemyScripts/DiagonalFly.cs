@@ -49,8 +49,8 @@ public class DiagonalFly : MonoBehaviour
             this.transform.Translate(new Vector2(moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime));
         }
     }
-    
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Kirby")
         {

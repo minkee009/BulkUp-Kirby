@@ -169,6 +169,14 @@ public class WaddleDoo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.CompareTag("Kirby"))
         {
             this.gameObject.SetActive(false);
@@ -177,11 +185,6 @@ public class WaddleDoo : MonoBehaviour
             die.transform.position = transform.position;
             
             Destroy(die, 0.5f);
-        }
-
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = false;
         }
     }
 }

@@ -46,7 +46,7 @@ public class ParabolaFly : MonoBehaviour
         if (direction.x > 0)
         {
             _spriteRenderer.flipX = true;
-            
+
             position += transform.right * Time.deltaTime * speed;
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
         }
@@ -58,7 +58,8 @@ public class ParabolaFly : MonoBehaviour
             transform.position = position + transform.up * Mathf.Sin(Time.time * frequency) * waveHeight;
         }
     }
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Kirby")
         {

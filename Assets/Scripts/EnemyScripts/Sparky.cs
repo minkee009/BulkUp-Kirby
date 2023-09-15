@@ -166,6 +166,14 @@ public class Sparky : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.CompareTag("Kirby"))
         {
             this.gameObject.SetActive(false);
@@ -174,10 +182,6 @@ public class Sparky : MonoBehaviour
             die.transform.position = transform.position;
             
             Destroy(die, 0.5f);
-        }
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = false;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -236,7 +237,7 @@ public class HotHead : MonoBehaviour
 
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Kirby")
         {
@@ -246,6 +247,6 @@ public class HotHead : MonoBehaviour
             die.transform.position = transform.position;
             
             Destroy(die, 0.5f);
-        }
+        }    
     }
 }
