@@ -430,11 +430,6 @@ public class KirbyController : MonoBehaviour
         kirbySprite.enabled = true;
     }
 
-    public void PlayMorpingAction()
-    {
-        StartCoroutine("PlayMorpAct");
-    }
-
     //변신공격
     IEnumerator PlayMorpAct()
     {
@@ -476,7 +471,7 @@ public class KirbyController : MonoBehaviour
         if (ihObjAbility != SpecialAbility.None)
         {
             ability = ihObjAbility;
-            PlayMorpingAction();
+            StartCoroutine("PlayMorpAct");
         }
         else
         {
@@ -490,11 +485,9 @@ public class KirbyController : MonoBehaviour
         switch (ability)
         {
             case SpecialAbility.None:
-                kirbySprite.color = Color.white;
                 kirbyAnimator.runtimeAnimatorController = animController[0];
                 break;
             case SpecialAbility.Beam:
-                kirbySprite.color = new Color(0.9f, 0.85f, 0);
                 kirbyAnimator.runtimeAnimatorController = animController[0];
                 break;
         }
@@ -556,7 +549,7 @@ public class KirbyController : MonoBehaviour
         spritePivot.localPosition = new Vector3(0f, spritePivot.localPosition.y, spritePivot.localPosition.z);
     }
 
-    public IEnumerator StopReadInput(float time)
+    IEnumerator StopReadInput(float time)
     {
         var count = 0f;
         isStopReadInput = true;
@@ -574,13 +567,12 @@ public class KirbyController : MonoBehaviour
         star.transform.position = transform.position + Vector3.forward * -2f;
         star.GetComponent<ProjectileMovement>().dir = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1, 1f), 0).normalized;
     }
-    #endregion
 
     IEnumerator LowDamaged()
     {
         var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         var count = 0f;
-        if(ability != SpecialAbility.None)
+        if (ability != SpecialAbility.None)
         {
             CreateAbilityStar();
             ability = SpecialAbility.None;
@@ -602,11 +594,31 @@ public class KirbyController : MonoBehaviour
             count += Time.deltaTime;
             yield return null;
         }
+        StartCoroutine("Invincible");
         isStopExcuteFSM = false;
         isStopReadInput = false;
         hitBox.enabled = true;
         kirbyAnimator.Play(clipName);
     }
+
+    IEnumerator Invincible()
+    {
+        isInvincibility = true;
+        var timer = 0f;
+        var colorTime = 0f;
+        while (timer < 2f)
+        {
+            timer += Time.deltaTime;
+            colorTime += 18f * Time.deltaTime;
+            kirbySprite.color = Color.Lerp(new Color(1f, 0.85f, 0.5f),Color.yellow, Mathf.Sin(colorTime));
+            yield return null;
+        }
+        kirbySprite.color = Color.white;
+        isInvincibility = false;
+    }
+    #endregion
+
+
 
 }
 
