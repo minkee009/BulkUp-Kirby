@@ -1256,6 +1256,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Beam_01_0
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea4f15c4e5384e50800000000000000
+      internalID: 6793739294564371172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_01_1
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec8574e26b6cc1c0800000000000000
+      internalID: -4482089456656610066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1275,6 +1317,8 @@ TextureImporter:
       Action_Spark_5: 5156285259851423190
       Action_Spark_6: -3094669072976969772
       Action_Spark_7: 4725182729699604344
+      Beam_01_0: 6793739294564371172
+      Beam_01_1: -4482089456656610066
       DashDust_0: -3449224224396418948
       DashDust_1: 1458828261856180565
       Exhale_0: -1473158758726919047
