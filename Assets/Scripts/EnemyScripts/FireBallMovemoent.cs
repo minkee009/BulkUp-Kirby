@@ -14,6 +14,8 @@ public class FireBallMovemoent : MonoBehaviour
     private Vector2 direction;
 
     private Rigidbody2D _rigidbody2D;
+
+    private SpriteRenderer _spriteRenderer;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,19 @@ public class FireBallMovemoent : MonoBehaviour
         direction.Normalize();
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        if (this.transform.position.x < kirbyTransform.transform.position.x)
+        {
+
+            _spriteRenderer.flipX = true;
+        }
+
+        if (this.transform.position.x > kirbyTransform.transform.position.x)
+        {
+            _spriteRenderer.flipX = false;
+        }
     }
 
     // Update is called once per frame
@@ -59,6 +74,7 @@ public class FireBallMovemoent : MonoBehaviour
                 transform.Translate(new Vector2(moveSpeedX * Time.deltaTime, 0));
             }
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpDistance: 1.5
-  lowJumpPower: 5
+  lowJumpPower: 3
   highJumpPower: 5
   detectionRange: 3.5
   isMove: 1

@@ -15,7 +15,8 @@ public class Sparky : MonoBehaviour
     
     [SerializeField] private bool isMove = true;
     [SerializeField] private bool isJumping = false;
-    [SerializeField] private bool isAttack = false; 
+    [SerializeField] private bool isAttack = false;
+    [SerializeField] private bool isIdle = false;
     
     private float distanceToKirby;
     
@@ -71,16 +72,18 @@ public class Sparky : MonoBehaviour
         {
             isMove = false;
 
-            StartCoroutine(Charge());
+            StartCoroutine(Attack());
         }
 
 
         if (isJumping)
         {
-            _animator.SetBool("Idle", false);
-            _animator.SetBool("isWalk", true);
-            _animator.SetBool("isAttacking", false);
-            _animator.SetBool("isAttackVFX", false);
+            if (!isIdle)
+            {
+                _animator.SetBool("Idle", false);
+                _animator.SetBool("isWalk", true);
+                _animator.SetBool("isAttacking", false);
+            }
         }
         
         Debug.DrawRay(transform.position, rayDirection);
@@ -89,10 +92,12 @@ public class Sparky : MonoBehaviour
 
         if (hit)
         {
-            _animator.SetBool("Idle", true);
-            _animator.SetBool("isWalk", false);
-            _animator.SetBool("isAttacking", false);
-            _animator.SetBool("isAttackVFX", false);
+            if (!isIdle)
+            {
+                _animator.SetBool("Idle", true);
+                _animator.SetBool("isWalk", false);
+                _animator.SetBool("isAttacking", false);
+            }
         }
 
     }
@@ -124,39 +129,34 @@ public class Sparky : MonoBehaviour
         }
     }
 
-    IEnumerator Charge()
+    IEnumerator Attack()
     {
-        isAttack = true;
-        
-        _animator.SetBool("Idle", false);
-        _animator.SetBool("isWalk", false);
-        _animator.SetBool("isAttacking", true);
-        _animator.SetBool("isAttackVFX", false);
-        
-        yield return new WaitForSeconds(1f);
+        if (!isAttack)
+        {
+            isIdle = true;
+            
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("isWalk", false);
+            _animator.SetBool("isAttacking", true);
+            
+            isAttack = true;
 
-        attackObject.SetActive(true);
-        
-        _animator.SetBool("Idle", false);
-        _animator.SetBool("isWalk", false);
-        _animator.SetBool("isAttacking", false);
-        _animator.SetBool("isAttackVFX", true);
-        
-        yield return new WaitForSeconds(2f);
-        
-        attackObject.SetActive((false));
+            yield return new WaitForSeconds(1f);
 
-        isMove = true;
-        
-        _animator.SetBool("Idle", true);
-        _animator.SetBool("isWalk", false);
-        _animator.SetBool("isAttacking", false);
-        _animator.SetBool("isAttackVFX", false);
-        
-        
-        yield return new WaitForSeconds(3f);
+            attackObject.SetActive(true);
 
-        isAttack = false;
+            yield return new WaitForSeconds(2f);
+
+            attackObject.SetActive((false));
+
+            isMove = true;
+            isIdle = false;
+            
+            yield return new WaitForSeconds(3f);
+
+            isAttack = false;
+        }
+
     }
 
     void RandomJumpPower()

@@ -22,7 +22,7 @@ public class BossScript : MonoBehaviour
 
     private Vector2 direction;
 
-    private float jumpDistance = -3;
+    private float jumpDistance = -2;
     
     private enum State
     {
@@ -42,7 +42,7 @@ public class BossScript : MonoBehaviour
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
         
-        // InvokeRepeating("RandomNumber", 0f, 10f);
+        InvokeRepeating("RandomNumber", 0f, 5f);
     }
 
     // Update is called once per frame
@@ -54,18 +54,25 @@ public class BossScript : MonoBehaviour
         if (randomNumber == 0)
         {
             _state = State.Idle;
+            randomNumber = 4;
         }
-        else if (randomNumber == 1)
+        if (randomNumber == 1)
         {
             _state = State.Jump;
+            randomNumber = 4;
+
         }
-        else if (randomNumber == 2)
+        if (randomNumber == 2)
         {
             _state = State.FallDumbbell;
+            randomNumber = 4;
+
         }
-        else
+        if(randomNumber == 3)
         {
             _state = State.ThrowDumbbell;
+            randomNumber = 4;
+
         }
 
         switch (_state)
@@ -87,54 +94,53 @@ public class BossScript : MonoBehaviour
 
     IEnumerator Idle()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (!isJumping)
             {
                 isJumping = true;
-                _rigidbody2D.velocity = new Vector2(jumpDistance, 3f);
+                _rigidbody2D.velocity = new Vector2(jumpDistance, 4f);
                 
                 jumpDistance *= -1;
             }
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
-        Invoke("RandomNumber", 0f);
     }
 
     IEnumerator Jump()
     {
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(1f);
         
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (!isJumping)
             {
                 isJumping = true;
-                _rigidbody2D.velocity = new Vector2(0, 9f);
+                _rigidbody2D.velocity = new Vector2(0, 8f);
+                
             }
             else
             {
                 yield return null;
             }
+            yield return new WaitForSeconds(1f);
+
         }
-        // _state = State.Idle;
         yield return new WaitForSeconds(3f);
 
-        Invoke("RandomNumber", 0f);
     }
 
     IEnumerator FallDumbbell()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (!isAttack)
         {
             isAttack = true;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(1f);
 
@@ -144,19 +150,18 @@ public class BossScript : MonoBehaviour
                 Destroy(fall, 3f);
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
 
             // _state = State.Idle;
 
             isAttack = false;
             
-            Invoke("RandomNumber", 0f);
         }
     }
 
     IEnumerator ThrowDumbbel()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         
         if (!isAttack)
         {
@@ -169,7 +174,7 @@ public class BossScript : MonoBehaviour
                 GameObject wave = Instantiate(throwDumbbell);
                 wave.transform.position = transform.position;
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
         
             // _state = State.Idle;
 
