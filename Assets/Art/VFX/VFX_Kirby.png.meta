@@ -294,8 +294,8 @@ TextureImporter:
       name: Inhale_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 512
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: Inhale_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 576
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -336,8 +336,8 @@ TextureImporter:
       name: Inhale_8
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 640
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -357,8 +357,8 @@ TextureImporter:
       name: Inhale_9
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 704
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -378,8 +378,8 @@ TextureImporter:
       name: Inhale_10
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
+        x: 768
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -399,8 +399,8 @@ TextureImporter:
       name: Inhale_11
       rect:
         serializedVersion: 2
-        x: 320
-        y: 64
+        x: 832
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -420,8 +420,8 @@ TextureImporter:
       name: Inhale_12
       rect:
         serializedVersion: 2
-        x: 384
-        y: 64
+        x: 896
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -441,8 +441,8 @@ TextureImporter:
       name: Inhale_13
       rect:
         serializedVersion: 2
-        x: 448
-        y: 64
+        x: 960
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -463,7 +463,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -484,7 +484,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -505,7 +505,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -526,7 +526,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -547,7 +547,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -568,7 +568,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -589,7 +589,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -610,7 +610,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -630,8 +630,8 @@ TextureImporter:
       name: Inhale_22
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 512
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -651,8 +651,8 @@ TextureImporter:
       name: Inhale_23
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 576
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -672,8 +672,8 @@ TextureImporter:
       name: Inhale_24
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 640
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -693,8 +693,8 @@ TextureImporter:
       name: Exhale_0
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 704
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -714,8 +714,8 @@ TextureImporter:
       name: Star_Blink_0
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 768
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -735,8 +735,8 @@ TextureImporter:
       name: Star_Blink_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 192
+        x: 832
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -756,8 +756,8 @@ TextureImporter:
       name: Star_Blink_2
       rect:
         serializedVersion: 2
-        x: 384
-        y: 192
+        x: 896
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -777,8 +777,8 @@ TextureImporter:
       name: Star_Blink_3
       rect:
         serializedVersion: 2
-        x: 448
-        y: 192
+        x: 960
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -799,7 +799,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -820,7 +820,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -841,7 +841,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -862,7 +862,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -883,7 +883,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -904,7 +904,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -925,7 +925,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -946,7 +946,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -966,8 +966,8 @@ TextureImporter:
       name: FireRadiation_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
+        x: 512
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -987,8 +987,8 @@ TextureImporter:
       name: FireRadiation_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 320
+        x: 576
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1008,8 +1008,8 @@ TextureImporter:
       name: FireRadiation_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 320
+        x: 640
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1029,8 +1029,8 @@ TextureImporter:
       name: FireRadiation_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 320
+        x: 704
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1050,8 +1050,8 @@ TextureImporter:
       name: FireRadiation_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 320
+        x: 768
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1071,8 +1071,8 @@ TextureImporter:
       name: FireRadiation_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
+        x: 832
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1092,8 +1092,8 @@ TextureImporter:
       name: FireRadiation_6
       rect:
         serializedVersion: 2
-        x: 384
-        y: 320
+        x: 896
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1113,8 +1113,8 @@ TextureImporter:
       name: FireRadiation_7
       rect:
         serializedVersion: 2
-        x: 448
-        y: 320
+        x: 960
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -1135,7 +1135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1156,7 +1156,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1177,7 +1177,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1198,7 +1198,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1219,7 +1219,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1240,7 +1240,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1261,7 +1261,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1282,7 +1282,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
-        y: 384
+        y: 192
         width: 64
         height: 64
       alignment: 9
@@ -1294,6 +1294,111 @@ TextureImporter:
       bones: []
       spriteID: eec8574e26b6cc1c0800000000000000
       internalID: -4482089456656610066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_0
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ea4506d4ed102350800000000000000
+      internalID: 5989820373083179744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f663dc0f4eb368ef0800000000000000
+      internalID: -106331686718065041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efaf7f6fda323e8c0800000000000000
+      internalID: -3971291216330884354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_3
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a988a4dde1d37910800000000000000
+      internalID: 1834040292675193255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cf557fb4c5a77d00800000000000000
+      internalID: 970426509165944771
       vertices: []
       indices: 
       edges: []
@@ -1319,6 +1424,11 @@ TextureImporter:
       Action_Spark_7: 4725182729699604344
       Beam_01_0: 6793739294564371172
       Beam_01_1: -4482089456656610066
+      Beam_02_0: 5989820373083179744
+      Beam_02_1: -106331686718065041
+      Beam_02_2: -3971291216330884354
+      Beam_02_3: 1834040292675193255
+      Beam_02_4: 970426509165944771
       DashDust_0: -3449224224396418948
       DashDust_1: 1458828261856180565
       Exhale_0: -1473158758726919047
