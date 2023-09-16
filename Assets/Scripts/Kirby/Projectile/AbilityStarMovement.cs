@@ -24,6 +24,7 @@ public class AbilityStarMovement : MonoBehaviour
         anim.Play("VFX_Kirby_Star_Blink");
         currentXVel = minus * 1.5f;
         currentYVel = -3f;
+        Destroy(this, 8f);
     }
 
     private void FixedUpdate()

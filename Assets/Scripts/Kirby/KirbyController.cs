@@ -33,8 +33,9 @@ public class KirbyController : MonoBehaviour
     public Animator kirbyAnimator;
     public SpriteRenderer kirbySprite;
     public SpriteRenderer colhitSprite;
-    public Sprite[] colhitDirSprite; //[0] : 바닥, [1] : 천장, [2] : 오른쪽,왼쪽
-    public GameObject starDustPrefab; 
+    public Sprite[] colhitDirSprite;
+    public GameObject starDustPrefab;
+    public GameObject morphFX;
 
     public SpecialAbility ihObjAbility;
 
@@ -79,7 +80,8 @@ public class KirbyController : MonoBehaviour
     public int dashInput;
     public float validDashInputTimer;
 
-    Coroutine collisionAnimCoroutine;
+    Coroutine _collisionAnimCoroutine;
+    GameObject _createdAbilityStar;
 
     //debug
     public TMPro.TMP_Text stateMSG;
@@ -149,6 +151,7 @@ public class KirbyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        print((int)ability);
         if (isStopExcuteFSM)
         {
             return;
@@ -173,8 +176,10 @@ public class KirbyController : MonoBehaviour
             // ability star 생성 함수 실행
             CreateAbilityStar();
             // 색 원래대로 (기본으로 돌아가는 기능만들기)
+            var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             ability = SpecialAbility.None;
             ChangeKirbySprite();
+            kirbyAnimator.Play(clipName);
         }
 
         //액션 키 실행
@@ -258,6 +263,12 @@ public class KirbyController : MonoBehaviour
         starMove.Initialize();
         currentInstance.GetComponent<InhaleableObj>().ability = ability;
         currentInstance.transform.position = transform.position;
+
+        if (_createdAbilityStar != null)
+        {
+            Destroy(_createdAbilityStar);
+        }
+        _createdAbilityStar = currentInstance;
     }
 
     #region 체킹용 함수
@@ -386,14 +397,14 @@ public class KirbyController : MonoBehaviour
     {
         if (!isPlayingColHItAnim)
         {
-            collisionAnimCoroutine = StartCoroutine("PlayColAnim",dirNum);
+            _collisionAnimCoroutine = StartCoroutine("PlayColAnim",dirNum);
         }
     }
 
     public void ForceStopCollisionAnimation()
     {
-        if (collisionAnimCoroutine != null)
-            StopCoroutine(collisionAnimCoroutine);
+        if (_collisionAnimCoroutine != null)
+            StopCoroutine(_collisionAnimCoroutine);
         isPlayingColHItAnim = false;
         colhitSprite.enabled = false;
         kirbySprite.enabled = true;
@@ -408,15 +419,15 @@ public class KirbyController : MonoBehaviour
         switch (dirNum)
         {
             case 0:
-                colhitSprite.sprite = colhitDirSprite[0];
+                colhitSprite.sprite = colhitDirSprite[0 + (int)ability * 2];
                 colhitSprite.transform.localPosition = new Vector3(0, -0.5f, 0);
                 break;
             case 1:
-                colhitSprite.sprite = colhitDirSprite[1];
+                colhitSprite.sprite = colhitDirSprite[0 + (int)ability * 2];
                 colhitSprite.transform.localPosition = Vector3.zero;
                 break;
             case 2:
-                colhitSprite.sprite = colhitDirSprite[2];
+                colhitSprite.sprite = colhitDirSprite[1 + (int)ability * 2];
                 colhitSprite.transform.localPosition = new Vector3(isRightDir ? 0.25f : -0.25f, -0.5f, 0f);
                 break;
         }
@@ -433,14 +444,15 @@ public class KirbyController : MonoBehaviour
     //변신공격
     IEnumerator PlayMorpAct()
     {
+        StopInvincible();
         isPlayingAction = true;
         hitBox.enabled = false;
-
+       
         yield return new WaitForSeconds(0.15f);
-
-        kirbyAnimator.Play("Char_Kirby_Jumping");
+        morphFX.SetActive(true);
         PlayReactionYdir();
         ChangeKirbySprite();
+        kirbyAnimator.Play("Char_Kirby_Jumping");
 
         yield return new WaitForSeconds(0.3f);
 
@@ -452,15 +464,19 @@ public class KirbyController : MonoBehaviour
         //언제까지 무적,키씹힘 인지 지정해줘야함
         switch (ability)
         {
-            case SpecialAbility.Fire:
-                stopInputTime = 0.4f;
-                break;
             case SpecialAbility.Beam:
+                //stopInputTime = 0.6f;
+                //break;
+            case SpecialAbility.Fire:
+                //stopInputTime = 0.6f;
+                //break;
+            case SpecialAbility.Spark:
                 stopInputTime = 0.6f;
                 break;
         }
 
         yield return new WaitForSeconds(stopInputTime);
+        morphFX.SetActive(false);
         hitBox.enabled = true;
         isStopReadInput = false;
     }
@@ -488,11 +504,17 @@ public class KirbyController : MonoBehaviour
                 kirbyAnimator.runtimeAnimatorController = animController[0];
                 break;
             case SpecialAbility.Beam:
-                kirbyAnimator.runtimeAnimatorController = animController[0];
+                kirbyAnimator.runtimeAnimatorController = animController[1];
+                break;
+            case SpecialAbility.Spark:
+                kirbyAnimator.runtimeAnimatorController = animController[2];
+                break;
+            case SpecialAbility.Fire:
+                kirbyAnimator.runtimeAnimatorController = animController[3];
                 break;
         }
 
-        colhitSprite.color = kirbySprite.color;
+        //colhitSprite.color = kirbySprite.color;
     }
 
     public void PlayAbilityAction()
@@ -505,6 +527,12 @@ public class KirbyController : MonoBehaviour
                 break;
             case SpecialAbility.Beam:
                 stateString = "Beam";
+                break;
+            case SpecialAbility.Fire:
+                stateString = "Fire";
+                break;
+            case SpecialAbility.Spark:
+                stateString = "Spark";
                 break;
         }
         _fsm.SwitchState(stateString);
@@ -613,6 +641,13 @@ public class KirbyController : MonoBehaviour
             kirbySprite.color = Color.Lerp(new Color(1f, 0.85f, 0.5f),Color.yellow, Mathf.Sin(colorTime));
             yield return null;
         }
+        kirbySprite.color = Color.white;
+        isInvincibility = false;
+    }
+
+    public void StopInvincible()
+    {
+        StopCoroutine("Invicible");
         kirbySprite.color = Color.white;
         isInvincibility = false;
     }

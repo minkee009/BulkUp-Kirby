@@ -36,7 +36,7 @@ public class Gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckHp();
+        
     }
 
     public void Damaged(int damageAmount)
@@ -44,6 +44,7 @@ public class Gamemanager : MonoBehaviour
         if(currentHpPoint > 0)
         {
             currentHpPoint -= damageAmount;
+            CheckHp();
             Debug.Log("-1");
 
             if(currentHpPoint <= 0)

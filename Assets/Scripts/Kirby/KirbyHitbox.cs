@@ -13,6 +13,7 @@ public class KirbyHitbox : MonoBehaviour
             && (collision.gameObject.layer == 10 || collision.gameObject.layer == 9))
         {
             //damaged
+            Gamemanager.instance.Damaged(1);
             kc.isRightDir = (collision.transform.position.x - transform.position.x) > 0 ? true : false;
             kc.StartCoroutine("LowDamaged");
         }

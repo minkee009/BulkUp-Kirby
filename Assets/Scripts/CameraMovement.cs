@@ -25,6 +25,8 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (Center == null) return;
+
         targetPos = PlayerTransform.position + CameraPos;
         targetPos.x = Mathf.Clamp(targetPos.x, -MapX + Center.position.x, MapX + Center.position.x);
         targetPos.y = Mathf.Clamp(targetPos.y, -MapY + Center.position.y, MapY + Center.position.y);
