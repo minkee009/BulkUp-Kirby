@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4275681876045895078}
   - component: {fileID: 849173172029487767}
   - component: {fileID: 4536466474432561636}
-  m_Layer: 0
+  - component: {fileID: 2965506481440864975}
+  m_Layer: 9
   m_Name: FallDumdbell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.3431416, y: 2.2115583, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -134,18 +135,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017, y: 0}
+  m_Offset: {x: -0.030255258, y: -0.010604262}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.69, y: 0.41}
+  m_Size: {x: 1.2679306, y: 0.7175224}
   m_EdgeRadius: 0
 --- !u!50 &4536466474432561636
 Rigidbody2D:
@@ -174,3 +175,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2965506481440864975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3238768325267673623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: 0
+  isItem: 0
+  inhaleSprite: {fileID: 0}

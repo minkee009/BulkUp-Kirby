@@ -232,7 +232,9 @@ public class HotHead : MonoBehaviour
             
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;
-            
+
+            Gamemanager.instance.IncreaseScore(40);
+
             Destroy(die, 0.5f);
         }
     }

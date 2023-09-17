@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class KirbyState : MonoBehaviour, KirbyFSM<string, KirbyState>.IFSMState

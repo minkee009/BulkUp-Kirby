@@ -9,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class BossScript : MonoBehaviour
 {
-    private float _bossHp { get; set; } = 7;
+    [SerializeField] private float _bossHp = 7;
 
     private bool isJumping = false;
     private bool isAttack = false;
@@ -33,20 +33,27 @@ public class BossScript : MonoBehaviour
 
     private Animator _animator;
 
+    [SerializeField] private GameObject dieAnim;
+
     
     // Start is called before the first frame update
     void Start()
     {
-        kirbyTransform = GameObject.FindWithTag("Kirby").transform;
-
         _rigidbody2D = GetComponent<Rigidbody2D>();
-
         _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(kirbyTransform == null)
+        {
+            kirbyTransform = Gamemanager.instance.kirbyController?.transform;
+        }
+        else
+        {
+            return;
+        }
         direction = kirbyTransform.transform.position - transform.position;
         direction.Normalize();
 
@@ -73,6 +80,15 @@ public class BossScript : MonoBehaviour
         
         Debug.DrawRay(transform.position, Vector2.down);
 
+        if (_bossHp == 0)
+        {
+            this.gameObject.SetActive(false);
+            
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 1f);
+        }
 
     }
 
@@ -95,7 +111,6 @@ public class BossScript : MonoBehaviour
         {
             if (!isJumping)
             {
-                _animator.SetBool("isJump", true);
                 
                 isJumping = true;
                 _rigidbody2D.velocity = new Vector2(0, 8f);
@@ -114,7 +129,6 @@ public class BossScript : MonoBehaviour
                         dumbbellTransformX += 3.5f;
                     }
                 }
-                _animator.SetBool("isJump", false);
 
             }
             yield return new WaitForSeconds(1f);
@@ -178,7 +192,7 @@ public class BossScript : MonoBehaviour
     void RandomNumber()
     {
         randomNumber = Random.Range(0, 4);
-        Debug.Log("random");
+        Debug.Log(randomNumber);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -186,6 +200,14 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Kirby"))
+        {
+            _bossHp--;
         }
     }
 }
