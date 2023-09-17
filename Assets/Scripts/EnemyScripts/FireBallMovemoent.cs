@@ -28,7 +28,7 @@ public class FireBallMovemoent : MonoBehaviour
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         
         if (this.transform.position.x < kirbyTransform.transform.position.x)
         {

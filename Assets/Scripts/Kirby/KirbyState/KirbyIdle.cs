@@ -12,9 +12,14 @@ public class KirbyIdle : KirbyState
     public float acceleration = 24f;
     public float moveSpeed = 5.0f;
     public float dashSpeed = 6.0f;
+    public WaitForSeconds effectTime = new WaitForSeconds(0.4f);
 
+    public FootDustMaker dustMaker;
     public bool isTurning = false;
+    public bool isPlayingFX = false;
     public float enterHoverCounter = 0f;
+
+    bool wasDash = false;
 
     public override void Enter()
     {
@@ -60,6 +65,7 @@ public class KirbyIdle : KirbyState
     {
         if (Mathf.Abs(kc.currentXVel) > 0.05f)
         {
+            kc.PlayStarDust();
             if (kc.hasInhaledObj) return;
             kc.PlayCollisionAnimation(2);
         }
@@ -67,14 +73,17 @@ public class KirbyIdle : KirbyState
 
     public override void OnPostPhysCheck()
     {
-
         //관성 정지 스프라이트 체인지
         if (isTurning)
         {
+            dustMaker.transform.localPosition = new Vector3(kc.isRightDir ? 0.25f : -0.25f, -0.5f, -0.15f);
+            dustMaker.dustDir = new Vector3(kc.isRightDir ? -0.3f : 0.3f, 0.05f, 0f);
+            dustMaker.gameObject.SetActive(true);
             kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Turning" : "Char_Kirby_Inhaled_Idle"); 
         }
         else
         {
+            if (!isPlayingFX) dustMaker.gameObject.SetActive(false);
             if(Mathf.Abs(kc.currentXVel) > 0.05f)
             {
                 kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Walking" : "Char_Kirby_Inhaled_Walking"); 
@@ -87,13 +96,9 @@ public class KirbyIdle : KirbyState
         }
 
         //대쉬 이펙트 재생
-        if (kc.isDash)
+        if (!wasDash && kc.isDash)
         {
-            
-        }
-        else
-        {
-
+            StartCoroutine("PlayDashFX");
         }
 
         if (!kc.isGrounded)
@@ -134,6 +139,7 @@ public class KirbyIdle : KirbyState
             kc.GetFSM.SwitchState("Hover");
             return;
         }
+        wasDash = kc.isDash;
     }
 
     public override void Excute()
@@ -154,8 +160,23 @@ public class KirbyIdle : KirbyState
 
     public override void Exit()
     {
+        StopAllCoroutines();
+        dustMaker.gameObject.SetActive(false);  
         kc.lockDir = false;
         isTurning = false;
+        isPlayingFX = false;
         enterHoverCounter = 0f;
+    }
+
+    IEnumerator PlayDashFX()
+    {
+        isPlayingFX = true;
+        dustMaker.gameObject.SetActive(true);
+        dustMaker.transform.localPosition = new Vector3(kc.isRightDir ? -0.25f : 0.25f, -0.5f, -0.15f);
+        dustMaker.dustDir = new Vector3(kc.isRightDir ? -0.3f : 0.3f, 0.05f, 0f);
+        dustMaker.ImmediateActivate();
+        yield return effectTime;
+        isPlayingFX = false;
+        dustMaker.gameObject.SetActive(false);
     }
 }

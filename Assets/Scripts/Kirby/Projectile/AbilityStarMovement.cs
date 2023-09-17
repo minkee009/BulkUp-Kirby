@@ -12,17 +12,53 @@ public class AbilityStarMovement : MonoBehaviour
     public BoxCollider2D col;
     public LayerMask groundMask;
 
+    public float currentXVel;
+    public float currentYVel;
+
     bool isGrounded;
+    bool isWallHit;
+    bool isCellingHit;
 
     public void Initialize()
     {
         anim.Play("VFX_Kirby_Star_Blink");
-        rb.AddForce(Vector2.right * minus * 25f);
+        currentXVel = minus * 1.5f;
+        currentYVel = -3f;
+        Destroy(this, 8f);
     }
 
     private void FixedUpdate()
     {
-        //var direction = Vector2.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
+        currentYVel -= 6f * Time.deltaTime;
+        currentYVel = Mathf.Max(-6f, currentYVel);
+
+        rb.velocity = new Vector2(currentXVel, currentYVel);
+
+        BounceVelocity();
+    }
+
+    void BounceVelocity()
+    {
+        var wasGrounded = isGrounded;
+        GroundCheck();
+        if (!wasGrounded && isGrounded)
+        {
+            currentYVel = 6f;
+        }
+
+        var wasCellingHit = isCellingHit;
+        CheckCellingHit();
+        if(!wasCellingHit && isCellingHit)
+        {
+            currentYVel = -currentYVel;
+        }
+
+        var wasWallHit = isWallHit;
+        isWallHit = CheckWallhit(currentXVel > 0 ? true : false);
+        if(!wasWallHit && isWallHit)
+        {
+            currentXVel = -currentXVel;
+        }
     }
 
     private void OnDisable()

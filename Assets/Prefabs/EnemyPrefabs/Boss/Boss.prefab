@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 9005446931286221073}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.68, y: 2.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103,6 +103,7 @@ MonoBehaviour:
   fallDumbbell: {fileID: 3238768325267673623, guid: bc83930ffa49f490c83a56e54b39c77b, type: 3}
   throwDumbbell: {fileID: 4922336676620289347, guid: 41532e53500b748aaba6c0bc0d9568cb, type: 3}
   randomNumber: 0
+  dieAnim: {fileID: 611552402247548245, guid: 469d90fad55104c2994ef301a2faeda6, type: 3}
 --- !u!95 &8973748365463907372
 Animator:
   serializedVersion: 5

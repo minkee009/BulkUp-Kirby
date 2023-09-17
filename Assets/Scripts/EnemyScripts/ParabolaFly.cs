@@ -68,7 +68,9 @@ public class ParabolaFly : MonoBehaviour
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
-            
+
+            Gamemanager.instance.IncreaseScore(40);
+
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;
             

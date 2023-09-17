@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8415920571963530894}
   - component: {fileID: 3505496843637635984}
   - component: {fileID: 647406988979511046}
+  - component: {fileID: -2946652181811181420}
   m_Layer: 9
   m_Name: WaddleDoo
   m_TagString: Untagged
@@ -191,3 +192,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2946652181811181420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3185345949361834993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aeb7478e87171b4c8040c4ebadba771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: 1
+  isItem: 0
+  inhaleSprite: {fileID: 0}

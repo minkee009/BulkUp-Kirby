@@ -125,7 +125,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -212,4 +212,9 @@ MonoBehaviour:
   minus: 1
   rb: {fileID: 5476347974509929630}
   anim: {fileID: 7564469921962049855}
-  lastVelocity: {x: 0, y: 0}
+  col: {fileID: 2997233766763751854}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  currentXVel: 0
+  currentYVel: 0

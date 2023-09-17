@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1102 &-9005047826262005499
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Char_Kirby_Falling_Middle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 93994b104f4ee3b46bcfe793dd435b3b, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-8934122975260116144
 AnimatorState:
   serializedVersion: 6
@@ -7,7 +33,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Turning
+  m_Name: Char_Kirby_Turning
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -33,7 +59,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_JJiBoo
+  m_Name: Char_Kirby_JJiBoo
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -59,7 +85,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Falling
+  m_Name: Char_Kirby_Falling
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -85,7 +111,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Action_Spark
+  m_Name: Char_Kirby_Action_Spark
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -111,7 +137,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Sliding
+  m_Name: Char_Kirby_Sliding
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -130,6 +156,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-5755104432409313584
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Char_Kirby_Inhaled_Hovering
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: eb74e5af46e163b4b8a79762815208e0, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-5720721883926411090
 AnimatorState:
   serializedVersion: 6
@@ -137,7 +189,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Swallow
+  m_Name: Char_Kirby_Swallow
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -163,7 +215,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Action_SparkReady
+  m_Name: Char_Kirby_Action_SparkReady
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -189,7 +241,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Inhaled_Walking
+  m_Name: Char_Kirby_Inhaled_Walking
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -215,7 +267,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Inhaling_OnGround
+  m_Name: Char_Kirby_Inhaling_OnGround
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -241,7 +293,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Action_Beam
+  m_Name: Char_Kirby_Action_Beam
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -267,7 +319,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Jumping
+  m_Name: Char_Kirby_Jumping
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -293,7 +345,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Hurt_nomal
+  m_Name: Char_Kirby_Hurt_nomal
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -319,7 +371,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_exhaling_OnSky
+  m_Name: Char_Kirby_exhaling_OnSky
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -345,7 +397,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Exhaling_OnGround
+  m_Name: Char_Kirby_Exhaling_OnGround
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -372,7 +424,13 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Char_Kirby_Fire
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: WalkSpeed
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -436,7 +494,7 @@ AnimatorStateMachine:
     m_Position: {x: 620, y: 780, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3744867690698431290}
-    m_Position: {x: 655, y: 845, z: 0}
+    m_Position: {x: 660, y: 850, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7375679546709918207}
     m_Position: {x: 690, y: 910, z: 0}
@@ -466,7 +524,16 @@ AnimatorStateMachine:
     m_Position: {x: 970, y: 1430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5219624008966500689}
-    m_Position: {x: 1005, y: 1495, z: 0}
+    m_Position: {x: 1000, y: 1500, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -5755104432409313584}
+    m_Position: {x: 1116.3602, y: 903.7379, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8454002692101722309}
+    m_Position: {x: 1126.3602, y: 913.7379, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -9005047826262005499}
+    m_Position: {x: 1136.3602, y: 923.7379, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -484,7 +551,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Idle
+  m_Name: Char_Kirby_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -510,7 +577,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Inhaling_OnSky
+  m_Name: Char_Kirby_Inhaling_OnSky
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -536,7 +603,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Walking
+  m_Name: Char_Kirby_Walking
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -545,13 +612,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 41c58b29f12cd4de5b99ea262c94ea56, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: WalkSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -562,7 +629,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Gulp
+  m_Name: Char_Kirby_Gulp
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -588,7 +655,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Action_Fire
+  m_Name: Char_Kirby_Action_Fire
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -614,7 +681,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Action_ThrowDumbbell
+  m_Name: Char_Kirby_Action_ThrowDumbbell
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -640,7 +707,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Inhaled_Flying
+  m_Name: Char_Kirby_Inhaled_Flying
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -666,7 +733,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Enter
+  m_Name: Char_Kirby_Enter
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -692,7 +759,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Inhaled_Idle
+  m_Name: Char_Kirby_Inhaled_Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -718,7 +785,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Char_Kirby_Fire_Crouching
+  m_Name: Char_Kirby_Crouching
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -732,6 +799,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: d1b41e19df15e444683e4cf9c69efd29, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &8454002692101722309
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Char_Kirby_Falling_End
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 4955f1f16fd99654795408aa2863d1f8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

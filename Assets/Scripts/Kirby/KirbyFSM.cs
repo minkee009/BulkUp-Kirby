@@ -39,7 +39,7 @@ public class KirbyFSM<T1,T2> where T2 : KirbyFSM<T1, T2>.IFSMState
         _current = stateList[key];
     }
 
-    public void SwitchState(T1 nextKey)
+    public void SwitchState(T1 nextKey,bool forceSwitch = false)
     {
         T2 next = stateList[nextKey];
         _current.Exit();

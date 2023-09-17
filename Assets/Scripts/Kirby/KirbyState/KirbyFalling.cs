@@ -28,6 +28,7 @@ public class KirbyFalling : KirbyState
 
     public override void OnLand()
     {
+        kc.PlayStarDust();
         //약한 점프, 스프라이트 애니메이션 재생
         if (!kc.hasInhaledObj && kc.currentYVel < -gravityForce + 0.01f && inAirTime > fallattackTime)
         {
@@ -63,12 +64,16 @@ public class KirbyFalling : KirbyState
         if (Mathf.Abs(kc.currentXVel) > 0.05f)
         {
             if (kc.hasInhaledObj) return;
+
+            kc.PlayStarDust();
             kc.PlayCollisionAnimation(2);
         }  
     }
 
     public override void OnCellingHit()
     {
+
+        kc.PlayStarDust();
         kc.currentYVel = 0f;
         if (kc.hasInhaledObj) return;
         kc.PlayCollisionAnimation(1);
