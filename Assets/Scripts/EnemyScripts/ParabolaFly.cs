@@ -20,6 +20,8 @@ public class ParabolaFly : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     
     [SerializeField] private GameObject dieAnim;
+
+    private Animator _animator;
     
     
     void Start()
@@ -31,6 +33,8 @@ public class ParabolaFly : MonoBehaviour
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
+
+        _animator = GetComponent<Animator>();
     }
 
     void Update()

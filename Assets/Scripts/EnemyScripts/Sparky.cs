@@ -67,16 +67,8 @@ public class Sparky : MonoBehaviour
         {
             Move();
         }
-
-        if (!isAttack && distanceToKirby < detectionRange)
-        {
-            isMove = false;
-
-            StartCoroutine(Attack());
-        }
-
-
-        if (isJumping)
+        
+        if (isJumping) 
         {
             if (!isIdle)
             {
@@ -98,6 +90,18 @@ public class Sparky : MonoBehaviour
                 _animator.SetBool("isWalk", false);
                 _animator.SetBool("isAttacking", false);
             }
+        }
+        
+        if (!isAttack && distanceToKirby < detectionRange && hit)
+        {
+            isMove = false;
+            isIdle = true;
+            
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("isWalk", false);
+            _animator.SetBool("isAttacking", true);
+            
+            StartCoroutine(Attack());
         }
 
     }
@@ -134,13 +138,8 @@ public class Sparky : MonoBehaviour
         if (!isAttack)
         {
             isIdle = true;
-            
-            _animator.SetBool("Idle", false);
-            _animator.SetBool("isWalk", false);
-            _animator.SetBool("isAttacking", true);
-            
             isAttack = true;
-
+            
             yield return new WaitForSeconds(1f);
 
             attackObject.SetActive(true);

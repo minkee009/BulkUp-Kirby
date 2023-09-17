@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4119719275610936262}
   - component: {fileID: 5420373384690920528}
   - component: {fileID: 727790447592409630}
+  - component: {fileID: 5326988535448627130}
   m_Layer: 10
   m_Name: Spark
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 484727933096455331}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -119,7 +120,28 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
+--- !u!95 &5326988535448627130
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484727933096455331}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 76c510ddec7dc425d94b6c4f0515956d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3904250673711384736
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +250,7 @@ MonoBehaviour:
   isMove: 1
   isJumping: 0
   isAttack: 0
+  isIdle: 0
   dieAnim: {fileID: 6398427068905448115, guid: 0ef771118071b4a768ea12c5d43434ce, type: 3}
 --- !u!95 &232367659586482782
 Animator:

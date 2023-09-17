@@ -102,7 +102,6 @@ MonoBehaviour:
   fallDumbbell: {fileID: 3238768325267673623, guid: bc83930ffa49f490c83a56e54b39c77b, type: 3}
   throwDumbbell: {fileID: 4922336676620289347, guid: 41532e53500b748aaba6c0bc0d9568cb, type: 3}
   randomNumber: 0
-  _state: 0
 --- !u!61 &5736577583375275275
 BoxCollider2D:
   m_ObjectHideFlags: 0
