@@ -15,7 +15,8 @@ public class Sparky : MonoBehaviour
     
     [SerializeField] private bool isMove = true;
     [SerializeField] private bool isJumping = false;
-    [SerializeField] private bool isAttack = false; 
+    [SerializeField] private bool isAttack = false;
+    [SerializeField] private bool isIdle = false;
     
     private float distanceToKirby;
     
@@ -30,6 +31,13 @@ public class Sparky : MonoBehaviour
     private GameObject attackObject;
 
     private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private GameObject dieAnim;
+
+    private Animator _animator;
+    
+    private LayerMask _layerMask = 1 << 6;
+    private Vector2 rayDirection = Vector2.down;
     
     // Start is called before the first frame update
     void Start()
@@ -37,6 +45,8 @@ public class Sparky : MonoBehaviour
         _rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _animator = GetComponent<Animator>();
 
         InvokeRepeating("RandomJumpPower", 0f, 1f);
 
@@ -52,24 +62,55 @@ public class Sparky : MonoBehaviour
         direction.Normalize();
 
         distanceToKirby = Vector2.Distance(kirbyTransform.transform.position, this.transform.position);
-
+        
         if (isMove)
         {
             Move();
         }
+        
+        if (isJumping) 
+        {
+            if (!isIdle)
+            {
+                _animator.SetBool("Idle", false);
+                _animator.SetBool("isWalk", true);
+                _animator.SetBool("isAttacking", false);
+            }
+        }
+        
+        Debug.DrawRay(transform.position, rayDirection);
 
-        if (!isAttack && distanceToKirby < detectionRange)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 0.2f, _layerMask);
+
+        if (hit)
+        {
+            if (!isIdle)
+            {
+                _animator.SetBool("Idle", true);
+                _animator.SetBool("isWalk", false);
+                _animator.SetBool("isAttacking", false);
+            }
+        }
+        
+        if (!isAttack && distanceToKirby < detectionRange && hit)
         {
             isMove = false;
-
-            StartCoroutine(Charge());
+            isIdle = true;
+            
+            _animator.SetBool("Idle", false);
+            _animator.SetBool("isWalk", false);
+            _animator.SetBool("isAttacking", true);
+            
+            StartCoroutine(Attack());
         }
+
     }
 
     private void Move()
     {
         if (!isJumping)
         {
+
             if (direction.x < 0)
             {
                 isJumping = true;
@@ -92,24 +133,29 @@ public class Sparky : MonoBehaviour
         }
     }
 
-    IEnumerator Charge()
+    IEnumerator Attack()
     {
-        isAttack = true;
-        
-        yield return new WaitForSeconds(1f);
+        if (!isAttack)
+        {
+            isIdle = true;
+            isAttack = true;
+            
+            yield return new WaitForSeconds(1f);
 
-        attackObject.SetActive(true);
-        
-        
-        yield return new WaitForSeconds(2f);
-        
-        attackObject.SetActive((false));
+            attackObject.SetActive(true);
 
-        isMove = true;
-        
-        yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
-        isAttack = false;
+            attackObject.SetActive((false));
+
+            isMove = true;
+            isIdle = false;
+            
+            yield return new WaitForSeconds(3f);
+
+            isAttack = false;
+        }
+
     }
 
     void RandomJumpPower()
@@ -119,14 +165,22 @@ public class Sparky : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Kirby"))
-        {
-            this.gameObject.SetActive(false);
-        }
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Kirby"))
+        {
+            this.gameObject.SetActive(false);
+            
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
     }
 }

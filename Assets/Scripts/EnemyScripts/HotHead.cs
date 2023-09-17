@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class HotHead : MonoBehaviour
     [SerializeField] private bool isAttack = false;
     [SerializeField] private bool isLeftMove;
     [SerializeField] private bool isRightMove;
+    [SerializeField] private bool isLeftAttack;
+    [SerializeField] private bool isRightAttack;
 
     private float distanceToKirby;
     
@@ -34,6 +37,10 @@ public class HotHead : MonoBehaviour
     private Vector2 rayDirection = Vector2.left;
 
     private SpriteRenderer _spriteRenderer;
+
+    private Animator _animator;
+
+    [SerializeField] private GameObject dieAnim;
     
     private void Start()
     {
@@ -41,9 +48,12 @@ public class HotHead : MonoBehaviour
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
+        _animator = GetComponent<Animator>();
+
         leftFireAttack = transform.GetChild(0).gameObject;
         rightFireAttack = transform.GetChild(1).gameObject;
         fireBallAttack = transform.GetChild(2).gameObject;
+        
     }
 
     private void Update()
@@ -65,16 +75,7 @@ public class HotHead : MonoBehaviour
             StartCoroutine(Charge());
         }
         
-        if (movement.x < 0)
-        {
-            isLeftMove = true;
-            isRightMove = false;
-        }
-        else
-        {
-            isRightMove = true;
-            isLeftMove = false;
-        }
+
         Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
@@ -99,13 +100,55 @@ public class HotHead : MonoBehaviour
     {
         movement = new Vector2(moveSpeed, _rigidbody2D.velocity.y);
         _rigidbody2D.velocity = movement;
+        
+        if (moveSpeed < 0)
+        {
+            isLeftMove = true;
+            isRightMove = false;
+        }
+        else
+        {
+            isRightMove = true;
+            isLeftMove = false;
+        }
     }
 
     IEnumerator Charge()
     {
         isAttack = true;
         ismove = false;
-
+        
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttackReady", true);
+        _animator.SetBool("isAttack", false);
+        
+        if (isLeftMove && this.transform.position.x < kirbyTransform.transform.position.x)
+        {
+            moveSpeed *= -1;
+            rayDirection *= -1;
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = true;
+            }
+        }
+        if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
+        {
+            moveSpeed *= -1;
+            rayDirection *= -1;
+            if (!_spriteRenderer.flipX)
+            {
+                _spriteRenderer.flipX = false;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
+        }
+        
         yield return new WaitForSeconds(1.5f);
 
         if (distanceToKirby < detectionRange)
@@ -121,8 +164,12 @@ public class HotHead : MonoBehaviour
     IEnumerator ShortDistanceAttack()
     {
         float attackDirection = 0;
+        
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttackReady", false);
+        _animator.SetBool("isAttack", true);
 
-        if (kirbyTransform.transform.position.x < this.transform.position.x)
+        if (this.transform.position.x > kirbyTransform.transform.position.x)
         {
             leftFireAttack.SetActive(true);
         }
@@ -144,22 +191,9 @@ public class HotHead : MonoBehaviour
         leftFireAttack.SetActive(false);
         
         ismove = true;
-
-        if (isLeftMove&& this.transform.position.x < kirbyTransform.transform.position.x)
-        {
-            moveSpeed *= -1;
-            rayDirection *= -1;
-
-            _spriteRenderer.flipX = true;
-        }
-
-        if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
-        {
-            moveSpeed *= -1;
-            rayDirection *= -1;
-
-            _spriteRenderer.flipX = false;
-        }
+        _animator.SetBool("isWalk", true);
+        _animator.SetBool("isAttackReady", false);
+        _animator.SetBool("isAttack", false);
 
         yield return new WaitForSeconds(4f);
         
@@ -168,41 +202,38 @@ public class HotHead : MonoBehaviour
 
     IEnumerator LongDistanceAttack()
     {
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttackReady", false);
+        _animator.SetBool("isAttack", true);
+
         GameObject fireBallSpawn = Instantiate(this.fireBallAttack);
-        fireBallSpawn.transform.position = transform.position;
+        fireBallSpawn.transform.position = transform.position + new Vector3(0, 0.25f, 0);
         fireBallSpawn.SetActive(true);
-        
+
         Destroy(fireBallSpawn, 5f);
-        
+
         yield return new WaitForSeconds(1.1f);
 
         ismove = true;
-        
-        if (isLeftMove == true && this.transform.position.x < kirbyTransform.transform.position.x)
-        {
-            moveSpeed *= -1;
-            rayDirection *= -1;
-            
-            _spriteRenderer.flipX = true;
-        }
-        if (isRightMove && this.transform.position.x > kirbyTransform.transform.position.x)
-        {
-            moveSpeed *= -1;
-            rayDirection *= -1;
+        _animator.SetBool("isWalk", true);
+        _animator.SetBool("isAttackReady", false);
+        _animator.SetBool("isAttack", false);
 
-            _spriteRenderer.flipX = false;
-        }
-        
         yield return new WaitForSeconds(4f);
-        
+
         isAttack = false;
     }
-    
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
+            
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
     }
 }

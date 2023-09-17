@@ -16,6 +16,8 @@ public class WaddleDee : MonoBehaviour
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private GameObject dieAnim;
     
     private void Start()
     {
@@ -35,7 +37,7 @@ public class WaddleDee : MonoBehaviour
 
         Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.27f, _layerMask);
         
         if (hit)
         {
@@ -60,13 +62,16 @@ public class WaddleDee : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
-            isMove = false;
             this.gameObject.SetActive(false);
 
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die,0.5f);
         }
     }
 }
