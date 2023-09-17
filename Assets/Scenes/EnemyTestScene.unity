@@ -201,7 +201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &271877788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -332,11 +332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5302269227257530923, guid: 67867e3c511a54d20939842b7987156b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.12
+      value: -9.56
       objectReference: {fileID: 0}
     - target: {fileID: 5302269227257530923, guid: 67867e3c511a54d20939842b7987156b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.07999998
       objectReference: {fileID: 0}
     - target: {fileID: 5302269227257530923, guid: 67867e3c511a54d20939842b7987156b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -385,7 +385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 350875680455887930, guid: 1f5ffc72da640442995ae1d7f466b7a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 350875680455887930, guid: 1f5ffc72da640442995ae1d7f466b7a3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -426,10 +426,6 @@ PrefabInstance:
     - target: {fileID: 9005446931286221073, guid: 1f5ffc72da640442995ae1d7f466b7a3, type: 3}
       propertyPath: m_Name
       value: Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 9005446931286221073, guid: 1f5ffc72da640442995ae1d7f466b7a3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -919,7 +915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1921413180
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1102,10 +1098,10 @@ SceneRoots:
   - {fileID: 1921413182}
   - {fileID: 271877790}
   - {fileID: 319410311}
-  - {fileID: 390149815}
   - {fileID: 633603727}
   - {fileID: 641790903}
   - {fileID: 1613017977}
   - {fileID: 200442603}
   - {fileID: 2052042505}
   - {fileID: 1716422104}
+  - {fileID: 390149815}

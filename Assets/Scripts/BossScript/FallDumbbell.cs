@@ -6,7 +6,7 @@ public class FallDumbbell : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     
-    [SerializeField] private float rotateSpeed = 60f;
+    [SerializeField] private float rotateSpeed = 100f;
 
     [SerializeField] private Transform target;
     

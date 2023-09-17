@@ -5,10 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4721b25-c89c-4bd7-91ff-5ccf90b857fc" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.aseprite" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.aseprite.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.gif.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King_Jumping.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_King/Char_King_Jumping.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Beam_02.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Beam_02.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Dumbbell_01.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Dumbbell_01.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Dumbbell_02.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_Dumbbell_02.anim.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/ParabolaFly.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/ParabolaFly.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/Test.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.aseprite" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.aseprite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_FireBall.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_FireBall.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/Boss.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/FallDumdbell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/FallDumdbell.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/ThrowDumbbell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Boss/ThrowDumbbell.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/FallDumbbell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/FallDumbbell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/ThrowDumbbel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/ThrowDumbbel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

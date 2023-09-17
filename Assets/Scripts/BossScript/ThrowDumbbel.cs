@@ -6,7 +6,7 @@ public class ThrowDumbbel : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
 
-    [SerializeField] private float rotateSpeed = 60;
+    [SerializeField] private float rotateSpeed = 100;
     
     [SerializeField] private Transform target;
     

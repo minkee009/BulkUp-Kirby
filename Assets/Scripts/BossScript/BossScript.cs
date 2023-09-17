@@ -31,6 +31,8 @@ public class BossScript : MonoBehaviour
 
     private LayerMask _layerMask = 1 << 6;
 
+    private Animator _animator;
+
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,8 @@ public class BossScript : MonoBehaviour
         kirbyTransform = GameObject.FindWithTag("Kirby").transform;
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
+
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -91,6 +95,8 @@ public class BossScript : MonoBehaviour
         {
             if (!isJumping)
             {
+                _animator.SetBool("isJump", true);
+                
                 isJumping = true;
                 _rigidbody2D.velocity = new Vector2(0, 8f);
 
@@ -99,15 +105,17 @@ public class BossScript : MonoBehaviour
                 yield return new WaitForSeconds(1.7f);
                 if (hit)
                 {
-                    int dumbbellTransformX = -6;
+                    float dumbbellTransformX = -7.0f;
                     for (int i = 0; i < 5; i++)
                     {
                         GameObject JumpAttack = Instantiate(fallDumbbell);
-                        JumpAttack.transform.position = kirbyTransform.transform.position + new Vector3(dumbbellTransformX, 8f, 0);
+                        JumpAttack.transform.position = kirbyTransform.transform.position + new Vector3(dumbbellTransformX, 9f, 0);
 
-                        dumbbellTransformX += 3;
+                        dumbbellTransformX += 3.5f;
                     }
                 }
+                _animator.SetBool("isJump", false);
+
             }
             yield return new WaitForSeconds(1f);
         }
@@ -129,7 +137,7 @@ public class BossScript : MonoBehaviour
                 yield return new WaitForSeconds(1f);
 
                 GameObject fall = Instantiate(this.fallDumbbell);
-                fall.transform.position = kirbyTransform.transform.position + new Vector3(0, 8, 0);
+                fall.transform.position = kirbyTransform.transform.position + new Vector3(0, 9f, 0);
                 
                 Destroy(fall, 4f);
             }
@@ -155,7 +163,7 @@ public class BossScript : MonoBehaviour
                 yield return new WaitForSeconds(1f);
 
                 GameObject wave = Instantiate(throwDumbbell);
-                wave.transform.position = transform.position;
+                wave.transform.position = transform.position + new Vector3(-1,1.5f,0);
                 
                 Destroy(wave, 4f);
             }
@@ -169,7 +177,7 @@ public class BossScript : MonoBehaviour
 
     void RandomNumber()
     {
-        randomNumber = Random.Range(0, 3);
+        randomNumber = Random.Range(0, 4);
         Debug.Log("random");
     }
 
