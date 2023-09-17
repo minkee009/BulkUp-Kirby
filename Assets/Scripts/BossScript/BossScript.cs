@@ -9,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class BossScript : MonoBehaviour
 {
-    private float _bossHp { get; set; } = 7;
+    [SerializeField] private float _bossHp = 7;
 
     private bool isJumping = false;
     private bool isAttack = false;
@@ -32,6 +32,8 @@ public class BossScript : MonoBehaviour
     private LayerMask _layerMask = 1 << 6;
 
     private Animator _animator;
+
+    [SerializeField] private GameObject dieAnim;
 
     
     // Start is called before the first frame update
@@ -73,6 +75,15 @@ public class BossScript : MonoBehaviour
         
         Debug.DrawRay(transform.position, Vector2.down);
 
+        if (_bossHp == 0)
+        {
+            this.gameObject.SetActive(false);
+            
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 1f);
+        }
 
     }
 
@@ -186,6 +197,14 @@ public class BossScript : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Kirby"))
+        {
+            _bossHp--;
         }
     }
 }
