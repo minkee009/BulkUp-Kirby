@@ -1,9 +1,5 @@
 using System;
 using System.Collections;
-using System.Threading;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor.Animations;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public enum SpecialAbility
@@ -20,7 +16,7 @@ public class KirbyController : MonoBehaviour
     public KirbyFSM<string, KirbyState> GetFSM => _fsm;
 
     // 애니메이터 (서영)
-    public AnimatorController[] animController;
+    public RuntimeAnimatorController[] animController;
 
     //컴포넌트
     public BoxCollider2D physBox;

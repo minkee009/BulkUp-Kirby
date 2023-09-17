@@ -10601,7 +10601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 83707521}
   cameraPos: {x: 0, y: 0, z: -10}
-  cameraChaseSpeed: 2
+  cameraChaseSpeed: 80
   center: {fileID: 2056278950}
   mapY: 2
   mapX: 0
