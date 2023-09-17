@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    public Canvas canvas;
 
+    public GameObject[] hpBar = new GameObject[6];
+
+    public GameObject inGameUI;
     public GameObject pauseMenuUI;
+    public Image kirbyAbiltyImage;
+    public TMP_Text kirbyLifeText;
+
+    public Sprite[] abiltySprites;
 
     private bool _isPaused = false;
     private bool _playFadeFX = false;
+    private int _currentAbiltyIndex;
+    private Coroutine _uiCoroutine;
 
     public Image blackScreen;
+
+    
 
     private void Awake()
     {
@@ -28,17 +41,21 @@ public class UIManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        canvas = GetComponent<Canvas>();
     }
 
     // Start is called before the first frame update
     void Start()
-    {  
+    {   
         pauseMenuUI.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         if (!_playFadeFX && Input.GetKeyDown(KeyCode.Escape)) // 또는 원하는 키를 사용
         {
             if (_isPaused)
@@ -66,6 +83,21 @@ public class UIManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
     }
 
+    public void UpdateHPBar(float curretHP)
+    {
+        for (int i = 0; i < hpBar.Length; i++)
+        {
+            if (i < curretHP)
+            {
+                hpBar[i].SetActive(true);
+            }
+            else
+            {
+                hpBar[i].SetActive(false);
+            }
+        }
+    }
+
     /// <summary>
     /// 페이드 아웃 후 WaitTime을 기다린 후 페이드 인
     /// </summary>
@@ -78,6 +110,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator FadeForBlackScreen(float waitTime)
     {
+        canvas.sortingOrder = 1;
         _playFadeFX = true;
         var screenT = 0f;
         while (screenT != 0.65f)
@@ -97,5 +130,31 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         _playFadeFX = false;
+        canvas.sortingOrder = 0;
+    }
+
+    public void ChangeAbilityImage(int index)
+    {
+        _currentAbiltyIndex = index;
+        kirbyAbiltyImage.sprite = abiltySprites[_currentAbiltyIndex];
+    }
+
+    public void TempChangeAbilityImage(int index, float time)
+    {
+        StopTempChange();
+        _uiCoroutine = StartCoroutine(TempChangeAbility(index, time));
+    }
+
+    public void StopTempChange()
+    {
+        if(_uiCoroutine != null) StopCoroutine(_uiCoroutine);
+        kirbyAbiltyImage.sprite = abiltySprites[_currentAbiltyIndex];
+    }
+
+    IEnumerator TempChangeAbility(int index, float time)
+    {
+        kirbyAbiltyImage.sprite = abiltySprites[index];
+        yield return new WaitForSeconds(time);
+        kirbyAbiltyImage.sprite = abiltySprites[_currentAbiltyIndex];
     }
 }

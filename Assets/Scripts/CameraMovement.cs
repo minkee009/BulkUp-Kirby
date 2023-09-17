@@ -36,7 +36,12 @@ public class CameraMovement : MonoBehaviour
     {
         if (center == null) return;
 
-        if(playerTransform == null && Gamemanager.instance.kirbyController != null)
+        _shakePos = new Vector3(_shakeAmount * (Mathf.PerlinNoise(_seed, Time.time * _shakeSpeed) * 2 - 1),
+            _shakeAmount * (Mathf.PerlinNoise(_seed + 1, Time.time * _shakeSpeed) * 2 - 1),
+            _shakeAmount * (Mathf.PerlinNoise(_seed + 2, Time.time * _shakeSpeed) * 2 - 1));
+        _trauma = Mathf.Lerp(_trauma, 0, _shakeRecovery * Time.deltaTime);
+
+        if (playerTransform == null && Gamemanager.instance.kirbyController != null)
         {
             playerTransform = Gamemanager.instance.kirbyController.transform;
             _targetPos = playerTransform.position + cameraPos;
@@ -45,18 +50,17 @@ public class CameraMovement : MonoBehaviour
         }
         else if (playerTransform == null)
         {
+            transform.position = _currentPos + (_shakePos * _trauma);
             return;
         }
 
-        _trauma = Mathf.Lerp(_trauma, 0, _shakeRecovery * Time.deltaTime);
+        
 
         _targetPos = playerTransform.position + cameraPos;
         _targetPos.x = Mathf.Clamp(_targetPos.x, -mapX + center.position.x, mapX + center.position.x);
         _targetPos.y = Mathf.Clamp(_targetPos.y, -mapY + center.position.y, mapY + center.position.y);
         _currentPos = Vector3.Lerp(_currentPos, _targetPos, cameraChaseSpeed * Time.deltaTime);
-        _shakePos = new Vector3(_shakeAmount * (Mathf.PerlinNoise(_seed, Time.time * _shakeSpeed) * 2 - 1),
-            _shakeAmount * (Mathf.PerlinNoise(_seed + 1, Time.time * _shakeSpeed) * 2 - 1),
-            _shakeAmount * (Mathf.PerlinNoise(_seed + 2, Time.time * _shakeSpeed) * 2 - 1));
+        
 
         transform.position = _currentPos + (_shakePos * _trauma);
     }

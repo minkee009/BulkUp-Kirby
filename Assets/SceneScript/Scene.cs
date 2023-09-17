@@ -7,21 +7,21 @@ public class Scene : MonoBehaviour
 {
     public void Change()
     {
-        SceneManager.LoadScene("GameScene");
+        StartCoroutine("StartGame");
     }
     public void MainChange()
     {
+        UIManager.instance.PlayFadeFX(0f);
         SceneManager.LoadScene("MainScene");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator StartGame()
     {
-        
+        UIManager.instance.PlayFadeFX(0.2f);
+        yield return new WaitForSeconds(0.6f);
+        SceneManager.LoadScene("GameScene");
+        UIManager.instance.inGameUI.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+       
     }
 }

@@ -76,7 +76,7 @@ public class KirbyIdle : KirbyState
         //관성 정지 스프라이트 체인지
         if (isTurning)
         {
-            dustMaker.transform.localPosition = new Vector3(kc.isRightDir ? 0.25f : -0.25f, -0.5f, 0f);
+            dustMaker.transform.localPosition = new Vector3(kc.isRightDir ? 0.25f : -0.25f, -0.5f, -0.15f);
             dustMaker.dustDir = new Vector3(kc.isRightDir ? -0.3f : 0.3f, 0.05f, 0f);
             dustMaker.gameObject.SetActive(true);
             kc.kirbyAnimator.Play(!kc.hasInhaledObj ? "Char_Kirby_Turning" : "Char_Kirby_Inhaled_Idle"); 
@@ -172,7 +172,7 @@ public class KirbyIdle : KirbyState
     {
         isPlayingFX = true;
         dustMaker.gameObject.SetActive(true);
-        dustMaker.transform.localPosition = new Vector3(kc.isRightDir ? -0.25f : 0.25f, -0.5f, 0f);
+        dustMaker.transform.localPosition = new Vector3(kc.isRightDir ? -0.25f : 0.25f, -0.5f, -0.15f);
         dustMaker.dustDir = new Vector3(kc.isRightDir ? -0.3f : 0.3f, 0.05f, 0f);
         dustMaker.ImmediateActivate();
         yield return effectTime;

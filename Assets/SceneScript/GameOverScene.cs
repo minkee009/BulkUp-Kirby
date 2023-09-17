@@ -7,22 +7,15 @@ public class GameOverScene : MonoBehaviour
 {
     public void change()
     {
+        UIManager.instance.PlayFadeFX(0f);
         SceneManager.LoadScene("GameScene");
+        UIManager.instance.inGameUI.SetActive(true);
     }
 
     public void MainChange()
     {
+        UIManager.instance.PlayFadeFX(0f);
         SceneManager.LoadScene("MainScene");
     }
     
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -178,6 +178,7 @@ public class KirbyController : MonoBehaviour
             // 색 원래대로 (기본으로 돌아가는 기능만들기)
             var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
             ability = SpecialAbility.None;
+            UIManager.instance.ChangeAbilityImage(0);
             ChangeKirbySprite();
             kirbyAnimator.Play(clipName);
         }
@@ -451,6 +452,7 @@ public class KirbyController : MonoBehaviour
             Destroy(_createdAbilityStar);
 
         yield return new WaitForSeconds(0.15f);
+        UIManager.instance.ChangeAbilityImage((int)ability);
         morphFX.SetActive(true);
         PlayReactionYdir();
         ChangeKirbySprite();
@@ -487,12 +489,13 @@ public class KirbyController : MonoBehaviour
     {
         hasInhaledObj = false;
         if (ihObjAbility != SpecialAbility.None)
-        {
+        {           
             ability = ihObjAbility;
             StartCoroutine("PlayMorpAct");
         }
         else
         {
+            UIManager.instance.TempChangeAbilityImage(4,2f);
             GetFSM.SwitchState("Idle");
         }
         ihObjAbility = SpecialAbility.None;
@@ -605,9 +608,11 @@ public class KirbyController : MonoBehaviour
         if (ability != SpecialAbility.None)
         {
             CreateAbilityStar();
+            UIManager.instance.ChangeAbilityImage(0);
             ability = SpecialAbility.None;
             ChangeKirbySprite();
         }
+        UIManager.instance.TempChangeAbilityImage(5, 2f);
         if (isPlayingAction || _fsm.Current.GetKey == "Slide")
         {
             _fsm.SwitchState("Idle");
@@ -624,19 +629,19 @@ public class KirbyController : MonoBehaviour
             count += Time.deltaTime;
             yield return null;
         }
-        StartCoroutine("Invincible");
+        StartCoroutine("Invincible",2f);
         isStopExcuteFSM = false;
         isStopReadInput = false;
         hitBox.enabled = true;
         kirbyAnimator.Play(clipName);
     }
 
-    IEnumerator Invincible()
+    IEnumerator Invincible(float duration)
     {
         isInvincibility = true;
         var timer = 0f;
         var colorTime = 0f;
-        while (timer < 2f)
+        while (timer < duration)
         {
             timer += Time.deltaTime;
             colorTime += 18f * Time.deltaTime;
