@@ -28,6 +28,7 @@ public class KirbyJumping : KirbyState
     {
         if (Mathf.Abs(kc.currentXVel) > 0.05f)
         {
+            kc.PlayStarDust();
             if (kc.hasInhaledObj) return;
             kc.PlayCollisionAnimation(2);
         } 
@@ -36,6 +37,8 @@ public class KirbyJumping : KirbyState
     public override void OnCellingHit()
     {
         kc.currentYVel = 0f;
+
+        kc.PlayStarDust();
         kc.GetFSM.SwitchState("Fall");
         if (kc.hasInhaledObj) return;
         kc.PlayCollisionAnimation(1);

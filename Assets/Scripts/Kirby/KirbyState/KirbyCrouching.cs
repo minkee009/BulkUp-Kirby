@@ -24,6 +24,8 @@ public class KirbyCrouching : KirbyState
         else
         {
             //¾É±â
+            kc.hitBox.size = new Vector2(kc.hitBox.size.x, 0.5f);
+            kc.hitBox.offset = new Vector2(kc.hitBox.offset.x, -0.25f);
             kc.kirbyAnimator.Play("Char_Kirby_Crouching");
         }
     }
@@ -61,6 +63,8 @@ public class KirbyCrouching : KirbyState
     public override void Exit()
     {
         StopAllCoroutines();
+        kc.hitBox.size = new Vector2(kc.hitBox.size.x, 1f);
+        kc.hitBox.offset = new Vector2(kc.hitBox.offset.x, 0f);
         playAnimation = false;
         stopExcuteInput = false;
         kc.lockDir = false;
@@ -73,7 +77,6 @@ public class KirbyCrouching : KirbyState
         kc.PlayReactionYdir();
         yield return animTime;
         kc.ChangeAbility();
-        kc.ChangeKirbySprite();
     }
 
 }

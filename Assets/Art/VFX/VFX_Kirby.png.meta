@@ -294,8 +294,8 @@ TextureImporter:
       name: Inhale_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 512
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -315,8 +315,8 @@ TextureImporter:
       name: Inhale_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 576
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -336,8 +336,8 @@ TextureImporter:
       name: Inhale_8
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 640
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -357,8 +357,8 @@ TextureImporter:
       name: Inhale_9
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 704
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -378,8 +378,8 @@ TextureImporter:
       name: Inhale_10
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
+        x: 768
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -399,8 +399,8 @@ TextureImporter:
       name: Inhale_11
       rect:
         serializedVersion: 2
-        x: 320
-        y: 64
+        x: 832
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -420,8 +420,8 @@ TextureImporter:
       name: Inhale_12
       rect:
         serializedVersion: 2
-        x: 384
-        y: 64
+        x: 896
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -441,8 +441,8 @@ TextureImporter:
       name: Inhale_13
       rect:
         serializedVersion: 2
-        x: 448
-        y: 64
+        x: 960
+        y: 0
         width: 64
         height: 64
       alignment: 9
@@ -463,7 +463,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -484,7 +484,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -505,7 +505,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -526,7 +526,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -547,7 +547,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -568,7 +568,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -589,7 +589,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -610,7 +610,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
-        y: 128
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -630,8 +630,8 @@ TextureImporter:
       name: Inhale_22
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 512
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -651,8 +651,8 @@ TextureImporter:
       name: Inhale_23
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 576
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -672,8 +672,8 @@ TextureImporter:
       name: Inhale_24
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 640
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -693,8 +693,8 @@ TextureImporter:
       name: Exhale_0
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 704
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -714,8 +714,8 @@ TextureImporter:
       name: Star_Blink_0
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 768
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -735,8 +735,8 @@ TextureImporter:
       name: Star_Blink_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 192
+        x: 832
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -756,8 +756,8 @@ TextureImporter:
       name: Star_Blink_2
       rect:
         serializedVersion: 2
-        x: 384
-        y: 192
+        x: 896
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -777,8 +777,8 @@ TextureImporter:
       name: Star_Blink_3
       rect:
         serializedVersion: 2
-        x: 448
-        y: 192
+        x: 960
+        y: 64
         width: 64
         height: 64
       alignment: 9
@@ -799,7 +799,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -820,7 +820,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -841,7 +841,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -862,7 +862,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -883,7 +883,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -904,7 +904,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -925,7 +925,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -946,7 +946,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
-        y: 256
+        y: 128
         width: 64
         height: 64
       alignment: 9
@@ -958,6 +958,804 @@ TextureImporter:
       bones: []
       spriteID: 8773e8658a8339140800000000000000
       internalID: 4725182729699604344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_0
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de50e504838b6ee80800000000000000
+      internalID: -8149623923942750739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b4a3b40974d8dd30800000000000000
+      internalID: 4456545447518119091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54c92f126e90a0b80800000000000000
+      internalID: -8427912868653786043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_3
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 503ac259ad392bfb0800000000000000
+      internalID: -4633478499595934971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4168d70ea3b9830800000000000000
+      internalID: 4078918623367140518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_5
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15da713ec5b0da950800000000000000
+      internalID: 6461833533921406289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_6
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5101ed05ce4ca3450800000000000000
+      internalID: 6069379967083221013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_7
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3cf0e9e24de83210800000000000000
+      internalID: 1313060163025959996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae0f760f4b8a8d10800000000000000
+      internalID: 2128666945413648032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireRadiation_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bc0b164c931ae7d0800000000000000
+      internalID: -2888474649092748112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBall_0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bc5ab487b4955d80800000000000000
+      internalID: -8262534425414574923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBall_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fe11116e66f710e0800000000000000
+      internalID: -2299098130814001419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBall_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38347b47a52f4b30800000000000000
+      internalID: 4273675971853563962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireBall_3
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d65ba2027b44d10800000000000000
+      internalID: 2109011874299604264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_01_0
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ea4f15c4e5384e50800000000000000
+      internalID: 6793739294564371172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_01_1
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec8574e26b6cc1c0800000000000000
+      internalID: -4482089456656610066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_0
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ea4506d4ed102350800000000000000
+      internalID: 5989820373083179744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f663dc0f4eb368ef0800000000000000
+      internalID: -106331686718065041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efaf7f6fda323e8c0800000000000000
+      internalID: -3971291216330884354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_3
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a988a4dde1d37910800000000000000
+      internalID: 1834040292675193255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam_02_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cf557fb4c5a77d00800000000000000
+      internalID: 970426509165944771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_0
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a2ca7bede8e3e90800000000000000
+      internalID: -7044035679945479633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_1
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42ea66b34fe2d090800000000000000
+      internalID: -8011077713036385718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_2
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314d147c4612cd4d0800000000000000
+      internalID: -3108572926069058541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 910d2d0dce9951110800000000000000
+      internalID: 1231059315550507033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a9a217663ddb6c00800000000000000
+      internalID: 895052176690424228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44683a604f57b8b00800000000000000
+      internalID: 831888247123838532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940d349595b99f700800000000000000
+      internalID: 574661235518459977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_01_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84bc0375fafabbdf0800000000000000
+      internalID: -163343793851937976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_0
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aadd168fa6239c9b0800000000000000
+      internalID: -5059457271358956118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5eb57d26c0e56f0800000000000000
+      internalID: -694103673909025350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007ed1d9469eb6410800000000000000
+      internalID: 1471526321608582912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_3
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb2f1d28619f7c10800000000000000
+      internalID: 2053519831723879357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_4
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c234a7fb055295110800000000000000
+      internalID: 1250071400312095532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49145926df02a7da0800000000000000
+      internalID: -5946404085336555116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_6
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80de7975be09e200800000000000000
+      internalID: 209715030239662218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb9b86d5402e7140800000000000000
+      internalID: 4719244943855164349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dumbbell_02_8
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad802870ba1b401d0800000000000000
+      internalID: -3385385671752283942
       vertices: []
       indices: 
       edges: []
@@ -981,9 +1779,47 @@ TextureImporter:
       Action_Spark_5: 5156285259851423190
       Action_Spark_6: -3094669072976969772
       Action_Spark_7: 4725182729699604344
+      Beam_01_0: 6793739294564371172
+      Beam_01_1: -4482089456656610066
+      Beam_02_0: 5989820373083179744
+      Beam_02_1: -106331686718065041
+      Beam_02_2: -3971291216330884354
+      Beam_02_3: 1834040292675193255
+      Beam_02_4: 970426509165944771
       DashDust_0: -3449224224396418948
       DashDust_1: 1458828261856180565
+      Dumbbell_01_0: -7044035679945479633
+      Dumbbell_01_1: -8011077713036385718
+      Dumbbell_01_2: -3108572926069058541
+      Dumbbell_01_3: 1231059315550507033
+      Dumbbell_01_4: 895052176690424228
+      Dumbbell_01_5: 831888247123838532
+      Dumbbell_01_6: 574661235518459977
+      Dumbbell_01_7: -163343793851937976
+      Dumbbell_02_0: -5059457271358956118
+      Dumbbell_02_1: -694103673909025350
+      Dumbbell_02_2: 1471526321608582912
+      Dumbbell_02_3: 2053519831723879357
+      Dumbbell_02_4: 1250071400312095532
+      Dumbbell_02_5: -5946404085336555116
+      Dumbbell_02_6: 209715030239662218
+      Dumbbell_02_7: 4719244943855164349
+      Dumbbell_02_8: -3385385671752283942
       Exhale_0: -1473158758726919047
+      FireBall_0: -8262534425414574923
+      FireBall_1: -2299098130814001419
+      FireBall_2: 4273675971853563962
+      FireBall_3: 2109011874299604264
+      FireRadiation_0: -8149623923942750739
+      FireRadiation_1: 4456545447518119091
+      FireRadiation_2: -8427912868653786043
+      FireRadiation_3: -4633478499595934971
+      FireRadiation_4: 4078918623367140518
+      FireRadiation_5: 6461833533921406289
+      FireRadiation_6: 6069379967083221013
+      FireRadiation_7: 1313060163025959996
+      FireRadiation_8: 2128666945413648032
+      FireRadiation_9: -2888474649092748112
       Inhale_0: -5753203302712779014
       Inhale_1: 4738435593233227295
       Inhale_10: 1962322497976007857

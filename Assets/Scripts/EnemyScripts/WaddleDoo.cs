@@ -27,12 +27,18 @@ public class WaddleDoo : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
+    private Animator _animator;
+
+    [SerializeField] private GameObject dieAnim;
+
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _animator = GetComponent<Animator>();
         
         InvokeRepeating("RandomNumber", 0f, 5f);
     }
@@ -63,7 +69,7 @@ public class WaddleDoo : MonoBehaviour
         }
         Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), rayDirection);
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.3f, _layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), rayDirection, 0.27f, _layerMask);
         
         if (hit)
         {
@@ -106,6 +112,9 @@ public class WaddleDoo : MonoBehaviour
 
     IEnumerator Charge()
     {
+        _animator.SetBool("isWalk", false);
+        _animator.SetBool("isAttack", true);
+        
         yield return new WaitForSeconds(1f);
 
         if (!isAttack)
@@ -140,12 +149,16 @@ public class WaddleDoo : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
-
+        _animator.SetBool("isWalk", true);
+        _animator.SetBool("isAttack", false);
+        
         yield return new WaitForSeconds(0.5f);
         
         isMove = true;
         isCharge = false;
         isAttack = false;
+        
+
     }
     
     void RandomNumber()
@@ -156,14 +169,22 @@ public class WaddleDoo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Kirby"))
-        {
-            this.gameObject.SetActive(false);
-        }
-
         if (other.gameObject.CompareTag("Ground"))
         {
             isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Kirby"))
+        {
+            this.gameObject.SetActive(false);
+
+            GameObject die = Instantiate(dieAnim);
+            die.transform.position = transform.position;
+            
+            Destroy(die, 0.5f);
         }
     }
 }

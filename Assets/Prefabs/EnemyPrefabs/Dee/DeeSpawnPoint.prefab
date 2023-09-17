@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 2391346564363764645}
-  monsterPrefab: {fileID: 5508103324129924289, guid: 6c350a5142562b1499e28f40c680c8b5, type: 3}
+  monsterPrefab: {fileID: 5508103324129924289, guid: 8f29994cf86bd4b1395f46b4509ad6ce, type: 3}

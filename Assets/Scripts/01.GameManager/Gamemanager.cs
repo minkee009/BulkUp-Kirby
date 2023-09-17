@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
 
 public class Gamemanager : MonoBehaviour
 {
-    public int hpPoint;
-    public int currentHpPoint;
-    public int Score;
-    public int kirbyLife;
+    
     public static Gamemanager instance;
     public GameObject[] hpBar = new GameObject[6];
+    public KirbyController kirbyController;
+    public CameraMovement cameraMove;
 
-    public UnityAction OnKirbyMorphing;
+    const int MAX_HP = 6;
+    const int MAX_LIFE = 3;
+
+    int _score;
+    int _kirbyLife;
+    int _currentHpPoint;
 
     private void Awake()
     {
@@ -33,34 +36,50 @@ public class Gamemanager : MonoBehaviour
 
     void Start()
     {
-        currentHpPoint = hpPoint;
+        _currentHpPoint = MAX_HP;
+        _kirbyLife = MAX_LIFE;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckHp();
-
+        
     }
 
     public void Damaged(int damageAmount)
     {
-        if(currentHpPoint > 0)
+        if(_currentHpPoint > 0)
         {
-            currentHpPoint -= damageAmount;
-            Debug.Log("-1");
+            _currentHpPoint -= damageAmount;
+            CheckHp();
+            Debug.Log(_currentHpPoint);
 
-            if(currentHpPoint <= 0)
+            if(_currentHpPoint <= 0)
             {
-                SceneManager.LoadScene("GameOverScene");
+                if (_kirbyLife-- > 0)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    _currentHpPoint = MAX_HP;
+                    CheckHp();
+                    Destroy(kirbyController.gameObject);
+                    //Die Àç»ý
+                }
+                else
+                    SceneManager.LoadScene("GameOverScene");
             }
         }
     }
+
+    public void IncreaseScore(int num)
+    {
+        _score += num;
+    }
+
     void CheckHp()
     {
         for(int i = 0; i < 6; i++)
         {
-            if(i < currentHpPoint)
+            if(i < _currentHpPoint)
             {
                 hpBar[i].SetActive(true);
             }

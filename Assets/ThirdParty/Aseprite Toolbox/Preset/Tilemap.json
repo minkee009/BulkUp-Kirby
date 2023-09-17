@@ -62,12 +62,12 @@
         },
         {
             "Key": "A2U.TrimTexture",
-            "Value": "True",
+            "Value": "False",
             "Type": 3
         },
         {
             "Key": "A2U.TrimSprite",
-            "Value": "True",
+            "Value": "False",
             "Type": 3
         },
         {
@@ -101,5 +101,5 @@
             "Type": 3
         }
     ],
-    "m_Code": "0\n0\n2\n1\n0\n0.500\n0.500\n32\nTrue\nTrue\nFalse\nFalse\nFalse\nTrue\nTrue\nFalse\nTrue\n{Ase}\n{slice}\n{Ase}_{Tag}\n{Ase}\n"
+    "m_Code": "0\r\n0\r\n2\r\n1\r\n0\r\n0.500\r\n0.500\r\n32\r\nTrue\r\nTrue\r\nFalse\r\nFalse\r\nFalse\r\nFalse\r\nFalse\r\nFalse\r\nTrue\r\n{Ase}\r\n{slice}\r\n{Ase}_{Tag}\r\n{Ase}\r\n"
 }
