@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class BossScript : MonoBehaviour
 {
@@ -16,7 +19,7 @@ public class BossScript : MonoBehaviour
     [SerializeField] private GameObject fallDumbbell;
     [SerializeField] private GameObject throwDumbbell;
 
-    [SerializeField] private int randomNumber;
+    [SerializeField] private int randomNumber = 0;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -24,16 +27,10 @@ public class BossScript : MonoBehaviour
 
     private float jumpDistance = -2;
     
-    private enum State
-    {
-        Idle,
-        Jump,
-        FallDumbbell,
-        ThrowDumbbell
-    }
+    private int jumpCount = 0;
 
-    [SerializeField] private State _state = State.Idle;
-    
+    private LayerMask _layerMask = 1 << 6;
+
     
     // Start is called before the first frame update
     void Start()
@@ -41,8 +38,6 @@ public class BossScript : MonoBehaviour
         kirbyTransform = GameObject.FindWithTag("Kirby").transform;
 
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        
-        InvokeRepeating("RandomNumber", 0f, 5f);
     }
 
     // Update is called once per frame
@@ -53,84 +48,73 @@ public class BossScript : MonoBehaviour
 
         if (randomNumber == 0)
         {
-            _state = State.Idle;
+            StartCoroutine(Idle());
             randomNumber = 4;
         }
         if (randomNumber == 1)
         {
-            _state = State.Jump;
+            StartCoroutine(Jump());
             randomNumber = 4;
-
         }
         if (randomNumber == 2)
         {
-            _state = State.FallDumbbell;
+            StartCoroutine(FallDumbbell());
             randomNumber = 4;
-
         }
         if(randomNumber == 3)
         {
-            _state = State.ThrowDumbbell;
+            StartCoroutine(ThrowDumbbel());
             randomNumber = 4;
-
         }
+        
+        Debug.DrawRay(transform.position, Vector2.down);
 
-        switch (_state)
-        {
-            case State.Idle:
-                StartCoroutine(Idle());
-                break;
-            case State.Jump:
-                StartCoroutine(Jump());
-                break;
-            case State.FallDumbbell:
-                StartCoroutine(FallDumbbell());
-                break;
-            case State.ThrowDumbbell:
-                StartCoroutine(ThrowDumbbel());
-                break;
-        }
+
     }
 
     IEnumerator Idle()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         
-        for (int i = 0; i < 2; i++)
-        {
-            if (!isJumping)
-            {
-                isJumping = true;
-                _rigidbody2D.velocity = new Vector2(jumpDistance, 4f);
-                
-                jumpDistance *= -1;
-            }
-        }
-        yield return new WaitForSeconds(5f);
-
+        Invoke("RandomNumber", 0f);
     }
 
     IEnumerator Jump()
     {
         yield return new WaitForSeconds(1f);
+
+        jumpCount = 0;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -2f), 1, _layerMask);
         
-        for (int i = 0; i < 2; i++)
+        while (jumpCount < 3)
         {
             if (!isJumping)
             {
                 isJumping = true;
                 _rigidbody2D.velocity = new Vector2(0, 8f);
-                
-            }
-            else
-            {
-                yield return null;
+
+                jumpCount++;
+
+                yield return new WaitForSeconds(1.7f);
+                if (hit)
+                {
+                    int dumbbellTransformX = -6;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        GameObject JumpAttack = Instantiate(fallDumbbell);
+                        JumpAttack.transform.position = kirbyTransform.transform.position + new Vector3(dumbbellTransformX, 8f, 0);
+
+                        dumbbellTransformX += 3;
+                    }
+                }
             }
             yield return new WaitForSeconds(1f);
-
         }
-        yield return new WaitForSeconds(3f);
 
+        yield return new WaitForSeconds(3f);
+        
+        Invoke("RandomNumber", 0f);
     }
 
     IEnumerator FallDumbbell()
@@ -145,17 +129,16 @@ public class BossScript : MonoBehaviour
                 yield return new WaitForSeconds(1f);
 
                 GameObject fall = Instantiate(this.fallDumbbell);
-                fall.transform.position = kirbyTransform.transform.position + new Vector3(0, 6, 0);
+                fall.transform.position = kirbyTransform.transform.position + new Vector3(0, 8, 0);
                 
-                Destroy(fall, 3f);
+                Destroy(fall, 4f);
             }
 
             yield return new WaitForSeconds(3f);
-
-            // _state = State.Idle;
-
+            
             isAttack = false;
             
+            Invoke("RandomNumber", 0f);
         }
     }
 
@@ -173,20 +156,20 @@ public class BossScript : MonoBehaviour
 
                 GameObject wave = Instantiate(throwDumbbell);
                 wave.transform.position = transform.position;
+                
+                Destroy(wave, 4f);
             }
             yield return new WaitForSeconds(3f);
-        
-            // _state = State.Idle;
-
+            
             isAttack = false;
-
+            
             Invoke("RandomNumber", 0f);
         }
     }
 
     void RandomNumber()
     {
-        randomNumber = Random.Range(0, 4);
+        randomNumber = Random.Range(0, 3);
         Debug.Log("random");
     }
 

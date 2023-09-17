@@ -6,17 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b4721b25-c89c-4bd7-91ff-5ccf90b857fc" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BulkUp-Kirby/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_Sparky/Char_Sparky.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Characters/Char_WaddleDee/Char_WaddleDee.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_FireBall.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/VFX/VFX_Kirby_FireBall.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EnemyPrefabs/Sparky/Sparky.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/FallDumbbell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/FallDumbbell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BossScript/ThrowDumbbel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BossScript/ThrowDumbbel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/FireBallMovemoent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/HotHead.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyScripts/Sparky.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +17,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossScript/BossScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossScript/FallDumbbell.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BossScript/ThrowDumbbel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemyScripts/BeamAttack.cs" root0="FORCE_HIGHLIGHTING" />
