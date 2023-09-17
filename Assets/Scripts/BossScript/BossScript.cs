@@ -204,6 +204,7 @@ public class BossScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Kirby"))
         {
+            Gamemanager.instance.cameraMove.ShakeCamera(24f, 0.06f, 8f);
             _bossHp--;
         }
     }

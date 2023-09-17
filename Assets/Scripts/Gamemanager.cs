@@ -103,6 +103,7 @@ public class Gamemanager : MonoBehaviour
         //BGM 변경 - Death Theme
         SoundManager.instance.speaker.clip = SoundManager.instance.BGM[2];
         SoundManager.instance.speaker.Play();
+        SoundManager.instance.speaker.loop = false;
 
         yield return new WaitForSeconds(2.5f);
         UIManager.instance.PlayFadeFX(0.2f);
@@ -113,6 +114,7 @@ public class Gamemanager : MonoBehaviour
         //BGM 변경 - SCENE Theme
         SoundManager.instance.speaker.clip = currentAC;
         SoundManager.instance.speaker.Play();
+        SoundManager.instance.speaker.loop = true;
     }
 
     IEnumerator KirbyGameOverEvent()
@@ -129,6 +131,7 @@ public class Gamemanager : MonoBehaviour
         //BGM 변경 - Death Theme
         SoundManager.instance.speaker.clip = SoundManager.instance.BGM[2];
         SoundManager.instance.speaker.Play();
+        SoundManager.instance.speaker.loop = false;
         yield return new WaitForSeconds(2.5f);
         UIManager.instance.PlayFadeFX(0.8f);
         yield return new WaitForSeconds(1.2f);
@@ -139,6 +142,7 @@ public class Gamemanager : MonoBehaviour
         //BGM 변경 - SCENE Theme
         SoundManager.instance.speaker.clip = SoundManager.instance.BGM[3];
         SoundManager.instance.speaker.Play();
+        SoundManager.instance.speaker.loop = true;
     }
 
     public void ResetHP()

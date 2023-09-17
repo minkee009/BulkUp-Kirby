@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8973748365463907372}
   - component: {fileID: 5736577583375275275}
   - component: {fileID: 5262133589583095031}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa144e00ee0949359495c6627e4830c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bossHp: 7
   fallDumbbell: {fileID: 3238768325267673623, guid: bc83930ffa49f490c83a56e54b39c77b, type: 3}
   throwDumbbell: {fileID: 4922336676620289347, guid: 41532e53500b748aaba6c0bc0d9568cb, type: 3}
   randomNumber: 0
@@ -161,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 3.25, y: 3.3125}
+    oldSize: {x: 3.25, y: 3.15625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
