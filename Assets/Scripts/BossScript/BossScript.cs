@@ -49,9 +49,6 @@ public class BossScript : MonoBehaviour
         if(kirbyTransform == null)
         {
             kirbyTransform = Gamemanager.instance.kirbyController?.transform;
-        }
-        else
-        {
             return;
         }
         direction = kirbyTransform.transform.position - transform.position;
