@@ -151,7 +151,6 @@ public class KirbyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print((int)ability);
         if (isStopExcuteFSM)
         {
             return;
@@ -447,7 +446,9 @@ public class KirbyController : MonoBehaviour
         StopInvincible();
         isPlayingAction = true;
         hitBox.enabled = false;
-       
+        if(_createdAbilityStar != null) 
+            Destroy(_createdAbilityStar);
+
         yield return new WaitForSeconds(0.15f);
         morphFX.SetActive(true);
         PlayReactionYdir();
@@ -606,7 +607,7 @@ public class KirbyController : MonoBehaviour
             ability = SpecialAbility.None;
             ChangeKirbySprite();
         }
-        if (isPlayingAction)
+        if (isPlayingAction || _fsm.Current.GetKey == "Slide")
         {
             _fsm.SwitchState("Idle");
         }

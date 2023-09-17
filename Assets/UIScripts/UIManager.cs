@@ -5,13 +5,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+
     public GameObject pauseMenuUI;
 
     private bool isPaused = false;
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     // Start is called before the first frame update

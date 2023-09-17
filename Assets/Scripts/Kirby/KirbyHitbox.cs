@@ -14,6 +14,7 @@ public class KirbyHitbox : MonoBehaviour
         {
             //damaged
             Gamemanager.instance.Damaged(1);
+            Gamemanager.instance.cameraMove?.ShakeCamera(24f, 3f, 4f);
             kc.isRightDir = (collision.transform.position.x - transform.position.x) > 0 ? true : false;
             kc.StartCoroutine("LowDamaged");
         }

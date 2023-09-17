@@ -905,8 +905,8 @@ MonoBehaviour:
   animController:
   - {fileID: 9100000, guid: c8197f4a8bde34894bb716319e58e6e3, type: 2}
   - {fileID: 9100000, guid: 426b561a876be4f9f80e96a87fc77455, type: 2}
-  - {fileID: 9100000, guid: 4a102b8d98b5645d6a16e59bc38d3945, type: 2}
   - {fileID: 9100000, guid: 5c1ad601a708746489c3803b68b9cbe6, type: 2}
+  - {fileID: 9100000, guid: 4a102b8d98b5645d6a16e59bc38d3945, type: 2}
   physBox: {fileID: 8214916752687541500}
   hitBox: {fileID: 3739446367764696362}
   atkBox: {fileID: 3010785587311056229}
@@ -929,6 +929,7 @@ MonoBehaviour:
   - {fileID: -3444060371671205496, guid: ac1f460c69ce3468e932417922a9e2e3, type: 3}
   - {fileID: 4174143901940742237, guid: ac1f460c69ce3468e932417922a9e2e3, type: 3}
   starDustPrefab: {fileID: 4371344471010586856, guid: 94f735a244f17a34fbe4e8e298958070, type: 3}
+  morphFX: {fileID: 7012739562964361802}
   ihObjAbility: 0
   hInput: 0
   vInput: 0
@@ -1184,7 +1185,7 @@ MonoBehaviour:
   _key: Spark
   interactActionInput: 1
   sparkFX: {fileID: 6912368843018081779}
-  attackTime: 0.8
+  attackTime: 0.6
   timer: 0
   isAttacking: 0
   isEndAnim: 0
