@@ -54,9 +54,9 @@ public class CameraMovement : MonoBehaviour
         _targetPos.x = Mathf.Clamp(_targetPos.x, -mapX + center.position.x, mapX + center.position.x);
         _targetPos.y = Mathf.Clamp(_targetPos.y, -mapY + center.position.y, mapY + center.position.y);
         _currentPos = Vector3.Lerp(_currentPos, _targetPos, cameraChaseSpeed * Time.deltaTime);
-        _shakePos = new Vector3(_shakeAmount * Mathf.PerlinNoise(_seed, Time.time * _shakeSpeed) * 2 - 1,
-            _shakeAmount * Mathf.PerlinNoise(_seed + 1, Time.time * _shakeSpeed) * 2 - 1,
-            _shakeAmount * Mathf.PerlinNoise(_seed + 2, Time.time * _shakeSpeed) * 2 - 1);
+        _shakePos = new Vector3(_shakeAmount * (Mathf.PerlinNoise(_seed, Time.time * _shakeSpeed) * 2 - 1),
+            _shakeAmount * (Mathf.PerlinNoise(_seed + 1, Time.time * _shakeSpeed) * 2 - 1),
+            _shakeAmount * (Mathf.PerlinNoise(_seed + 2, Time.time * _shakeSpeed) * 2 - 1));
 
         transform.position = _currentPos + (_shakePos * _trauma);
     }

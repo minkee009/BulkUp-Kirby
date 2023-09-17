@@ -36,12 +36,11 @@ public class KirbyFireAction : KirbyState
 
     IEnumerator FireAttack()
     {
-       
-
         yield return animTime1;
         var fireObj = Instantiate(fire);
         fireObj.transform.position = transform.position;
         fireObj.transform.rotation = transform.rotation;
+        fireObj.GetComponent<KDumbbellAtk>().dir = kc.isRightDir ? 1 : -1;
         yield return animTime2;
 
         kc.GetFSM.SwitchState(kc.isGrounded ? "Idle" : "Fall");

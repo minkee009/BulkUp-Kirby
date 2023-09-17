@@ -9,9 +9,9 @@ public class KBeamAtk : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             //애너미 제거 이펙트
-
-            //태그 비교
-            collision.gameObject.SetActive(false);
+            Gamemanager.instance.cameraMove.ShakeCamera(24f, 0.1f, 12f);
         }
+
+
     }
 }

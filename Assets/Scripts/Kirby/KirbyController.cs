@@ -153,6 +153,7 @@ public class KirbyController : MonoBehaviour
     {
         if (isStopExcuteFSM)
         {
+            rb.velocity = new Vector2(currentXVel, currentYVel);
             return;
         }
 
@@ -610,16 +611,16 @@ public class KirbyController : MonoBehaviour
         if (isPlayingAction || _fsm.Current.GetKey == "Slide")
         {
             _fsm.SwitchState("Idle");
+            clipName = !hasInhaledObj ? "Char_Kirby_Idle" : "Char_Kirby_Inhaled_Idle";
         }
         hitBox.enabled = false;
         kirbyAnimator.Play("Char_Kirby_Hurt_nomal");
         isStopExcuteFSM = true;
         isStopReadInput = true;
-        currentXVel = 0f;
-        currentYVel = 0f;
         while (count < 0.4f)
         {
-            rb.velocity = new Vector2(isRightDir ? -2f : 2f, 0f);
+            currentXVel = isRightDir ? -2f : 2f;
+            currentYVel = 0f;
             count += Time.deltaTime;
             yield return null;
         }
@@ -651,6 +652,55 @@ public class KirbyController : MonoBehaviour
         StopCoroutine("Invicible");
         kirbySprite.color = Color.white;
         isInvincibility = false;
+    }
+
+    public bool EnterDoor(out bool excuteExhale)
+    {
+        if(isStopExcuteFSM || isPlayingAction)
+        {
+            excuteExhale = false;
+            return false;
+        }
+        excuteExhale = hasInhaledObj || _fsm.Current.GetKey == "Hover";
+        StopAllCoroutines();
+        StartCoroutine("DoorAction");
+        return true;
+    }
+
+    IEnumerator DoorAction()
+    {
+        hitBox.enabled = false;
+        isStopExcuteFSM = true;
+        isStopReadInput = true;
+        currentXVel = 0f;
+        currentYVel = 0f;
+        if (hasInhaledObj)
+        {
+            _fsm.SwitchState("Exhale");
+            yield return new WaitForSeconds(0.3f);
+            _fsm.SwitchState("Idle");
+        }
+        else if(_fsm.Current.GetKey == "Hover")
+        {
+            actInput = true;
+            _fsm.Current.OnPostPhysCheck();
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+        {
+            _fsm.SwitchState("Idle");
+        }
+       
+        kirbyAnimator.Play("Char_Kirby_Enter");
+        kirbyAnimator.Update(0f);
+        yield return new WaitForSeconds(0.3f);
+        _fsm.SwitchState("Idle");
+        kirbySprite.color = new Color(1, 1, 1, 0);
+        yield return new WaitForSeconds(0.5f);
+        kirbySprite.color = new Color(1, 1, 1, 1);
+        isStopExcuteFSM = false;
+        isStopReadInput = false;
+        hitBox.enabled = true;
     }
     #endregion
 
