@@ -68,10 +68,12 @@ public class WaddleDee : MonoBehaviour
         {
             this.gameObject.SetActive(false);
 
+            Gamemanager.instance.IncreaseScore(40);
+
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;
-
-            Destroy(die, 0.5f);
+            
+            Destroy(die,0.5f);
         }
     }
 }

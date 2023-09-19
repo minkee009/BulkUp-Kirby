@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor.Experimental.GraphView;
 
 public class ParabolaFly : MonoBehaviour
 {
@@ -20,6 +19,8 @@ public class ParabolaFly : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     
     [SerializeField] private GameObject dieAnim;
+
+    private Animator _animator;
     
     
     void Start()
@@ -31,6 +32,8 @@ public class ParabolaFly : MonoBehaviour
         
         direction = kirbyTransform.position - transform.position;
         direction.Normalize();
+
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -59,12 +62,14 @@ public class ParabolaFly : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
             this.gameObject.SetActive(false);
-            
+
+            Gamemanager.instance.IncreaseScore(40);
+
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;
             

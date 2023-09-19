@@ -14,6 +14,7 @@ public class KirbyInhaling : KirbyState
     public Collider2D[] overlapedColls = new Collider2D[5];
     public WaitForSeconds animStartTime = new WaitForSeconds(0.45f);
     public WaitForSeconds animEndTime = new WaitForSeconds(0.3f);
+    public AudioClip inhalingSound;
 
     public GameObject dustFX;
     public int captureCount = 0;
@@ -50,6 +51,8 @@ public class KirbyInhaling : KirbyState
 
     public override void Enter()
     {
+        kc.kirbyAudio.clip = inhalingSound;
+        kc.kirbyAudio.Play();
         dustFX.transform.localPosition = new Vector3(kc.isRightDir ? 1.5f : -1.5f, 0.25f, 0);
         dustFX.GetComponent<SpriteRenderer>().flipX = !kc.isRightDir;
         dustFX.SetActive(true);
@@ -149,6 +152,12 @@ public class KirbyInhaling : KirbyState
                     {
                         //아이템 기능 실행 함수
                     }
+                    else if (capturedIhObjs[i].isBoss)
+                    {
+                        //보스 머금
+                        kc.hasInhaledObj = true;
+                        kc.hasBossObj = true;
+                    }
                     else if (!kc.hasInhaledObj)
                     {
                         kc.hasInhaledObj = true;
@@ -162,6 +171,7 @@ public class KirbyInhaling : KirbyState
                     }
 
                     //삼킨 오브젝트 삭제
+                    Gamemanager.instance.IncreaseScore(50);
                     kc.PlayReactionXdir();
                     Destroy(capturedIhObjs[i].gameObject);
                     captureCount--;
@@ -182,6 +192,7 @@ public class KirbyInhaling : KirbyState
 
     public override void Exit()
     {
+        kc.kirbyAudio.Stop();
         dustFX.SetActive(false);
         StopAllCoroutines();
         kc.spritePivot.localPosition = Vector3.zero;

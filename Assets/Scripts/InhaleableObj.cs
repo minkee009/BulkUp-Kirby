@@ -6,6 +6,7 @@ public class InhaleableObj : MonoBehaviour
 {
     public SpecialAbility ability = SpecialAbility.None;
     public bool isItem;
+    public bool isBoss;
     public Sprite inhaleSprite;
 
     public GameObject CreateDoll()
@@ -37,6 +38,7 @@ public class InhaleableObj : MonoBehaviour
         var inhaleableObj = doll.AddComponent<InhaleableObj>();
         inhaleableObj.ability = ability;
         inhaleableObj.isItem = isItem;
+        inhaleableObj.isBoss = isBoss;
 
         return doll;
     }

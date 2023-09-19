@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class BossScript : MonoBehaviour
 {
-    private float _bossHp { get; set; } = 7;
+    [SerializeField] private float _bossHp = 7;
 
     private bool isJumping = false;
     private bool isAttack = false;
@@ -16,138 +19,143 @@ public class BossScript : MonoBehaviour
     [SerializeField] private GameObject fallDumbbell;
     [SerializeField] private GameObject throwDumbbell;
 
-    [SerializeField] private int randomNumber;
+    [SerializeField] private int randomNumber = 0;
 
     private Rigidbody2D _rigidbody2D;
 
     private Vector2 direction;
 
-    private float jumpDistance = -3;
+    private float jumpDistance = -2;
     
-    private enum State
-    {
-        Idle,
-        Jump,
-        FallDumbbell,
-        ThrowDumbbell
-    }
+    private int jumpCount = 0;
 
-    [SerializeField] private State _state = State.Idle;
-    
+    private LayerMask _layerMask = 1 << 6;
+
+    [SerializeField] private Animator animator;
+    [SerializeField] private Transform spritePivot;
+
+    private bool isDieAnim;
+
+    [SerializeField] private GameObject dieInhaleObj;
+    [SerializeField] private GameObject dieAnim;
+
     
     // Start is called before the first frame update
     void Start()
     {
-        kirbyTransform = GameObject.FindWithTag("Kirby").transform;
-
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        
-        // InvokeRepeating("RandomNumber", 0f, 10f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(kirbyTransform == null)
+        {
+            kirbyTransform = Gamemanager.instance.kirbyController?.transform;
+            return;
+        }
+        if (isDieAnim)
+            return;
         direction = kirbyTransform.transform.position - transform.position;
         direction.Normalize();
 
         if (randomNumber == 0)
         {
-            _state = State.Idle;
+            StartCoroutine(Idle());
+            randomNumber = 4;
         }
-        else if (randomNumber == 1)
+        if (randomNumber == 1)
         {
-            _state = State.Jump;
+            StartCoroutine(Jump());
+            randomNumber = 4;
         }
-        else if (randomNumber == 2)
+        if (randomNumber == 2)
         {
-            _state = State.FallDumbbell;
+            StartCoroutine(FallDumbbell());
+            randomNumber = 4;
         }
-        else
+        if(randomNumber == 3)
         {
-            _state = State.ThrowDumbbell;
+            StartCoroutine(ThrowDumbbel());
+            randomNumber = 4;
+        }
+        
+        Debug.DrawRay(transform.position, Vector2.down);
+
+        if (_bossHp == 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(PlayDieAnim());
         }
 
-        switch (_state)
-        {
-            case State.Idle:
-                StartCoroutine(Idle());
-                break;
-            case State.Jump:
-                StartCoroutine(Jump());
-                break;
-            case State.FallDumbbell:
-                StartCoroutine(FallDumbbell());
-                break;
-            case State.ThrowDumbbell:
-                StartCoroutine(ThrowDumbbel());
-                break;
-        }
     }
 
     IEnumerator Idle()
     {
-        yield return new WaitForSeconds(2f);
-        
-        for (int i = 0; i < 5; i++)
-        {
-            if (!isJumping)
-            {
-                isJumping = true;
-                _rigidbody2D.velocity = new Vector2(jumpDistance, 3f);
-                
-                jumpDistance *= -1;
-            }
-        }
         yield return new WaitForSeconds(3f);
-
+        
         Invoke("RandomNumber", 0f);
     }
 
     IEnumerator Jump()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
+        jumpCount = 0;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -2f), 1, _layerMask);
         
-        for (int i = 0; i < 3; i++)
+        while (jumpCount < 3)
         {
             if (!isJumping)
             {
+                
                 isJumping = true;
-                _rigidbody2D.velocity = new Vector2(0, 9f);
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-        // _state = State.Idle;
-        yield return new WaitForSeconds(3f);
+                _rigidbody2D.velocity = new Vector2(0, 8f);
 
+                jumpCount++;
+
+                yield return new WaitForSeconds(1.7f);
+                if (hit)
+                {
+                    float dumbbellTransformX = -7.0f;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        GameObject JumpAttack = Instantiate(fallDumbbell);
+                        JumpAttack.transform.position = kirbyTransform.transform.position + new Vector3(dumbbellTransformX, 9f, 0);
+
+                        dumbbellTransformX += 3.5f;
+                    }
+                }
+
+            }
+            yield return new WaitForSeconds(1f);
+        }
+
+        yield return new WaitForSeconds(3f);
+        
         Invoke("RandomNumber", 0f);
     }
 
     IEnumerator FallDumbbell()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (!isAttack)
         {
             isAttack = true;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(1f);
 
                 GameObject fall = Instantiate(this.fallDumbbell);
-                fall.transform.position = kirbyTransform.transform.position + new Vector3(0, 6, 0);
+                fall.transform.position = kirbyTransform.transform.position + new Vector3(0, 9f, 0);
                 
-                Destroy(fall, 3f);
+                Destroy(fall, 4f);
             }
 
-            yield return new WaitForSeconds(2f);
-
-            // _state = State.Idle;
-
+            yield return new WaitForSeconds(3f);
+            
             isAttack = false;
             
             Invoke("RandomNumber", 0f);
@@ -156,7 +164,7 @@ public class BossScript : MonoBehaviour
 
     IEnumerator ThrowDumbbel()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         
         if (!isAttack)
         {
@@ -167,14 +175,14 @@ public class BossScript : MonoBehaviour
                 yield return new WaitForSeconds(1f);
 
                 GameObject wave = Instantiate(throwDumbbell);
-                wave.transform.position = transform.position;
+                wave.transform.position = transform.position + new Vector3(-1,1.5f,0);
+                
+                Destroy(wave, 4f);
             }
-            yield return new WaitForSeconds(2f);
-        
-            // _state = State.Idle;
-
+            yield return new WaitForSeconds(3f);
+            
             isAttack = false;
-
+            
             Invoke("RandomNumber", 0f);
         }
     }
@@ -182,7 +190,7 @@ public class BossScript : MonoBehaviour
     void RandomNumber()
     {
         randomNumber = Random.Range(0, 4);
-        Debug.Log("random");
+        Debug.Log(randomNumber);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -192,4 +200,50 @@ public class BossScript : MonoBehaviour
             isJumping = false;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Kirby") && collision.gameObject.layer == 8)
+        {
+            Gamemanager.instance.cameraMove.ShakeCamera(24f, 0.3f, 8f);
+            _bossHp--;
+        }
+    }
+
+    IEnumerator PlayReactY()
+    {
+        var count = 0f;
+        while (count < 12f)
+        {
+            count += Time.deltaTime * 56f;
+            var yValue = Mathf.Sin(count) * 0.12f;
+            spritePivot.localPosition = new Vector3(spritePivot.localPosition.x, yValue, spritePivot.localPosition.z);
+            yield return null;
+        }
+
+        spritePivot.localPosition = new Vector3(spritePivot.localPosition.x, 0f, spritePivot.localPosition.z);
+    }
+
+
+    IEnumerator PlayDieAnim()
+    {
+        isDieAnim = true;
+        SoundManager.instance.speaker.Stop();
+        StartCoroutine(PlayReactY());
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(PlayReactY());
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(PlayReactY());
+        yield return new WaitForSeconds(2f);
+        this.gameObject.SetActive(false);
+
+        GameObject die = Instantiate(dieAnim);
+        die.transform.position = transform.position;
+
+        GameObject obj = Instantiate(dieInhaleObj);
+        obj.transform.position = transform.position;
+
+        Destroy(die, 0.5f);
+    }
+
 }

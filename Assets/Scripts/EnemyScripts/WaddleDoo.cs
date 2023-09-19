@@ -174,12 +174,14 @@ public class WaddleDoo : MonoBehaviour
             isJumping = false;
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
             this.gameObject.SetActive(false);
+
+            Gamemanager.instance.IncreaseScore(40);
 
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;

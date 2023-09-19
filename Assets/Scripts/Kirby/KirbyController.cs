@@ -1,9 +1,5 @@
 using System;
 using System.Collections;
-using System.Threading;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor.Animations;
-using UnityEditor.Timeline;
 using UnityEngine;
 
 public enum SpecialAbility
@@ -20,7 +16,7 @@ public class KirbyController : MonoBehaviour
     public KirbyFSM<string, KirbyState> GetFSM => _fsm;
 
     // 애니메이터 (서영)
-    public AnimatorController[] animController;
+    public RuntimeAnimatorController[] animController;
 
     //컴포넌트
     public BoxCollider2D physBox;
@@ -36,6 +32,13 @@ public class KirbyController : MonoBehaviour
     public Sprite[] colhitDirSprite;
     public GameObject starDustPrefab;
     public GameObject morphFX;
+    public AudioSource kirbyAudio;
+
+    public AudioClip ac_damaged;
+    public AudioClip ac_morph;
+    public AudioClip ac_colhit;
+    public AudioClip ac_land;
+
 
     public SpecialAbility ihObjAbility;
 
@@ -51,12 +54,13 @@ public class KirbyController : MonoBehaviour
     //공용 상태
     public bool isGrounded;
     public bool isDash;
-    public bool isInvincibility; //작업 필요
+    public bool isInvincibility; 
     public bool hasInhaledObj;
+    public bool hasBossObj;
 
     public bool isRightDir;
-    public bool isPlayingAction;
 
+    public bool isPlayingAction;
     public bool isPlayingColHItAnim;
     public bool isWallHit;
     public bool isCellingHit;
@@ -106,6 +110,7 @@ public class KirbyController : MonoBehaviour
         //    StartCoroutine("LowDamaged");
         //}
 
+        // 입력 멈춤 상태
         if (isStopReadInput)
         {
             hInput = 0f;
@@ -209,6 +214,8 @@ public class KirbyController : MonoBehaviour
             if (!wasWallHit)
             {
                 _fsm.Current.OnWallHit();
+                kirbyAudio.clip = ac_colhit;
+                kirbyAudio.Play();
                 currentXVel = 0f;
             }
         }
@@ -221,6 +228,8 @@ public class KirbyController : MonoBehaviour
             if (!wasCellingHit)
             {
                 _fsm.Current.OnCellingHit();
+                kirbyAudio.clip = ac_colhit;
+                kirbyAudio.Play();
             }
         }
 
@@ -231,7 +240,9 @@ public class KirbyController : MonoBehaviour
         {
             //착지 이벤트
             _fsm.Current.OnLand();
-            
+            kirbyAudio.clip = ac_land;
+            kirbyAudio.Play();
+
             //대쉬 조절
             if (isDash && hInput == 0)
             {
@@ -254,22 +265,6 @@ public class KirbyController : MonoBehaviour
         jumpInput = false;
         actInput = false;
         selectInput = false;
-    }
-
-    public void CreateAbilityStar()
-    {
-        var currentInstance = Instantiate(abilityStarPrefab);
-        var starMove = currentInstance.GetComponent<AbilityStarMovement>();
-        starMove.minus = isRightDir ? -1 : 1;
-        starMove.Initialize();
-        currentInstance.GetComponent<InhaleableObj>().ability = ability;
-        currentInstance.transform.position = transform.position;
-
-        if (_createdAbilityStar != null)
-        {
-            Destroy(_createdAbilityStar);
-        }
-        _createdAbilityStar = currentInstance;
     }
 
     #region 체킹용 함수
@@ -373,6 +368,22 @@ public class KirbyController : MonoBehaviour
 
     #region 외부 호출 함수
 
+    public void CreateAbilityStar()
+    {
+        var currentInstance = Instantiate(abilityStarPrefab);
+        var starMove = currentInstance.GetComponent<AbilityStarMovement>();
+        starMove.minus = isRightDir ? -1 : 1;
+        starMove.Initialize();
+        currentInstance.GetComponent<InhaleableObj>().ability = ability;
+        currentInstance.transform.position = transform.position;
+
+        if (_createdAbilityStar != null)
+        {
+            Destroy(_createdAbilityStar);
+        }
+        _createdAbilityStar = currentInstance;
+    }
+
     public void ActDamaged()
     {
         //외부에서 OnCollisionEnter()로 실행
@@ -450,7 +461,8 @@ public class KirbyController : MonoBehaviour
         hitBox.enabled = false;
         if(_createdAbilityStar != null) 
             Destroy(_createdAbilityStar);
-
+        kirbyAudio.clip = ac_morph;
+        kirbyAudio.Play();
         yield return new WaitForSeconds(0.15f);
         UIManager.instance.ChangeAbilityImage((int)ability);
         morphFX.SetActive(true);
@@ -488,7 +500,13 @@ public class KirbyController : MonoBehaviour
     public void ChangeAbility()
     {
         hasInhaledObj = false;
-        if (ihObjAbility != SpecialAbility.None)
+        if (hasBossObj)
+        {
+            //엔딩
+            UIManager.instance.ChangeAbilityImage(8);
+            GetFSM.SwitchState("Idle");
+        }
+        else if (ihObjAbility != SpecialAbility.None)
         {           
             ability = ihObjAbility;
             StartCoroutine("PlayMorpAct");
@@ -528,6 +546,7 @@ public class KirbyController : MonoBehaviour
         switch (ability)
         {
             case SpecialAbility.None:
+                if (hasBossObj) return;
                 stateString = !hasInhaledObj ? "Inhale" : "Exhale";
                 break;
             case SpecialAbility.Beam:
@@ -674,6 +693,7 @@ public class KirbyController : MonoBehaviour
 
     IEnumerator DoorAction()
     {
+        ForceStopCollisionAnimation();
         hitBox.enabled = false;
         isStopExcuteFSM = true;
         isStopReadInput = true;
@@ -708,8 +728,6 @@ public class KirbyController : MonoBehaviour
         hitBox.enabled = true;
     }
     #endregion
-
-
 
 }
 

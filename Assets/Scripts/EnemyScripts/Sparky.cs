@@ -15,7 +15,8 @@ public class Sparky : MonoBehaviour
     
     [SerializeField] private bool isMove = true;
     [SerializeField] private bool isJumping = false;
-    [SerializeField] private bool isAttack = false; 
+    [SerializeField] private bool isAttack = false;
+    [SerializeField] private bool isIdle = false;
     
     private float distanceToKirby;
     
@@ -66,21 +67,15 @@ public class Sparky : MonoBehaviour
         {
             Move();
         }
-
-        if (!isAttack && distanceToKirby < detectionRange)
+        
+        if (isJumping) 
         {
-            isMove = false;
-
-            StartCoroutine(Charge());
-        }
-
-
-        if (isJumping)
-        {
-            _animator.SetBool("Idle", false);
-            _animator.SetBool("isWalk", true);
-            _animator.SetBool("isAttacking", false);
-            _animator.SetBool("isAttackVFX", false);
+            if (!isIdle)
+            {
+                _animator.SetBool("Idle", false);
+                _animator.SetBool("isWalk", true);
+                _animator.SetBool("isAttacking", false);
+            }
         }
         
         Debug.DrawRay(transform.position, rayDirection);
@@ -89,10 +84,24 @@ public class Sparky : MonoBehaviour
 
         if (hit)
         {
-            _animator.SetBool("Idle", true);
+            if (!isIdle)
+            {
+                _animator.SetBool("Idle", true);
+                _animator.SetBool("isWalk", false);
+                _animator.SetBool("isAttacking", false);
+            }
+        }
+        
+        if (!isAttack && distanceToKirby < detectionRange && hit)
+        {
+            isMove = false;
+            isIdle = true;
+            
+            _animator.SetBool("Idle", false);
             _animator.SetBool("isWalk", false);
-            _animator.SetBool("isAttacking", false);
-            _animator.SetBool("isAttackVFX", false);
+            _animator.SetBool("isAttacking", true);
+            
+            StartCoroutine(Attack());
         }
 
     }
@@ -124,39 +133,29 @@ public class Sparky : MonoBehaviour
         }
     }
 
-    IEnumerator Charge()
+    IEnumerator Attack()
     {
-        isAttack = true;
-        
-        _animator.SetBool("Idle", false);
-        _animator.SetBool("isWalk", false);
-        _animator.SetBool("isAttacking", true);
-        _animator.SetBool("isAttackVFX", false);
-        
-        yield return new WaitForSeconds(1f);
+        if (!isAttack)
+        {
+            isIdle = true;
+            isAttack = true;
+            
+            yield return new WaitForSeconds(1f);
 
-        attackObject.SetActive(true);
-        
-        _animator.SetBool("Idle", false);
-        _animator.SetBool("isWalk", false);
-        _animator.SetBool("isAttacking", false);
-        _animator.SetBool("isAttackVFX", true);
-        
-        yield return new WaitForSeconds(2f);
-        
-        attackObject.SetActive((false));
+            attackObject.SetActive(true);
 
-        isMove = true;
-        
-        _animator.SetBool("Idle", true);
-        _animator.SetBool("isWalk", false);
-        _animator.SetBool("isAttacking", false);
-        _animator.SetBool("isAttackVFX", false);
-        
-        
-        yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
-        isAttack = false;
+            attackObject.SetActive((false));
+
+            isMove = true;
+            isIdle = false;
+            
+            yield return new WaitForSeconds(3f);
+
+            isAttack = false;
+        }
+
     }
 
     void RandomJumpPower()
@@ -172,12 +171,14 @@ public class Sparky : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Kirby"))
         {
             this.gameObject.SetActive(false);
-            
+
+            Gamemanager.instance.IncreaseScore(40);
+
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;
             

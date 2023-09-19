@@ -49,8 +49,8 @@ public class DiagonalFly : MonoBehaviour
             this.transform.Translate(new Vector2(moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime));
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Kirby")
         {
@@ -58,8 +58,10 @@ public class DiagonalFly : MonoBehaviour
 
             GameObject die = Instantiate(dieAnim);
             die.transform.position = transform.position;
-            
+
+            Gamemanager.instance.IncreaseScore(40);
+
             Destroy(die, 0.5f);
-        }
+        }   
     }
 }
