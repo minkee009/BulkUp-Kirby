@@ -57,7 +57,7 @@ public class Gamemanager : MonoBehaviour
         if(_currentHpPoint > 0)
         {
             _currentHpPoint -= damageAmount;
-            UIManager.instance.UpdateHPBar(_currentHpPoint);
+            UIManager.instance.UpdateHPBar(_currentHpPoint,UIManager.instance.kirbyHpBar);
 
             if (_currentHpPoint <= 0)
             {
@@ -79,7 +79,7 @@ public class Gamemanager : MonoBehaviour
     public void IncreaseHP(int amount)
     {
         _currentHpPoint = Mathf.Min(MAX_HP, _currentHpPoint + amount);
-        UIManager.instance.UpdateHPBar(_currentHpPoint);
+        UIManager.instance.UpdateHPBar(_currentHpPoint, UIManager.instance.kirbyHpBar);
     }
 
     public void IncreaseScore(int num)
@@ -147,6 +147,6 @@ public class Gamemanager : MonoBehaviour
     public void ResetHP()
     {
         _currentHpPoint = MAX_HP;
-        UIManager.instance.UpdateHPBar(_currentHpPoint);
+        UIManager.instance.UpdateHPBar(_currentHpPoint, UIManager.instance.kirbyHpBar);
     }
 }

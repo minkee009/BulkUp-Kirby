@@ -7657,6 +7657,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3657215340069050311, guid: 1f5ffc72da640442995ae1d7f466b7a3, type: 3}
+      propertyPath: _bossHp
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9005446931286221073, guid: 1f5ffc72da640442995ae1d7f466b7a3, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -10340,29 +10344,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6710953125280720686, guid: f1ba03160dcb3df469a7ff4f0501e7c9, type: 3}
-      propertyPath: abiltySprites.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6710953125280720686, guid: f1ba03160dcb3df469a7ff4f0501e7c9, type: 3}
-      propertyPath: abiltySprites.Array.data[8]
-      value: 
-      objectReference: {fileID: 8253449523565351822, guid: b2284355fdaa3470fa4f427b4ef7fc20, type: 3}
-    - target: {fileID: 6923616409353717541, guid: f1ba03160dcb3df469a7ff4f0501e7c9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8873007830242799737, guid: f1ba03160dcb3df469a7ff4f0501e7c9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9204531010914052577, guid: f1ba03160dcb3df469a7ff4f0501e7c9, type: 3}
       propertyPath: m_Name
       value: UI Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9204531010914052577, guid: f1ba03160dcb3df469a7ff4f0501e7c9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

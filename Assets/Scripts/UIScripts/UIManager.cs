@@ -9,7 +9,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public Canvas canvas;
 
-    public GameObject[] hpBar = new GameObject[6];
+    public GameObject[] kirbyHpBar = new GameObject[6];
+    public GameObject[] bossHpBar = new GameObject[6];
 
     public GameObject inGameUI;
     public GameObject pauseMenuUI;
@@ -25,6 +26,9 @@ public class UIManager : MonoBehaviour
     private Coroutine _uiCoroutine;
 
     public Image blackScreen;
+
+    public GameObject BossHP;
+    public GameObject Score;
 
     
 
@@ -84,7 +88,7 @@ public class UIManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
     }
 
-    public void UpdateHPBar(float curretHP)
+    public void UpdateHPBar(float curretHP, GameObject[] hpBar)
     {
         for (int i = 0; i < hpBar.Length; i++)
         {
@@ -156,6 +160,19 @@ public class UIManager : MonoBehaviour
     {
         gameScoreText.text = score.ToString();
     }
+
+    public void SwitchingScoreToBossHP()
+    {
+        Score.SetActive(false);
+        BossHP.SetActive(true);
+    }
+
+    public void SwitchingBossHPToScore()
+    {
+        Score.SetActive(true);
+        BossHP.SetActive(false);
+    }
+
 
     IEnumerator TempChangeAbility(int index, float time)
     {

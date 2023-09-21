@@ -44,6 +44,7 @@ public class BossScript : MonoBehaviour
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        UIManager.instance.SwitchingScoreToBossHP();
     }
 
     // Update is called once per frame
@@ -207,6 +208,7 @@ public class BossScript : MonoBehaviour
         {
             Gamemanager.instance.cameraMove.ShakeCamera(24f, 0.3f, 8f);
             _bossHp--;
+            UIManager.instance.UpdateHPBar(_bossHp, UIManager.instance.bossHpBar);
         }
     }
 

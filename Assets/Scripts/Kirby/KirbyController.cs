@@ -504,7 +504,13 @@ public class KirbyController : MonoBehaviour
         {
             //엔딩
             UIManager.instance.ChangeAbilityImage(8);
-            GetFSM.SwitchState("Idle");
+            _fsm.SwitchState("Idle");
+            
+            StartCoroutine("PlayEnding");
+            //엔딩 액션
+            //커비 화면 가운데 이동
+            //가운데에서 춤
+            //춤 마지막에 로니콜먼으로 변함
         }
         else if (ihObjAbility != SpecialAbility.None)
         {           
@@ -638,7 +644,9 @@ public class KirbyController : MonoBehaviour
             clipName = !hasInhaledObj ? "Char_Kirby_Idle" : "Char_Kirby_Inhaled_Idle";
         }
         hitBox.enabled = false;
+        
         kirbyAnimator.Play("Char_Kirby_Hurt_nomal");
+        kirbyAnimator.Update(0f);
         isStopExcuteFSM = true;
         isStopReadInput = true;
         while (count < 0.4f)
@@ -726,6 +734,30 @@ public class KirbyController : MonoBehaviour
         isStopExcuteFSM = false;
         isStopReadInput = false;
         hitBox.enabled = true;
+    }
+
+    IEnumerator PlayEnding()
+    {
+        lockDir = false;
+        isStopReadInput = true;
+        isStopExcuteFSM = true;
+        var dist = Mathf.Infinity;
+        UIManager.instance.SwitchingBossHPToScore();
+        yield return new WaitForSeconds(0.5f);
+        while(dist > 0.01f)
+        {
+            dist = Mathf.Abs(Gamemanager.instance.cameraMove.center.position.x - transform.position.x);
+            hInput = (Gamemanager.instance.cameraMove.center.position.x - transform.position.x > 0f ? 1 : -1) * 0.65f;
+            _fsm.Current.OnPostPhysCheck();
+            _fsm.Current.Excute();
+            kirbySprite.flipX = hInput > 0 ? false : true;
+            yield return null;
+        }
+        kirbyAnimator.Play("Char_Kirby_Idle");
+        currentXVel = 0f;
+        hInput = 0f;
+        kirbySprite.flipX = false;
+        //춤 프리펩 인스턴스
     }
     #endregion
 
