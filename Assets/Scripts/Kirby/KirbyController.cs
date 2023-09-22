@@ -196,7 +196,7 @@ public class KirbyController : MonoBehaviour
 
         PlayAbilityAction();
 
-    SkipActionExcute:
+        SkipActionExcute:
 
 
         //전이 실행 (물리체크 전)

@@ -451,6 +451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kc: {fileID: 7540628809314787159}
+  kirbyHitMask:
+    serializedVersion: 2
+    m_Bits: 1536
 --- !u!1 &6508394302652772529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1047,7 @@ MonoBehaviour:
   isDash: 0
   isInvincibility: 0
   hasInhaledObj: 0
+  hasBossObj: 0
   isRightDir: 1
   isPlayingAction: 0
   isPlayingColHItAnim: 0

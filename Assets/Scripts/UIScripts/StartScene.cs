@@ -6,10 +6,13 @@ using UnityEngine.SceneManagement;
 public class StartScene : MonoBehaviour
 {
     public AudioSource gg;
+    
+    bool _skipInput = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine("SkipInput");
         UIManager.instance.PlayFadeFX(0f);
         SoundManager.instance.speaker.clip = SoundManager.instance.BGM[0];
         SoundManager.instance.speaker.Play();
@@ -19,7 +22,9 @@ public class StartScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        var startInput = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return);
+
+        if (!_skipInput && startInput)
         {
             StartCoroutine("StartGame");
         }
@@ -34,5 +39,11 @@ public class StartScene : MonoBehaviour
         SoundManager.instance.speaker.clip = SoundManager.instance.BGM[1];
         SoundManager.instance.speaker.Play();
         SceneManager.LoadScene("GameScene");
+    }
+
+    IEnumerator SkipInput()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _skipInput = false;
     }
 }
