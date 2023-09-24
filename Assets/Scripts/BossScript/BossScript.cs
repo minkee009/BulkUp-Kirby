@@ -110,7 +110,7 @@ public class BossScript : MonoBehaviour
         {
             if (!isJumping)
             {
-                
+                StartCoroutine("PlayJumpAnim");
                 isJumping = true;
                 _rigidbody2D.velocity = new Vector2(0, 8f);
 
@@ -225,10 +225,17 @@ public class BossScript : MonoBehaviour
 
         spritePivot.localPosition = new Vector3(spritePivot.localPosition.x, 0f, spritePivot.localPosition.z);
     }
-
+    
+    IEnumerator PlayJumpAnim()
+    {
+        animator.SetBool("isJump", true);
+        yield return new WaitForSeconds(0.65f);
+        animator.SetBool("isJump", false);
+    }
 
     IEnumerator PlayDieAnim()
     {
+        animator.SetBool("isJump", false);
         UIManager.instance.SwitchingBossHPToScore(); 
         Gamemanager.instance.IncreaseScore(800);
         isDieAnim = true;

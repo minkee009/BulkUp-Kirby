@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa144e00ee0949359495c6627e4830c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossHp: 1
+  _bossHp: 6
   fallDumbbell: {fileID: 3238768325267673623, guid: bc83930ffa49f490c83a56e54b39c77b, type: 3}
   throwDumbbell: {fileID: 4922336676620289347, guid: 41532e53500b748aaba6c0bc0d9568cb, type: 3}
   randomNumber: 0

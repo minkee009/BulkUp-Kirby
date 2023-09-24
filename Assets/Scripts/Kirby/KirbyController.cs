@@ -35,6 +35,7 @@ public class KirbyController : MonoBehaviour
 
     public GameObject starDustPrefab;
     public GameObject morphFX;
+    public GameObject kirbyDance;
     public AudioSource kirbyAudio;
 
     public AudioClip ac_damaged;
@@ -755,12 +756,15 @@ public class KirbyController : MonoBehaviour
 
     IEnumerator PlayEnding()
     {
+        SoundManager.instance.speaker.clip = SoundManager.instance.BGM[5];
+        SoundManager.instance.speaker.Play();
         if (_createdAbilityStar != null)
             Destroy(_createdAbilityStar);
         lockDir = false;
         isStopReadInput = true;
         isStopExcuteFSM = true;
         var dist = Mathf.Infinity;
+        var soundWait = 0f;
         UIManager.instance.SwitchingBossHPToScore();
         yield return new WaitForSeconds(0.5f);
         while(dist > 0.01f)
@@ -776,7 +780,20 @@ public class KirbyController : MonoBehaviour
         currentXVel = 0f;
         hInput = 0f;
         kirbySprite.flipX = false;
+        while(soundWait < 1f)
+        {
+            soundWait += Time.deltaTime;
+            yield return null;  
+        }
         //Ãã ÇÁ¸®Æé ÀÎ½ºÅÏ½º
+        SoundManager.instance.speaker.clip = SoundManager.instance.BGM[6];
+        SoundManager.instance.speaker.loop = false;
+        SoundManager.instance.speaker.Play();
+        kirbySprite.enabled = false;
+        var dance = Instantiate(kirbyDance);
+        dance.transform.position = transform.position;
+        yield return new WaitForSeconds(5.4f);
+        UIManager.instance.ChangeAbilityImage(7);
     }
     #endregion
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5915789036007664708}
   - component: {fileID: 5817410930070074082}
   - component: {fileID: 2673062959008823666}
+  - component: {fileID: 166269233681909034}
   m_Layer: 0
   m_Name: DeadBoss
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.40126187, y: 0.26831016, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.45882356, g: 0.28235295, b: 0.227451, a: 1}
+  m_Sprite: {fileID: 2467314271473265160, guid: b69ef025247d84b079097ac7c7929f1b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -165,3 +166,16 @@ MonoBehaviour:
   isItem: 0
   isBoss: 1
   inhaleSprite: {fileID: 0}
+--- !u!114 &166269233681909034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910929911248477294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5f2baa6a4b31e4e886ac09b6c26299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 1290020544964723111}
