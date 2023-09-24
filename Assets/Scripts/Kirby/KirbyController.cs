@@ -29,7 +29,10 @@ public class KirbyController : MonoBehaviour
     public Animator kirbyAnimator;
     public SpriteRenderer kirbySprite;
     public SpriteRenderer colhitSprite;
+    public SpriteRenderer damagedSprite;
     public Sprite[] colhitDirSprite;
+    public Sprite[] damgedSpriteAnimations;
+
     public GameObject starDustPrefab;
     public GameObject morphFX;
     public AudioSource kirbyAudio;
@@ -180,12 +183,10 @@ public class KirbyController : MonoBehaviour
         {
             // ability star 생성 함수 실행
             CreateAbilityStar();
-            // 색 원래대로 (기본으로 돌아가는 기능만들기)
-            var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+
             ability = SpecialAbility.None;
             UIManager.instance.ChangeAbilityImage(0);
             ChangeKirbySprite();
-            kirbyAnimator.Play(clipName);
         }
 
         //액션 키 실행
@@ -527,6 +528,7 @@ public class KirbyController : MonoBehaviour
 
     public void ChangeKirbySprite()
     {
+        var clipName = kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
         switch (ability)
         {
             case SpecialAbility.None:
@@ -542,7 +544,7 @@ public class KirbyController : MonoBehaviour
                 kirbyAnimator.runtimeAnimatorController = animController[3];
                 break;
         }
-
+        kirbyAnimator.Play(clipName);
         //colhitSprite.color = kirbySprite.color;
     }
 
@@ -628,8 +630,9 @@ public class KirbyController : MonoBehaviour
 
     IEnumerator LowDamaged()
     {
-        var clipName = (kirbyAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         var count = 0f;
+        var animationFrame = 0;
+
         if (ability != SpecialAbility.None)
         {
             CreateAbilityStar();
@@ -640,27 +643,37 @@ public class KirbyController : MonoBehaviour
         UIManager.instance.TempChangeAbilityImage(5, 2f);
         if (isPlayingAction || _fsm.Current.GetKey == "Slide")
         {
-            _fsm.SwitchState("Idle");
-            clipName = !hasInhaledObj ? "Char_Kirby_Idle" : "Char_Kirby_Inhaled_Idle";
+            _fsm.SwitchState(isGrounded ? "Idle" : "Fall");
         }
         hitBox.enabled = false;
         
-        kirbyAnimator.Play("Char_Kirby_Hurt_nomal");
-        kirbyAnimator.Update(0f);
+
+        kirbySprite.enabled = false;
+        damagedSprite.enabled = true;
+        damagedSprite.flipX = kirbySprite.flipX;
         isStopExcuteFSM = true;
         isStopReadInput = true;
-        while (count < 0.4f)
+        while (animationFrame < damgedSpriteAnimations.Length)
         {
             currentXVel = isRightDir ? -2f : 2f;
             currentYVel = 0f;
             count += Time.deltaTime;
+
+            if(count > 0.1f)
+            {
+                count = 0f;
+                damagedSprite.sprite = damgedSpriteAnimations[animationFrame++];
+            }
+            
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine("Invincible",2f);
         isStopExcuteFSM = false;
         isStopReadInput = false;
+        kirbySprite.enabled = true;
+        damagedSprite.enabled = false;
         hitBox.enabled = true;
-        kirbyAnimator.Play(clipName);
     }
 
     IEnumerator Invincible(float duration)
@@ -701,6 +714,10 @@ public class KirbyController : MonoBehaviour
 
     IEnumerator DoorAction()
     {
+        isInvincibility = false;
+        StopCoroutine("LowDamaged");
+        damagedSprite.enabled = false;
+        kirbySprite.enabled = true;
         ForceStopCollisionAnimation();
         hitBox.enabled = false;
         isStopExcuteFSM = true;
@@ -738,6 +755,8 @@ public class KirbyController : MonoBehaviour
 
     IEnumerator PlayEnding()
     {
+        if (_createdAbilityStar != null)
+            Destroy(_createdAbilityStar);
         lockDir = false;
         isStopReadInput = true;
         isStopExcuteFSM = true;

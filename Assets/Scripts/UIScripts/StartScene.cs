@@ -32,6 +32,7 @@ public class StartScene : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        _skipInput = true;
         gg.Play();
         UIManager.instance.PlayFadeFX(0.2f);
         yield return new WaitForSeconds(0.6f);

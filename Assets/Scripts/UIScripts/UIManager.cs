@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
     
     public void UpdateScoreText(int score)
     {
-        gameScoreText.text = score.ToString();
+        gameScoreText.text = score.ToString("D8");
     }
 
     public void SwitchingScoreToBossHP()

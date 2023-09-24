@@ -229,6 +229,8 @@ public class BossScript : MonoBehaviour
 
     IEnumerator PlayDieAnim()
     {
+        UIManager.instance.SwitchingBossHPToScore(); 
+        Gamemanager.instance.IncreaseScore(800);
         isDieAnim = true;
         SoundManager.instance.speaker.Stop();
         StartCoroutine(PlayReactY());
