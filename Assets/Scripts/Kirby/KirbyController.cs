@@ -793,7 +793,9 @@ public class KirbyController : MonoBehaviour
         var dance = Instantiate(kirbyDance);
         dance.transform.position = transform.position;
         yield return new WaitForSeconds(5.4f);
+        morphFX.SetActive(true);
         UIManager.instance.ChangeAbilityImage(7);
+        Gamemanager.instance.StartEndingScene();
     }
     #endregion
 

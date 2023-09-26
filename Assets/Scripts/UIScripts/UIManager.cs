@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
     /// 페이드 아웃 후 WaitTime을 기다린 후 페이드 인
     /// </summary>
     /// <param name="waitTime"></param>
-    public void PlayFadeFX(float waitTime)
+    public void PlayFadeFX(float waitTime = 0f)
     {
         if (_playFadeFX) return;
         StartCoroutine("FadeForBlackScreen", waitTime);

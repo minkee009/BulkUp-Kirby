@@ -144,6 +144,33 @@ public class Gamemanager : MonoBehaviour
         SoundManager.instance.speaker.Play();
     }
 
+    public void StartEndingScene()
+    {
+        StartCoroutine(EndingRoll());
+    }
+
+    IEnumerator EndingRoll()
+    {
+        yield return new WaitForSeconds(2f);
+        UIManager.instance.PlayFadeFX(2f);
+        yield return new WaitForSeconds(0.65f);
+        UIManager.instance.ChangeAbilityImage(0);
+        UIManager.instance.kirbyLifeText.text = "3";
+        UIManager.instance.UpdateHPBar(6, UIManager.instance.kirbyHpBar);
+        UIManager.instance.UpdateHPBar(6, UIManager.instance.bossHpBar);
+        UIManager.instance.inGameUI.SetActive(false);
+        _score = 0;
+        UIManager.instance.UpdateScoreText(_score);
+        Destroy(kirbyController.gameObject);
+        kirbyController = null;
+        yield return new WaitForSeconds(1.35f);
+        SceneManager.LoadScene("EndingScene");
+        SoundManager.instance.speaker.clip = SoundManager.instance.BGM[7];
+        SoundManager.instance.speaker.Play();
+        yield return new WaitForSeconds(2.5f);
+    }
+
+
     public void ResetHP()
     {
         _currentHpPoint = MAX_HP;
